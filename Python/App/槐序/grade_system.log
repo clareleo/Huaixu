@@ -1,0 +1,68 @@
+2025-09-17 09:52:44,997 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-17 09:52:44,997 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-17 09:52:45,085 - __main__ - INFO - 样式表加载成功
+2025-09-17 09:52:45,085 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-17 09:52:45,087 - __main__ - INFO - 初始化数据库表
+2025-09-17 09:52:45,106 - __main__ - INFO - 显示登录窗口
+2025-09-17 09:52:45,566 - __main__ - INFO - 进入应用程序主循环
+2025-09-17 09:52:56,509 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-17 09:52:56,510 - root - CRITICAL - 未捕获的异常: Traceback (most recent call last):
+  File "E:\Python\Python\App\槐序\gui\login_window.py", line 94, in closeEvent
+    if not self.db_conn.closed:
+AttributeError: 'sqlite3.Connection' object has no attribute 'closed'
+
+2025-09-17 10:01:05,605 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-17 10:01:05,606 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-17 10:01:05,665 - __main__ - INFO - 样式表加载成功
+2025-09-17 10:01:05,665 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-17 10:01:05,665 - __main__ - INFO - 初始化数据库表
+2025-09-17 10:01:05,670 - __main__ - INFO - 显示登录窗口
+2025-09-17 10:01:06,111 - __main__ - INFO - 进入应用程序主循环
+2025-09-17 10:01:23,928 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-17 10:01:24,105 - root - CRITICAL - 未捕获的异常: Traceback (most recent call last):
+  File "E:\Python\Python\App\槐序\gui\login_window.py", line 100, in closeEvent
+    if not self.db_conn.closed:
+AttributeError: 'sqlite3.Connection' object has no attribute 'closed'
+
+2025-09-17 10:06:58,626 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-17 10:06:58,626 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-17 10:06:58,687 - __main__ - INFO - 样式表加载成功
+2025-09-17 10:06:58,688 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-17 10:06:58,688 - __main__ - INFO - 初始化数据库表
+2025-09-17 10:06:58,693 - __main__ - INFO - 显示登录窗口
+2025-09-17 10:06:59,121 - __main__ - INFO - 进入应用程序主循环
+2025-09-17 10:07:06,553 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-17 10:07:24,388 - gui.main_window - INFO - 主窗口关闭
+2025-09-17 10:35:12,726 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-17 10:35:12,727 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-17 10:35:12,789 - __main__ - INFO - 样式表加载成功
+2025-09-17 10:35:12,789 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-17 10:35:12,789 - __main__ - INFO - 初始化数据库表
+2025-09-17 10:35:12,794 - __main__ - INFO - 显示登录窗口
+2025-09-17 10:35:13,283 - __main__ - INFO - 进入应用程序主循环
+2025-09-17 10:35:20,854 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-17 10:35:24,284 - gui.student_mgmt - ERROR - 加载班级列表错误: Cannot operate on a closed database.
+2025-09-17 10:35:25,666 - gui.student_mgmt - ERROR - 加载学生列表错误: Cannot operate on a closed database.
+2025-09-17 10:35:43,059 - gui.main_window - INFO - 主窗口关闭
+2025-09-17 10:37:27,124 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-17 10:37:27,124 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-17 10:37:27,269 - __main__ - INFO - 样式表加载成功
+2025-09-17 10:37:27,269 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-17 10:37:27,270 - __main__ - INFO - 初始化数据库表
+2025-09-17 10:37:27,276 - __main__ - INFO - 显示登录窗口
+2025-09-17 10:37:27,731 - __main__ - INFO - 进入应用程序主循环
+2025-09-17 10:38:00,967 - gui.login_window - WARNING - 登录失败: 用户名 1 或密码错误
+2025-09-17 12:20:24,721 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-17 12:20:24,722 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-17 12:20:24,877 - __main__ - INFO - 样式表加载成功
+2025-09-17 12:20:24,877 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-17 12:20:24,879 - __main__ - INFO - 初始化数据库表
+2025-09-17 12:20:24,884 - __main__ - INFO - 显示登录窗口
+2025-09-17 12:20:25,415 - __main__ - INFO - 进入应用程序主循环
+2025-09-17 14:01:42,732 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-17 14:01:42,732 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-17 14:01:42,881 - __main__ - INFO - 样式表加载成功
+2025-09-17 14:01:42,881 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-17 14:01:42,881 - __main__ - INFO - 初始化数据库表
+2025-09-17 14:01:42,887 - __main__ - INFO - 显示登录窗口
+2025-09-17 14:01:43,360 - __main__ - INFO - 进入应用程序主循环

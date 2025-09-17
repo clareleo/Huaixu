@@ -1,0 +1,93 @@
+/* 全局样式 */
+QWidget {
+    background-color: #f5f5f5;
+    font-family: "Microsoft YaHei";
+}
+
+/* 按钮样式 */
+QPushButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    min-width: 80px;
+}
+
+QPushButton:hover {
+    background-color: #45a049;
+}
+
+QPushButton:pressed {
+    background-color: #3d8b40;
+}
+
+/* 输入框样式 */
+QLineEdit {
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+QLineEdit:focus {
+    border: 1px solid #4CAF50;
+}
+
+/* 标签样式 */
+QLabel {
+    color: #333;
+}
+
+/* 表格样式 */
+QTableView {
+    background-color: white;
+    alternate-background-color: #f9f9f9;
+    gridline-color: #ddd;
+    border: 1px solid #ddd;
+}
+
+QHeaderView::section {
+    background-color: #4CAF50;
+    color: white;
+    padding: 6px;
+    border: none;
+}
+
+/* 登录窗口特定样式 */
+#LoginWindow {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+#LoginWindow QLabel[title="true"] {
+    font-size: 20px;
+    font-weight: bold;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+/* 菜单栏样式 */
+QMenuBar {
+    background-color: #333;
+    color: white;
+}
+
+QMenuBar::item {
+    background-color: transparent;
+    padding: 5px 10px;
+}
+
+QMenuBar::item:selected {
+    background-color: #555;
+}
+
+QMenu {
+    background-color: white;
+    border: 1px solid #ddd;
+}
+
+QMenu::item:selected {
+    background-color: #4CAF50;
+    color: white;
+}

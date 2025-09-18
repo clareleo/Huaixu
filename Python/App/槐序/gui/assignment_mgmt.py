@@ -32,10 +32,6 @@ class AssignmentManagementWindow(QWidget):
         self.course_combo = QComboBox()
         self.course_combo.currentIndexChanged.connect(self.load_assignments)
 
-        self.term_combo = QComboBox()
-        self.term_combo.addItems(["2023-2024-1", "2023-2024-2", "2022-2023-1", "2022-2023-2"])
-        self.term_combo.currentIndexChanged.connect(self.load_assignments)
-
         add_folder_btn = QPushButton("添加作业文件夹")
         add_folder_btn.clicked.connect(self.add_assignment_folder)
 
@@ -44,16 +40,14 @@ class AssignmentManagementWindow(QWidget):
 
         toolbar.addWidget(QLabel("课程:"))
         toolbar.addWidget(self.course_combo)
-        toolbar.addWidget(QLabel("学期:"))
-        toolbar.addWidget(self.term_combo)
         toolbar.addWidget(add_folder_btn)
         toolbar.addWidget(refresh_btn)
         layout.addLayout(toolbar)
 
         # 作业文件夹表格
         self.folder_table = QTableWidget()
-        self.folder_table.setColumnCount(5)
-        self.folder_table.setHorizontalHeaderLabels(["ID", "课程", "学期", "文件夹路径", "操作"])
+        self.folder_table.setColumnCount(4)
+        self.folder_table.setHorizontalHeaderLabels(["ID", "课程", "文件夹路径", "操作"])
         self.folder_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.folder_table.setSelectionBehavior(QTableWidget.SelectRows)
         layout.addWidget(self.folder_table)
@@ -92,13 +86,12 @@ class AssignmentManagementWindow(QWidget):
     def load_assignments(self):
         """加载作业文件夹列表"""
         course_id = self.course_combo.currentData()
-        term = self.term_combo.currentText()
 
         try:
             cursor = self.db_conn.cursor()
 
             query = """
-                    SELECT f.folder_id, c.course_name, f.term, f.folder_path
+                    SELECT f.folder_id, c.course_name, f.folder_path
                     FROM assignment_folders f
                              JOIN courses c ON f.course_id = c.course_id
                     WHERE 1 = 1 \
@@ -109,24 +102,20 @@ class AssignmentManagementWindow(QWidget):
                 query += " AND f.course_id = ?"
                 params.append(course_id)
 
-            if term:
-                query += " AND f.term = ?"
-                params.append(term)
-
-            query += " ORDER BY f.term DESC, c.course_name"
+            query += " ORDER BY c.course_name"
 
             cursor.execute(query, params)
             folders = cursor.fetchall()
 
             self.folder_table.setRowCount(len(folders))
             for row, folder in enumerate(folders):
-                for col in range(4):
+                for col in range(3):
                     self.folder_table.setItem(row, col, QTableWidgetItem(str(folder[col])))
 
                 # 添加查看按钮
                 view_btn = QPushButton("查看")
                 view_btn.clicked.connect(lambda _, f=folder: self.show_folder_details(f))
-                self.folder_table.setCellWidget(row, 4, view_btn)
+                self.folder_table.setCellWidget(row, 3, view_btn)
         except Exception as e:
             self.logger.error(f"加载作业文件夹错误: {str(e)}")
             QMessageBox.critical(self, "错误", f"加载作业文件夹失败: {str(e)}")
@@ -142,7 +131,6 @@ class AssignmentManagementWindow(QWidget):
             QMessageBox.warning(self, "提示", "请先选择课程")
             return
 
-        term = self.term_combo.currentText()
         description, ok = QInputDialog.getText(
             self, "作业描述", "请输入作业描述:"
         )
@@ -152,9 +140,9 @@ class AssignmentManagementWindow(QWidget):
                 cursor = self.db_conn.cursor()
                 cursor.execute("""
                                INSERT INTO assignment_folders
-                                   (folder_path, course_id, term, description)
-                               VALUES (?, ?, ?, ?)
-                               """, (folder_path, course_id, term, description))
+                                   (folder_path, course_id, description)
+                               VALUES (?, ?, ?)
+                               """, (folder_path, course_id, description))
                 self.db_conn.commit()
                 self.load_assignments()
                 self.logger.info(f"添加作业文件夹: {folder_path}")
@@ -164,8 +152,8 @@ class AssignmentManagementWindow(QWidget):
 
     def show_folder_details(self, folder):
         """显示选定文件夹的作业提交详情"""
-        folder_id, course_name, term, folder_path = folder
-        self.detail_label.setText(f"作业详情 - {course_name} ({term})")
+        folder_id, course_name, folder_path = folder
+        self.detail_label.setText(f"作业详情 - {course_name}")
 
         try:
             # 获取该课程的学生列表
@@ -175,9 +163,9 @@ class AssignmentManagementWindow(QWidget):
                            FROM students s
                                     JOIN classes c ON s.class_id = c.class_id
                                     JOIN course_class cc ON c.class_id = cc.class_id
-                           WHERE cc.course_id = ?
+                           WHERE cc.course_id = (SELECT course_id FROM assignment_folders WHERE folder_id = ?)
                            ORDER BY s.student_id
-                           """, (folder[0],))
+                           """, (folder_id,))
             students = cursor.fetchall()
 
             # 获取已有提交记录
@@ -264,7 +252,7 @@ class AssignmentManagementWindow(QWidget):
                 current_row = self.folder_table.currentRow()
                 if current_row >= 0:
                     folder = [
-                        self.folder_table.item(current_row, col).text() for col in range(4)
+                        self.folder_table.item(current_row, col).text() for col in range(3)
                     ]
                     self.show_folder_details(folder)
             except Exception as e:

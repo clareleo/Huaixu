@@ -34,16 +34,11 @@ class GradeManagementWindow(QWidget):
         self.class_combo = QComboBox()
         self.class_combo.currentIndexChanged.connect(self.load_grades)
 
-        self.term_combo = QComboBox()
-        self.term_combo.addItems(["2023-2024-1", "2023-2024-2", "2022-2023-1", "2022-2023-2"])
-        self.term_combo.currentIndexChanged.connect(self.load_grades)
-
+        # 移除了学期下拉框
         filter_layout.addWidget(QLabel("课程:"))
         filter_layout.addWidget(self.course_combo)
         filter_layout.addWidget(QLabel("班级:"))
         filter_layout.addWidget(self.class_combo)
-        filter_layout.addWidget(QLabel("学期:"))
-        filter_layout.addWidget(self.term_combo)
         layout.addLayout(filter_layout)
 
         # 操作按钮区域
@@ -90,7 +85,6 @@ class GradeManagementWindow(QWidget):
         current_score_text = self.grade_table.item(row, 2).text()
 
         course_id = self.course_combo.currentData()
-        term = self.term_combo.currentText()
 
         current_score = None
         if current_score_text:
@@ -100,7 +94,7 @@ class GradeManagementWindow(QWidget):
                 pass
 
         dialog = GradeEditDialog(
-            self.db_conn, student_id, student_name, course_id, term, current_score
+            self.db_conn, student_id, student_name, course_id, current_score
         )
 
         if dialog.exec_() == QDialog.Accepted:
@@ -115,9 +109,8 @@ class GradeManagementWindow(QWidget):
                                    FROM scores
                                    WHERE student_id = ?
                                      AND course_id = ?
-                                     AND term = ?
                                      AND exam_type = ?
-                                   """, (student_id, course_id, term, data['exam_type']))
+                                   """, (student_id, course_id, data['exam_type']))
 
                     existing = cursor.fetchone()
 
@@ -131,9 +124,9 @@ class GradeManagementWindow(QWidget):
                     else:
                         # 插入新成绩
                         cursor.execute("""
-                                       INSERT INTO scores (student_id, course_id, score, term, exam_type)
-                                       VALUES (?, ?, ?, ?, ?)
-                                       """, (student_id, course_id, data['score'], term, data['exam_type']))
+                                       INSERT INTO scores (student_id, course_id, score, exam_type)
+                                       VALUES (?, ?, ?, ?)
+                                       """, (student_id, course_id, data['score'], data['exam_type']))
 
                     self.db_conn.commit()
                     self.load_grades()
@@ -181,7 +174,6 @@ class GradeManagementWindow(QWidget):
         """加载成绩数据"""
         course_id = self.course_combo.currentData()
         class_id = self.class_combo.currentData()
-        term = self.term_combo.currentText()
 
         if not course_id or not class_id:
             self.grade_table.setRowCount(0)
@@ -196,11 +188,11 @@ class GradeManagementWindow(QWidget):
                     SELECT s.student_id, s.name, sc.score
                     FROM students s
                              LEFT JOIN scores sc ON s.student_id = sc.student_id
-                        AND sc.course_id = ? AND sc.term = ?
+                        AND sc.course_id = ?
                     WHERE s.class_id = ?
                     ORDER BY s.student_id \
                     """
-            cursor.execute(query, (course_id, term, class_id))
+            cursor.execute(query, (course_id, class_id))
             grades = cursor.fetchall()
 
             self.grade_table.setRowCount(len(grades))
@@ -222,11 +214,10 @@ class GradeManagementWindow(QWidget):
                                   COUNT(CASE WHEN score >= 60 THEN 1 END) * 100.0 / COUNT(*)
                            FROM scores
                            WHERE course_id = ?
-                             AND term = ?
                              AND student_id IN (SELECT student_id
                                                 FROM students
                                                 WHERE class_id = ?)
-                           """, (course_id, term, class_id))
+                           """, (course_id, class_id))
             stats = cursor.fetchone()
 
             avg, max_, min_, pass_rate = stats
@@ -246,7 +237,6 @@ class GradeManagementWindow(QWidget):
         """批量录入成绩"""
         course_id = self.course_combo.currentData()
         class_id = self.class_combo.currentData()
-        term = self.term_combo.currentText()
 
         if not course_id or not class_id:
             QMessageBox.warning(self, "提示", "请先选择课程和班级")
@@ -281,12 +271,11 @@ class GradeManagementWindow(QWidget):
 class GradeEditDialog(QDialog):
     """成绩编辑对话框"""
 
-    def __init__(self, db_conn, student_id, student_name, course_id, term, current_score=None):
+    def __init__(self, db_conn, student_id, student_name, course_id, current_score=None):
         super().__init__()
         self.db_conn = db_conn
         self.student_id = student_id
         self.course_id = course_id
-        self.term = term
         self.current_score = current_score
 
         self.setWindowTitle(f"编辑成绩 - {student_name}")

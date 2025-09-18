@@ -34,10 +34,6 @@ class ClassroomManagementWindow(QWidget):
         self.course_combo = QComboBox()
         self.course_combo.currentIndexChanged.connect(self.load_activities)
 
-        self.term_combo = QComboBox()
-        self.term_combo.addItems(["2023-2024-1", "2023-2024-2", "2022-2023-1", "2022-2023-2"])
-        self.term_combo.currentIndexChanged.connect(self.load_activities)
-
         add_activity_btn = QPushButton("新建课堂活动")
         add_activity_btn.clicked.connect(self.add_classroom_activity)
 
@@ -46,16 +42,14 @@ class ClassroomManagementWindow(QWidget):
 
         toolbar.addWidget(QLabel("课程:"))
         toolbar.addWidget(self.course_combo)
-        toolbar.addWidget(QLabel("学期:"))
-        toolbar.addWidget(self.term_combo)
         toolbar.addWidget(add_activity_btn)
         toolbar.addWidget(refresh_btn)
         layout.addLayout(toolbar)
 
         # 课堂活动表格
         self.activity_table = QTableWidget()
-        self.activity_table.setColumnCount(6)
-        self.activity_table.setHorizontalHeaderLabels(["ID", "课程", "日期", "活动类型", "描述", "操作"])
+        self.activity_table.setColumnCount(5)
+        self.activity_table.setHorizontalHeaderLabels(["ID", "课程", "日期", "活动类型", "操作"])
         self.activity_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.activity_table.setSelectionBehavior(QTableWidget.SelectRows)
         self.activity_table.cellClicked.connect(self.show_activity_details)
@@ -92,7 +86,6 @@ class ClassroomManagementWindow(QWidget):
     def load_activities(self):
         """加载课堂活动列表"""
         course_id = self.course_combo.currentData()
-        term = self.term_combo.currentText()
 
         try:
             cursor = self.db_conn.cursor()
@@ -101,8 +94,7 @@ class ClassroomManagementWindow(QWidget):
                     SELECT a.activity_id, \
                            c.course_name, \
                            a.activity_date,
-                           a.activity_type, \
-                           a.description
+                           a.activity_type
                     FROM classroom_activities a
                              JOIN courses c ON a.course_id = c.course_id
                     WHERE 1 = 1
@@ -113,10 +105,6 @@ class ClassroomManagementWindow(QWidget):
                 query += " AND a.course_id = ?"
                 params.append(course_id)
 
-            if term:
-                query += " AND a.term = ?"
-                params.append(term)
-
             query += " ORDER BY a.activity_date DESC"
 
             cursor.execute(query, params)
@@ -124,13 +112,13 @@ class ClassroomManagementWindow(QWidget):
 
             self.activity_table.setRowCount(len(activities))
             for row, activity in enumerate(activities):
-                for col in range(5):
+                for col in range(4):
                     self.activity_table.setItem(row, col, QTableWidgetItem(str(activity[col])))
 
                 # 添加评分按钮
                 score_btn = QPushButton("学生评分")
                 score_btn.clicked.connect(lambda _, a=activity: self.show_activity_details(a))
-                self.activity_table.setCellWidget(row, 5, score_btn)
+                self.activity_table.setCellWidget(row, 4, score_btn)
         except Exception as e:
             self.logger.error(f"加载课堂活动错误: {str(e)}")
             QMessageBox.critical(self, "错误", f"加载课堂活动失败: {str(e)}")
@@ -143,7 +131,7 @@ class ClassroomManagementWindow(QWidget):
 
     def show_activity_details(self, activity):
         """显示课堂活动的学生评分"""
-        activity_id, course_name, activity_date, activity_type, description = activity
+        activity_id, course_name, activity_date, activity_type = activity
         self.detail_label.setText(f"课堂活动: {course_name} - {activity_type} ({activity_date})")
 
         try:
@@ -196,7 +184,7 @@ class ClassroomManagementWindow(QWidget):
         """为学生评分"""
         dialog = StudentGradeDialog(self.db_conn, student_id, activity_id)
         if dialog.exec_() == QDialog.Accepted:
-            self.show_activity_details([activity_id, "", "", "", ""])  # 刷新显示
+            self.show_activity_details([activity_id, "", "", ""])  # 刷新显示
 
 
 class ClassroomActivityDialog(QDialog):
@@ -216,11 +204,6 @@ class ClassroomActivityDialog(QDialog):
         self.course_combo = QComboBox()
         self.load_courses()
         layout.addRow("课程:", self.course_combo)
-
-        # 学期选择
-        self.term_combo = QComboBox()
-        self.term_combo.addItems(["2023-2024-1", "2023-2024-2", "2022-2023-1", "2022-2023-2"])
-        layout.addRow("学期:", self.term_combo)
 
         # 活动日期
         self.date_edit = QDateEdit()
@@ -269,7 +252,6 @@ class ClassroomActivityDialog(QDialog):
         """获取表单数据"""
         return {
             'course_id': self.course_combo.currentData(),
-            'term': self.term_combo.currentText(),
             'activity_date': self.date_edit.date().toString("yyyy-MM-dd"),
             'activity_type': self.type_combo.currentText(),
             'max_score': self.max_score_spin.value(),

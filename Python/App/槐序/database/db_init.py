@@ -96,6 +96,30 @@ CREATE_TABLES = [
         evaluator_id INTEGER,
         FOREIGN KEY (student_id) REFERENCES students(student_id),
         FOREIGN KEY (evaluator_id) REFERENCES users(user_id)
+    )""",
+
+    # 课堂活动表
+    """CREATE TABLE IF NOT EXISTS classroom_activities (
+        activity_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        course_id INTEGER NOT NULL,
+        term TEXT NOT NULL,
+        activity_date DATE NOT NULL,
+        activity_type TEXT NOT NULL,
+        description TEXT,
+        max_score REAL DEFAULT 0,
+        FOREIGN KEY (course_id) REFERENCES courses(course_id)
+    )""",
+
+    # 课堂活动评分表
+    """CREATE TABLE IF NOT EXISTS classroom_scores (
+        score_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        activity_id INTEGER NOT NULL,
+        student_id TEXT NOT NULL,
+        score REAL DEFAULT 0,
+        comment TEXT,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (activity_id) REFERENCES classroom_activities(activity_id),
+        FOREIGN KEY (student_id) REFERENCES students(student_id)
     )"""
 ]
 

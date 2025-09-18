@@ -245,3 +245,23 @@ ModuleNotFoundError: No module named 'utils.file_monitor'
     from utils.file_monitor import AssignmentFolderMonitor
 ModuleNotFoundError: No module named 'utils.file_monitor'
 
+2025-09-18 08:42:26,691 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 08:42:26,691 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 08:42:26,837 - __main__ - INFO - 样式表加载成功
+2025-09-18 08:42:26,838 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 08:42:26,838 - __main__ - INFO - 初始化数据库表
+2025-09-18 08:42:26,843 - __main__ - INFO - 显示登录窗口
+2025-09-18 08:42:27,301 - __main__ - INFO - 进入应用程序主循环
+2025-09-18 08:42:35,693 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-18 08:42:43,127 - gui.classroom_mgmt - ERROR - 加载课堂活动错误: no such table: classroom_activities
+2025-09-18 08:42:45,793 - gui.classroom_mgmt - ERROR - 加载课堂活动错误: no such table: classroom_activities
+2025-09-18 08:43:37,522 - gui.main_window - INFO - 主窗口关闭
+2025-09-18 08:44:10,812 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 08:44:10,812 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 08:44:10,953 - __main__ - INFO - 样式表加载成功
+2025-09-18 08:44:10,953 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 08:44:10,953 - __main__ - INFO - 初始化数据库表
+2025-09-18 08:44:10,964 - __main__ - INFO - 显示登录窗口
+2025-09-18 08:44:11,421 - __main__ - INFO - 进入应用程序主循环
+2025-09-18 08:44:19,170 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-18 08:44:27,216 - gui.main_window - INFO - 主窗口关闭

@@ -73,6 +73,10 @@ class MainWindow(QMainWindow):
             assignment_action.triggered.connect(self.show_assignment_management)
             manage_menu.addAction(assignment_action)
 
+            classroom_action = QAction("课堂管理", self)
+            classroom_action.triggered.connect(self.show_classroom_management)
+            manage_menu.addAction(classroom_action)
+
         # 报表菜单
         report_menu = menubar.addMenu("报表")
 
@@ -168,7 +172,18 @@ class MainWindow(QMainWindow):
         from gui.report_gen import ReportGenerationWindow
         try:
             self.report_window = ReportGenerationWindow(self.db_conn)
+            self.report_window = ReportGenerationWindow(self.db_conn)
             self.report_window.show()
         except Exception as e:
             self.logger.error(f"打开报表生成错误: {str(e)}")
             QMessageBox.critical(self, "错误", f"无法打开报表生成: {str(e)}")
+
+    def show_classroom_management(self):
+        """显示课堂管理界面"""
+        from gui.classroom_mgmt import ClassroomManagementWindow
+        try:
+            self.classroom_window = ClassroomManagementWindow(self.db_conn)
+            self.classroom_window.show()
+        except Exception as e:
+            self.logger.error(f"打开课堂管理窗口错误: {str(e)}")
+            QMessageBox.critical(self, "错误", f"无法打开课堂管理: {str(e)}")

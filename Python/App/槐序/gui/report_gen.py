@@ -143,9 +143,10 @@ class ReportGenerationWindow(QWidget):
                 daily = student[2] or 0
                 midterm = student[3] or 0
                 final = student[4] or 0
+                classroom = student[5] or 0
 
-                # 计算总成绩 (权重: 平时20% + 期中30% + 期末50%)
-                total_score = daily * 0.2 + midterm * 0.3 + final * 0.5
+                # 计算总成绩 (权重: 平时20% + 期中30% + 期末40% + 课堂10%)
+                total_score = daily * 0.2 + midterm * 0.3 + final * 0.4 + classroom * 0.1
 
                 # 确定等级
                 if total_score >= 90:
@@ -166,6 +167,30 @@ class ReportGenerationWindow(QWidget):
             ranked_students = []
             for i, student in enumerate(student_scores):
                 ranked_students.append((*student, i + 1))
+
+                # 在查询中添加课堂成绩
+                query = """
+                        SELECT s.student_id,
+                               s.name,
+                               MAX(CASE WHEN sc.exam_type = '平时' THEN sc.score END) as daily_score,
+                               MAX(CASE WHEN sc.exam_type = '期中' THEN sc.score END) as midterm_score,
+                               MAX(CASE WHEN sc.exam_type = '期末' THEN sc.score END) as final_score,
+                               COALESCE(SUM(cs.score), 0)                             as classroom_score -- 添加课堂成绩
+                        FROM students s
+                                 LEFT JOIN scores sc ON s.student_id = sc.student_id
+                            AND sc.course_id = ? AND sc.term = ?
+                                 LEFT JOIN classroom_scores cs ON s.student_id = cs.student_id
+                            AND cs.activity_id IN (SELECT activity_id \
+                                                   FROM classroom_activities \
+                                                   WHERE course_id = ? \
+                                                     AND term = ?)
+                        WHERE s.class_id = ?
+                        GROUP BY s.student_id, s.name
+                        ORDER BY s.student_id \
+                        """
+
+                cursor.execute(query, (course_id, term, course_id, term, class_id))
+                students = cursor.fetchall()
 
             # 显示报表
             self.report_table.setRowCount(len(ranked_students))

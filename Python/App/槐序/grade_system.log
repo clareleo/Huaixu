@@ -66,3 +66,182 @@ AttributeError: 'sqlite3.Connection' object has no attribute 'closed'
 2025-09-17 14:01:42,881 - __main__ - INFO - 初始化数据库表
 2025-09-17 14:01:42,887 - __main__ - INFO - 显示登录窗口
 2025-09-17 14:01:43,360 - __main__ - INFO - 进入应用程序主循环
+2025-09-17 14:33:35,542 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-17 14:33:35,544 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-17 14:33:35,688 - __main__ - INFO - 样式表加载成功
+2025-09-17 14:33:35,688 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-17 14:33:35,688 - __main__ - INFO - 初始化数据库表
+2025-09-17 14:33:35,693 - __main__ - INFO - 显示登录窗口
+2025-09-17 14:33:36,176 - __main__ - INFO - 进入应用程序主循环
+2025-09-17 14:48:26,859 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-17 14:48:26,860 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-17 14:48:27,009 - __main__ - INFO - 样式表加载成功
+2025-09-17 14:48:27,009 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-17 14:48:27,010 - __main__ - INFO - 初始化数据库表
+2025-09-17 14:48:27,015 - __main__ - INFO - 显示登录窗口
+2025-09-17 14:48:27,468 - __main__ - INFO - 进入应用程序主循环
+2025-09-17 14:48:35,952 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-17 14:48:40,683 - gui.student_mgmt - ERROR - 加载班级列表错误: Cannot operate on a closed database.
+2025-09-17 14:48:42,037 - gui.student_mgmt - ERROR - 加载学生列表错误: Cannot operate on a closed database.
+2025-09-17 14:48:58,995 - gui.student_mgmt - ERROR - 导入Excel错误: Cannot operate on a closed database.
+2025-09-17 14:49:44,334 - gui.main_window - INFO - 主窗口关闭
+2025-09-17 14:49:47,724 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-17 14:49:47,724 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-17 14:49:47,876 - __main__ - INFO - 样式表加载成功
+2025-09-17 14:49:47,876 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-17 14:49:47,877 - __main__ - INFO - 初始化数据库表
+2025-09-17 14:49:47,881 - __main__ - INFO - 显示登录窗口
+2025-09-17 14:49:48,355 - __main__ - INFO - 进入应用程序主循环
+2025-09-17 14:50:00,444 - gui.login_window - WARNING - 登录失败: 用户名 admin 或密码错误
+2025-09-17 14:50:08,275 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-17 14:50:12,622 - gui.grade_mgmt - ERROR - 加载课程列表错误: Cannot operate on a closed database.
+2025-09-17 14:50:13,638 - gui.grade_mgmt - ERROR - 加载班级列表错误: Cannot operate on a closed database.
+2025-09-17 14:50:22,184 - root - CRITICAL - 未捕获的异常: Traceback (most recent call last):
+  File "E:\Python\Python\App\槐序\gui\main_window.py", line 127, in show_assignment_management
+    from gui.assignment_mgmt import AssignmentManagementWindow
+  File "E:\Python\Python\App\槐序\gui\assignment_mgmt.py", line 9, in <module>
+    from utils.file_monitor import AssignmentFolderMonitor
+ModuleNotFoundError: No module named 'utils.file_monitor'
+
+2025-09-17 14:57:04,291 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-17 14:57:04,292 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-17 14:57:04,442 - __main__ - INFO - 样式表加载成功
+2025-09-17 14:57:04,442 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-17 14:57:04,443 - __main__ - INFO - 初始化数据库表
+2025-09-17 14:57:04,447 - __main__ - INFO - 显示登录窗口
+2025-09-17 14:57:04,906 - __main__ - INFO - 进入应用程序主循环
+2025-09-17 14:57:13,642 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-17 14:57:17,425 - gui.student_mgmt - ERROR - 加载班级列表错误: Cannot operate on a closed database.
+2025-09-17 14:57:18,445 - gui.student_mgmt - ERROR - 加载学生列表错误: Cannot operate on a closed database.
+2025-09-17 15:00:54,165 - gui.main_window - INFO - 主窗口关闭
+2025-09-17 15:11:31,694 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-17 15:11:31,695 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-17 15:11:31,846 - __main__ - INFO - 样式表加载成功
+2025-09-17 15:11:31,846 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-17 15:11:31,847 - __main__ - INFO - 初始化数据库表
+2025-09-17 15:11:31,852 - __main__ - INFO - 显示登录窗口
+2025-09-17 15:11:32,303 - __main__ - INFO - 进入应用程序主循环
+2025-09-17 15:13:10,723 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-17 15:13:10,723 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-17 15:13:10,874 - __main__ - INFO - 样式表加载成功
+2025-09-17 15:13:10,874 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-17 15:13:10,874 - __main__ - INFO - 初始化数据库表
+2025-09-17 15:13:10,879 - __main__ - INFO - 显示登录窗口
+2025-09-17 15:13:11,334 - __main__ - INFO - 进入应用程序主循环
+2025-09-17 15:13:26,751 - gui.login_window - WARNING - 登录失败: 用户名 admin 或密码错误
+2025-09-17 15:13:32,235 - gui.login_window - WARNING - 登录失败: 用户名 admin 或密码错误
+2025-09-17 15:13:38,522 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-17 15:13:42,364 - gui.student_mgmt - ERROR - 加载班级列表错误: Cannot operate on a closed database.
+2025-09-17 15:13:46,140 - gui.student_mgmt - ERROR - 加载学生列表错误: Cannot operate on a closed database.
+2025-09-17 15:14:02,664 - gui.grade_mgmt - ERROR - 加载课程列表错误: Cannot operate on a closed database.
+2025-09-17 15:14:03,570 - gui.grade_mgmt - ERROR - 加载班级列表错误: Cannot operate on a closed database.
+2025-09-17 15:14:15,789 - gui.main_window - INFO - 主窗口关闭
+2025-09-17 15:17:56,418 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-17 15:17:56,418 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-17 15:17:56,567 - __main__ - INFO - 样式表加载成功
+2025-09-17 15:17:56,567 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-17 15:17:56,568 - __main__ - INFO - 初始化数据库表
+2025-09-17 15:17:56,570 - __main__ - INFO - 显示登录窗口
+2025-09-17 15:17:57,019 - __main__ - INFO - 进入应用程序主循环
+2025-09-17 15:18:05,503 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-17 15:18:22,225 - gui.student_mgmt - INFO - 从Excel导入 49 名学生
+2025-09-17 15:20:02,523 - gui.student_mgmt - INFO - 删除学生: 学号
+2025-09-17 15:20:18,880 - gui.student_mgmt - INFO - 删除学生: 1
+2025-09-17 15:20:20,779 - gui.student_mgmt - INFO - 删除学生: 10
+2025-09-17 15:20:22,235 - gui.student_mgmt - INFO - 删除学生: 11
+2025-09-17 15:20:23,938 - gui.student_mgmt - INFO - 删除学生: 12
+2025-09-17 15:20:25,509 - gui.student_mgmt - INFO - 删除学生: 13
+2025-09-17 15:20:27,573 - gui.student_mgmt - INFO - 删除学生: 14
+2025-09-17 15:20:28,018 - gui.student_mgmt - INFO - 删除学生: 15
+2025-09-17 15:20:28,376 - gui.student_mgmt - INFO - 删除学生: 16
+2025-09-17 15:20:28,648 - gui.student_mgmt - INFO - 删除学生: 17
+2025-09-17 15:20:28,893 - gui.student_mgmt - INFO - 删除学生: 18
+2025-09-17 15:20:29,118 - gui.student_mgmt - INFO - 删除学生: 19
+2025-09-17 15:20:29,339 - gui.student_mgmt - INFO - 删除学生: 2
+2025-09-17 15:20:29,542 - gui.student_mgmt - INFO - 删除学生: 20
+2025-09-17 15:20:29,912 - gui.student_mgmt - INFO - 删除学生: 21
+2025-09-17 15:20:30,402 - gui.student_mgmt - INFO - 删除学生: 22
+2025-09-17 15:20:30,712 - gui.student_mgmt - INFO - 删除学生: 23
+2025-09-17 15:20:30,957 - gui.student_mgmt - INFO - 删除学生: 24
+2025-09-17 15:20:31,192 - gui.student_mgmt - INFO - 删除学生: 25
+2025-09-17 15:20:31,413 - gui.student_mgmt - INFO - 删除学生: 26
+2025-09-17 15:20:31,648 - gui.student_mgmt - INFO - 删除学生: 27
+2025-09-17 15:20:32,079 - gui.student_mgmt - INFO - 删除学生: 28
+2025-09-17 15:20:32,522 - gui.student_mgmt - INFO - 删除学生: 29
+2025-09-17 15:20:33,016 - gui.student_mgmt - INFO - 删除学生: 3
+2025-09-17 15:20:33,580 - gui.student_mgmt - INFO - 删除学生: 30
+2025-09-17 15:20:33,863 - gui.student_mgmt - INFO - 删除学生: 31
+2025-09-17 15:20:34,127 - gui.student_mgmt - INFO - 删除学生: 32
+2025-09-17 15:20:34,430 - gui.student_mgmt - INFO - 删除学生: 33
+2025-09-17 15:20:34,671 - gui.student_mgmt - INFO - 删除学生: 34
+2025-09-17 15:20:34,900 - gui.student_mgmt - INFO - 删除学生: 36
+2025-09-17 15:20:35,163 - gui.student_mgmt - INFO - 删除学生: 37
+2025-09-17 15:20:35,396 - gui.student_mgmt - INFO - 删除学生: 38
+2025-09-17 15:20:35,641 - gui.student_mgmt - INFO - 删除学生: 4
+2025-09-17 15:20:35,907 - gui.student_mgmt - INFO - 删除学生: 40
+2025-09-17 15:20:36,179 - gui.student_mgmt - INFO - 删除学生: 41
+2025-09-17 15:20:36,669 - gui.student_mgmt - INFO - 删除学生: 42
+2025-09-17 15:20:36,925 - gui.student_mgmt - INFO - 删除学生: 43
+2025-09-17 15:20:37,164 - gui.student_mgmt - INFO - 删除学生: 44
+2025-09-17 15:20:37,406 - gui.student_mgmt - INFO - 删除学生: 45
+2025-09-17 15:20:37,870 - gui.student_mgmt - INFO - 删除学生: 46
+2025-09-17 15:20:38,530 - gui.student_mgmt - INFO - 删除学生: 47
+2025-09-17 15:20:38,837 - gui.student_mgmt - INFO - 删除学生: 48
+2025-09-17 15:20:39,117 - gui.student_mgmt - INFO - 删除学生: 5
+2025-09-17 15:20:39,402 - gui.student_mgmt - INFO - 删除学生: 50
+2025-09-17 15:20:39,660 - gui.student_mgmt - INFO - 删除学生: 51
+2025-09-17 15:20:39,922 - gui.student_mgmt - INFO - 删除学生: 6
+2025-09-17 15:20:40,184 - gui.student_mgmt - INFO - 删除学生: 7
+2025-09-17 15:20:40,901 - gui.student_mgmt - INFO - 删除学生: 8
+2025-09-17 15:20:41,392 - gui.student_mgmt - INFO - 删除学生: 9
+2025-09-17 15:20:57,477 - gui.main_window - INFO - 主窗口关闭
+2025-09-17 17:33:21,301 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-17 17:33:21,302 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-17 17:33:21,467 - __main__ - INFO - 样式表加载成功
+2025-09-17 17:33:21,467 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-17 17:33:21,468 - __main__ - INFO - 初始化数据库表
+2025-09-17 17:33:21,472 - __main__ - INFO - 显示登录窗口
+2025-09-17 17:33:21,898 - __main__ - INFO - 进入应用程序主循环
+2025-09-17 17:34:06,351 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-17 17:34:10,944 - gui.main_window - INFO - 主窗口关闭
+2025-09-18 07:36:01,165 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 07:36:01,165 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 07:36:01,480 - __main__ - INFO - 样式表加载成功
+2025-09-18 07:36:01,481 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 07:36:01,483 - __main__ - INFO - 初始化数据库表
+2025-09-18 07:36:01,488 - __main__ - INFO - 显示登录窗口
+2025-09-18 07:36:01,934 - __main__ - INFO - 进入应用程序主循环
+2025-09-18 08:22:43,349 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 08:22:43,349 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 08:22:43,496 - __main__ - INFO - 样式表加载成功
+2025-09-18 08:22:43,496 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 08:22:43,496 - __main__ - INFO - 初始化数据库表
+2025-09-18 08:22:43,499 - __main__ - INFO - 显示登录窗口
+2025-09-18 08:22:43,952 - __main__ - INFO - 进入应用程序主循环
+2025-09-18 08:22:53,006 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-18 08:23:03,839 - gui.student_mgmt - INFO - 删除班级: 计算机1班
+2025-09-18 08:23:05,696 - gui.student_mgmt - INFO - 删除班级: 计算机1班
+2025-09-18 08:23:07,103 - gui.student_mgmt - INFO - 删除班级: 计算机1班
+2025-09-18 08:23:08,462 - gui.student_mgmt - INFO - 删除班级: 计算机1班
+2025-09-18 08:23:10,777 - gui.student_mgmt - INFO - 删除班级: 计算机1班
+2025-09-18 08:23:12,464 - gui.student_mgmt - INFO - 删除班级: 计算机1班
+2025-09-18 08:23:13,296 - gui.student_mgmt - INFO - 删除班级: 计算机1班
+2025-09-18 08:23:13,938 - gui.student_mgmt - INFO - 删除班级: 计算机1班
+2025-09-18 08:23:14,577 - gui.student_mgmt - INFO - 删除班级: 计算机1班
+2025-09-18 08:23:15,210 - gui.student_mgmt - INFO - 删除班级: 计算机1班
+2025-09-18 08:23:15,877 - gui.student_mgmt - INFO - 删除班级: 计算机1班
+2025-09-18 08:23:16,537 - gui.student_mgmt - INFO - 删除班级: 计算机1班
+2025-09-18 08:23:17,192 - gui.student_mgmt - INFO - 删除班级: 计算机1班
+2025-09-18 08:23:17,838 - gui.student_mgmt - INFO - 删除班级: 计算机1班
+2025-09-18 08:23:18,472 - gui.student_mgmt - INFO - 删除班级: 计算机1班
+2025-09-18 08:23:19,233 - gui.student_mgmt - INFO - 删除班级: 计算机1班
+2025-09-18 08:23:20,825 - gui.student_mgmt - INFO - 删除班级: 计算机1班
+2025-09-18 08:23:40,959 - gui.student_mgmt - INFO - 添加班级: test_class
+2025-09-18 08:24:15,316 - gui.student_mgmt - INFO - 添加学生: 20220822
+2025-09-18 08:27:27,234 - root - CRITICAL - 未捕获的异常: Traceback (most recent call last):
+  File "E:\Python\Python\App\槐序\gui\main_window.py", line 127, in show_assignment_management
+    from gui.assignment_mgmt import AssignmentManagementWindow
+  File "E:\Python\Python\App\槐序\gui\assignment_mgmt.py", line 9, in <module>
+    from utils.file_monitor import AssignmentFolderMonitor
+ModuleNotFoundError: No module named 'utils.file_monitor'
+

@@ -97,9 +97,4 @@ class LoginWindow(QWidget):
 
     def closeEvent(self, event):
         """窗口关闭事件"""
-        try:
-            if self.db_conn:
-                self.db_conn.close()
-        except Exception as e:
-            self.logger.error(f"关闭数据库连接时发生错误: {str(e)}")
         event.accept()

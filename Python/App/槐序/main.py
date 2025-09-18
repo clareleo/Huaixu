@@ -74,7 +74,7 @@ def main():
     app.setWindowIcon(QIcon('img/icon.png'))
 
     # 设置默认字体
-    font = QFont("Microsoft YaHei", 10)
+    font = QFont("Microsoft YaHei", 15)
     app.setFont(font)
 
     # 加载样式表

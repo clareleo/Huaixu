@@ -126,7 +126,7 @@ class ClassroomManagementWindow(QWidget):
     def add_classroom_activity(self):
         """新建课堂活动"""
         dialog = ClassroomActivityDialog(self.db_conn)
-        if dialog.exec_() == QDialog.Accepted:
+        if dialog.exec_() == QDialog.Accepted:  # 只有点击 OK 才会执行到这里
             self.load_activities()
 
     def show_activity_details(self, activity):
@@ -258,6 +258,38 @@ class ClassroomActivityDialog(QDialog):
             'description': self.desc_edit.toPlainText()
         }
 
+    def accept(self):
+        data = self.get_data()
+
+        # 检查必要字段是否有效
+        if not data['course_id']:
+            QMessageBox.critical(self, "错误", "请选择一个课程！")
+            return
+
+        if not data['activity_date']:
+            QMessageBox.critical(self, "错误", "请选择活动日期！")
+            return
+
+        try:
+            cursor = self.db_conn.cursor()
+            cursor.execute("""
+                           INSERT INTO classroom_activities
+                               (course_id, activity_date, activity_type, max_score, description)
+                           VALUES (?, ?, ?, ?, ?)
+                           """, (
+                               data['course_id'],
+                               data['activity_date'],
+                               data['activity_type'],
+                               data['max_score'],
+                               data['description']
+                           ))
+            self.db_conn.commit()
+            QMessageBox.information(self, "成功", "课堂活动已成功创建！")
+            super().accept()  # 调用父类 accept()，关闭对话框并返回 QDialog.Accepted
+
+        except Exception as e:
+            QMessageBox.critical(self, "数据库错误", f"创建课堂活动失败：{str(e)}")
+
 
 class StudentGradeDialog(QDialog):
     """学生评分对话框"""
@@ -281,8 +313,9 @@ class StudentGradeDialog(QDialog):
 
         # 分数输入
         self.score_spin = QDoubleSpinBox()
-        self.score_spin.setRange(0, 100)
+        self.score_spin.setRange(-100, 100)  # 允许输入负数
         self.score_spin.setDecimals(1)
+        self.score_spin.setSuffix("分")
         layout.addRow("分数:", self.score_spin)
 
         # 活动信息

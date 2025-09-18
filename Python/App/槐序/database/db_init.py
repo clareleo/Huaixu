@@ -1,7 +1,10 @@
 import logging
 from PyQt5.QtWidgets import QMessageBox
 
-# 数据库表创建SQL语句
+# ======================
+# 数据库表创建 SQL 语句（已删除所有 term 字段）
+# ======================
+
 CREATE_TABLES = [
     """CREATE TABLE IF NOT EXISTS users
     (
@@ -33,26 +36,26 @@ CREATE_TABLES = [
        )),
         real_name TEXT,
         email TEXT
-        )""",
+    )""",
 
     """CREATE TABLE IF NOT EXISTS classes
-       (
-           class_id
-           INTEGER
-           PRIMARY
-           KEY
-           AUTOINCREMENT,
-           class_name
-           TEXT
-           NOT
-           NULL,
-           grade
-           TEXT,
-           major
-           TEXT,
-           description
-           TEXT
-       )""",
+    (
+        class_id
+        INTEGER
+        PRIMARY
+        KEY
+        AUTOINCREMENT,
+        class_name
+        TEXT
+        NOT
+        NULL,
+        grade
+        TEXT,
+        major
+        TEXT,
+        description
+        TEXT
+    )""",
 
     """CREATE TABLE IF NOT EXISTS students
     (
@@ -85,7 +88,7 @@ CREATE_TABLES = [
        (
            class_id
        )
-        )""",
+    )""",
 
     """CREATE TABLE IF NOT EXISTS courses
     (
@@ -110,7 +113,7 @@ CREATE_TABLES = [
         '选修'
        )),
         description TEXT
-        )""",
+    )""",
 
     """CREATE TABLE IF NOT EXISTS course_class
     (
@@ -125,10 +128,6 @@ CREATE_TABLES = [
         NULL,
         class_id
         INTEGER
-        NOT
-        NULL,
-        term
-        TEXT
         NOT
         NULL,
         teacher_id
@@ -158,10 +157,9 @@ CREATE_TABLES = [
         UNIQUE
        (
            course_id,
-           class_id,
-           term
+           class_id
        )
-        )""",
+    )""",
 
     """CREATE TABLE IF NOT EXISTS scores
     (
@@ -190,7 +188,6 @@ CREATE_TABLES = [
         <=
         100
        ),
-        term TEXT NOT NULL,
         exam_type TEXT DEFAULT '期末',
         FOREIGN KEY
        (
@@ -210,10 +207,9 @@ CREATE_TABLES = [
        (
            student_id,
            course_id,
-           term,
            exam_type
        )
-        )""",
+    )""",
 
     """CREATE TABLE IF NOT EXISTS assignment_folders
     (
@@ -231,10 +227,6 @@ CREATE_TABLES = [
         INTEGER
         NOT
         NULL,
-        term
-        TEXT
-        NOT
-        NULL,
         description
         TEXT,
         FOREIGN
@@ -245,7 +237,7 @@ CREATE_TABLES = [
        (
            course_id
        )
-        )""",
+    )""",
 
     """CREATE TABLE IF NOT EXISTS assignment_submissions
     (
@@ -299,7 +291,7 @@ CREATE_TABLES = [
            student_id,
            folder_id
        )
-        )""",
+    )""",
 
     """CREATE TABLE IF NOT EXISTS evaluations
     (
@@ -320,8 +312,6 @@ CREATE_TABLES = [
         TEXT,
         score
         REAL,
-        term
-        TEXT,
         evaluator_id
         INTEGER,
         FOREIGN
@@ -339,9 +329,9 @@ CREATE_TABLES = [
        (
            user_id
        )
-        )""",
+    )""",
 
-    # 课堂活动表
+    # 课堂活动表（已删除 term 字段）
     """CREATE TABLE IF NOT EXISTS classroom_activities
     (
         activity_id
@@ -351,10 +341,6 @@ CREATE_TABLES = [
         AUTOINCREMENT,
         course_id
         INTEGER
-        NOT
-        NULL,
-        term
-        TEXT
         NOT
         NULL,
         activity_date
@@ -379,9 +365,9 @@ CREATE_TABLES = [
        (
            course_id
        )
-        )""",
+    )""",
 
-    # 课堂活动评分表
+    # 课堂活动评分表（无 term 字段，无需改动）
     """CREATE TABLE IF NOT EXISTS classroom_scores
     (
         score_id
@@ -422,35 +408,38 @@ CREATE_TABLES = [
        (
            student_id
        )
-        )"""
+    )"""
 ]
 
-# 初始数据插入SQL
+
+# ======================
+# 初始数据 SQL（未使用 term，保持原样）
+# ======================
+
 INITIAL_DATA = [
     # 用户数据
     """INSERT OR IGNORE INTO users (username, password, role, real_name)
        SELECT 'admin', 'admin123', 'admin', '系统管理员'
        WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'admin')""",
 
-    # 班级数据
-    #INSERT OR IGNORE INTO classes (class_name, grade, major)
-    #   SELECT '计算机1班', '2025', '计算机科学与技术'
-    #   WHERE NOT EXISTS (SELECT 1 FROM classes WHERE class_name = '计算机1班')""",
-
     # 课程数据
     """INSERT OR IGNORE INTO courses (course_name, credit, course_type)
-       SELECT 'Python程序设计',4.0,'必修'
-       WHERE NOT EXISTS (SELECT 1 FROM courses WHERE course_name = 'Python程序设计')""",
+       SELECT 'MySQL数据库', 4.0, '必修'
+       WHERE NOT EXISTS (SELECT 1 FROM courses WHERE course_name = 'MySQL数据库')""",
 
     """INSERT OR IGNORE INTO courses (course_name, credit, course_type)
-       SELECT '数据库原理', 3.0, '必修'
-       WHERE NOT EXISTS (SELECT 1 FROM courses WHERE course_name = '数据库原理')""",
+       SELECT 'Python程序设计', 3.0, '必修'
+       WHERE NOT EXISTS (SELECT 1 FROM courses WHERE course_name = 'Python程序设计')""",
 
     """INSERT OR IGNORE INTO courses (course_name, credit, course_type)
        SELECT 'Web前端开发', 2.5, '选修'
        WHERE NOT EXISTS (SELECT 1 FROM courses WHERE course_name = 'Web前端开发')"""
 ]
 
+
+# ======================
+# 数据库初始化函数（保持不变）
+# ======================
 
 def initialize_database(conn):
     """初始化数据库表结构"""

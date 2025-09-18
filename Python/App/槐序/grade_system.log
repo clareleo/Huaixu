@@ -427,3 +427,273 @@ IndentationError: unindent does not match any outer indentation level
 2025-09-18 10:55:28,209 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
 2025-09-18 10:55:36,800 - gui.grade_mgmt - ERROR - 加载成绩错误: unsupported format string passed to NoneType.__format__
 2025-09-18 10:55:57,508 - gui.main_window - INFO - 主窗口关闭
+2025-09-18 11:09:47,587 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 11:09:47,587 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 11:09:47,738 - __main__ - INFO - 样式表加载成功
+2025-09-18 11:09:47,738 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 11:09:47,739 - __main__ - INFO - 初始化数据库表
+2025-09-18 11:09:47,745 - __main__ - INFO - 显示登录窗口
+2025-09-18 11:09:48,172 - __main__ - INFO - 进入应用程序主循环
+2025-09-18 11:09:54,355 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-18 11:11:13,553 - gui.main_window - INFO - 主窗口关闭
+2025-09-18 11:11:44,555 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 11:11:44,556 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 11:11:44,697 - __main__ - INFO - 样式表加载成功
+2025-09-18 11:11:44,697 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 11:11:44,699 - __main__ - INFO - 初始化数据库表
+2025-09-18 11:11:44,724 - __main__ - INFO - 显示登录窗口
+2025-09-18 11:11:45,168 - __main__ - INFO - 进入应用程序主循环
+2025-09-18 11:11:52,096 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-18 11:12:06,123 - gui.student_mgmt - INFO - 添加班级: Test
+2025-09-18 11:12:36,946 - gui.student_mgmt - INFO - 添加学生: 20220822
+2025-09-18 11:13:00,748 - gui.main_window - INFO - 主窗口关闭
+2025-09-18 11:13:57,602 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 11:13:57,603 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 11:13:57,751 - __main__ - INFO - 样式表加载成功
+2025-09-18 11:13:57,751 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 11:13:57,752 - __main__ - INFO - 初始化数据库表
+2025-09-18 11:13:57,777 - __main__ - INFO - 显示登录窗口
+2025-09-18 11:13:58,241 - __main__ - INFO - 进入应用程序主循环
+2025-09-18 11:14:04,856 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-18 11:14:13,729 - gui.student_mgmt - INFO - 添加班级: Test
+2025-09-18 11:14:26,581 - gui.student_mgmt - INFO - 添加学生: 20220822
+2025-09-18 11:15:04,762 - gui.grade_mgmt - ERROR - 加载成绩错误: unsupported format string passed to NoneType.__format__
+2025-09-18 11:15:14,039 - gui.main_window - INFO - 主窗口关闭
+2025-09-18 11:51:05,979 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 11:51:05,980 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 11:51:06,125 - __main__ - INFO - 样式表加载成功
+2025-09-18 11:51:06,126 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 11:51:06,126 - __main__ - INFO - 初始化数据库表
+2025-09-18 11:51:06,131 - __main__ - INFO - 显示登录窗口
+2025-09-18 11:51:06,545 - __main__ - INFO - 进入应用程序主循环
+2025-09-18 11:51:13,641 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-18 11:51:25,394 - gui.main_window - INFO - 主窗口关闭
+2025-09-18 12:26:38,486 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 12:26:38,486 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 12:26:38,632 - __main__ - INFO - 样式表加载成功
+2025-09-18 12:26:38,632 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 12:26:38,633 - __main__ - INFO - 初始化数据库表
+2025-09-18 12:26:38,638 - __main__ - INFO - 显示登录窗口
+2025-09-18 12:26:39,045 - __main__ - INFO - 进入应用程序主循环
+2025-09-18 12:26:46,131 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-18 12:27:20,238 - gui.main_window - INFO - 主窗口关闭
+2025-09-18 12:30:09,548 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 12:30:09,548 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 12:30:09,691 - __main__ - INFO - 样式表加载成功
+2025-09-18 12:30:09,691 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 12:30:09,693 - __main__ - INFO - 初始化数据库表
+2025-09-18 12:30:09,698 - __main__ - INFO - 显示登录窗口
+2025-09-18 12:30:10,127 - __main__ - INFO - 进入应用程序主循环
+2025-09-18 12:30:37,917 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-18 12:32:58,817 - gui.main_window - INFO - 主窗口关闭
+2025-09-18 12:33:00,562 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 12:33:00,563 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 12:33:00,707 - __main__ - INFO - 样式表加载成功
+2025-09-18 12:33:00,707 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 12:33:00,708 - __main__ - INFO - 初始化数据库表
+2025-09-18 12:33:00,713 - __main__ - INFO - 显示登录窗口
+2025-09-18 12:33:01,170 - __main__ - INFO - 进入应用程序主循环
+2025-09-18 12:33:05,684 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-18 12:38:54,269 - gui.main_window - INFO - 主窗口关闭
+2025-09-18 12:38:57,757 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 12:38:57,758 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 12:38:57,899 - __main__ - INFO - 样式表加载成功
+2025-09-18 12:38:57,900 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 12:38:57,900 - __main__ - INFO - 初始化数据库表
+2025-09-18 12:38:57,905 - __main__ - INFO - 显示登录窗口
+2025-09-18 12:38:58,350 - __main__ - INFO - 进入应用程序主循环
+2025-09-18 12:39:08,198 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-18 12:39:31,584 - gui.main_window - INFO - 主窗口关闭
+2025-09-18 12:39:41,208 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 12:39:41,209 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 12:39:41,361 - __main__ - INFO - 样式表加载成功
+2025-09-18 12:39:41,361 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 12:39:41,362 - __main__ - INFO - 初始化数据库表
+2025-09-18 12:39:41,389 - __main__ - INFO - 显示登录窗口
+2025-09-18 12:39:41,832 - __main__ - INFO - 进入应用程序主循环
+2025-09-18 12:39:47,465 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-18 12:40:02,353 - gui.student_mgmt - INFO - 添加班级: Test
+2025-09-18 12:40:16,164 - gui.student_mgmt - INFO - 添加学生: 20220822
+2025-09-18 12:40:32,722 - root - CRITICAL - 未捕获的异常: Traceback (most recent call last):
+  File "E:\Python\Python\App\槐序\gui\classroom_mgmt.py", line 134, in show_activity_details
+    activity_id, course_name, activity_date, activity_type = activity
+TypeError: 'int' object is not iterable
+
+2025-09-18 12:43:46,073 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 12:43:46,074 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 12:43:46,219 - __main__ - INFO - 样式表加载成功
+2025-09-18 12:43:46,219 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 12:43:46,219 - __main__ - INFO - 初始化数据库表
+2025-09-18 12:43:46,225 - __main__ - INFO - 显示登录窗口
+2025-09-18 12:43:46,671 - __main__ - INFO - 进入应用程序主循环
+2025-09-18 12:43:57,638 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-18 12:44:31,785 - gui.student_mgmt - INFO - 从Excel导入 49 名学生
+2025-09-18 12:45:54,242 - gui.main_window - INFO - 主窗口关闭
+2025-09-18 14:13:22,565 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 14:13:22,565 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 14:13:22,714 - __main__ - INFO - 样式表加载成功
+2025-09-18 14:13:22,714 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 14:13:22,715 - __main__ - INFO - 初始化数据库表
+2025-09-18 14:13:22,719 - __main__ - INFO - 显示登录窗口
+2025-09-18 14:13:23,142 - __main__ - INFO - 进入应用程序主循环
+2025-09-18 14:13:31,214 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-18 14:20:13,329 - gui.student_mgmt - INFO - 删除学生: 1
+2025-09-18 14:20:16,349 - gui.student_mgmt - INFO - 删除学生: 10
+2025-09-18 14:20:17,228 - gui.student_mgmt - INFO - 删除学生: 11
+2025-09-18 14:20:18,056 - gui.student_mgmt - INFO - 删除学生: 12
+2025-09-18 14:20:18,688 - gui.student_mgmt - INFO - 删除学生: 13
+2025-09-18 14:20:19,454 - gui.student_mgmt - INFO - 删除学生: 14
+2025-09-18 14:20:19,949 - gui.student_mgmt - INFO - 删除学生: 15
+2025-09-18 14:20:20,666 - gui.student_mgmt - INFO - 删除学生: 16
+2025-09-18 14:20:21,328 - gui.student_mgmt - INFO - 删除学生: 17
+2025-09-18 14:20:22,147 - gui.student_mgmt - INFO - 删除学生: 18
+2025-09-18 14:20:23,391 - gui.student_mgmt - INFO - 删除学生: 19
+2025-09-18 14:20:24,221 - gui.student_mgmt - INFO - 删除学生: 2
+2025-09-18 14:20:25,086 - gui.student_mgmt - INFO - 删除学生: 20
+2025-09-18 14:20:28,385 - gui.student_mgmt - INFO - 删除学生: 21
+2025-09-18 14:20:30,686 - gui.student_mgmt - INFO - 删除学生: 22
+2025-09-18 14:20:31,286 - gui.student_mgmt - INFO - 删除学生: 23
+2025-09-18 14:20:31,743 - gui.student_mgmt - INFO - 删除学生: 24
+2025-09-18 14:20:32,156 - gui.student_mgmt - INFO - 删除学生: 25
+2025-09-18 14:20:32,806 - gui.student_mgmt - INFO - 删除学生: 26
+2025-09-18 14:20:33,512 - gui.student_mgmt - INFO - 删除学生: 27
+2025-09-18 14:20:34,183 - gui.student_mgmt - INFO - 删除学生: 28
+2025-09-18 14:20:34,805 - gui.student_mgmt - INFO - 删除学生: 29
+2025-09-18 14:20:35,483 - gui.student_mgmt - INFO - 删除学生: 3
+2025-09-18 14:20:36,208 - gui.student_mgmt - INFO - 删除学生: 30
+2025-09-18 14:20:36,907 - gui.student_mgmt - INFO - 删除学生: 31
+2025-09-18 14:20:37,613 - gui.student_mgmt - INFO - 删除学生: 32
+2025-09-18 14:20:38,292 - gui.student_mgmt - INFO - 删除学生: 33
+2025-09-18 14:20:39,059 - gui.student_mgmt - INFO - 删除学生: 34
+2025-09-18 14:20:39,660 - gui.student_mgmt - INFO - 删除学生: 36
+2025-09-18 14:20:40,299 - gui.student_mgmt - INFO - 删除学生: 37
+2025-09-18 14:20:41,037 - gui.student_mgmt - INFO - 删除学生: 38
+2025-09-18 14:20:41,744 - gui.student_mgmt - INFO - 删除学生: 4
+2025-09-18 14:20:42,297 - gui.student_mgmt - INFO - 删除学生: 40
+2025-09-18 14:20:42,797 - gui.student_mgmt - INFO - 删除学生: 41
+2025-09-18 14:20:43,326 - gui.student_mgmt - INFO - 删除学生: 42
+2025-09-18 14:20:44,089 - gui.student_mgmt - INFO - 删除学生: 43
+2025-09-18 14:20:44,861 - gui.student_mgmt - INFO - 删除学生: 44
+2025-09-18 14:20:45,616 - gui.student_mgmt - INFO - 删除学生: 45
+2025-09-18 14:20:46,369 - gui.student_mgmt - INFO - 删除学生: 46
+2025-09-18 14:20:47,096 - gui.student_mgmt - INFO - 删除学生: 47
+2025-09-18 14:20:47,624 - gui.student_mgmt - INFO - 删除学生: 48
+2025-09-18 14:20:48,491 - gui.student_mgmt - INFO - 删除学生: 5
+2025-09-18 14:20:49,337 - gui.student_mgmt - INFO - 删除学生: 50
+2025-09-18 14:20:50,017 - gui.student_mgmt - INFO - 删除学生: 51
+2025-09-18 14:20:50,840 - gui.student_mgmt - INFO - 删除学生: 6
+2025-09-18 14:20:51,383 - gui.student_mgmt - INFO - 删除学生: 7
+2025-09-18 14:20:52,131 - gui.student_mgmt - INFO - 删除学生: 8
+2025-09-18 14:20:52,967 - gui.student_mgmt - INFO - 删除学生: 9
+2025-09-18 14:20:54,175 - gui.student_mgmt - INFO - 删除学生: 学号
+2025-09-18 14:27:36,953 - root - CRITICAL - 未捕获的异常: Traceback (most recent call last):
+  File "E:\Python\Python\App\槐序\gui\classroom_mgmt.py", line 134, in show_activity_details
+    activity_id, course_name, activity_date, activity_type = activity
+TypeError: 'int' object is not iterable
+
+2025-09-18 14:30:20,618 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 14:30:20,619 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 14:30:20,769 - __main__ - INFO - 样式表加载成功
+2025-09-18 14:30:20,769 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 14:30:20,770 - __main__ - INFO - 初始化数据库表
+2025-09-18 14:30:20,774 - __main__ - INFO - 显示登录窗口
+2025-09-18 14:30:21,197 - __main__ - INFO - 进入应用程序主循环
+2025-09-18 14:30:35,420 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 14:30:35,421 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 14:30:35,570 - __main__ - INFO - 样式表加载成功
+2025-09-18 14:30:35,570 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 14:30:35,571 - __main__ - INFO - 初始化数据库表
+2025-09-18 14:30:35,574 - __main__ - INFO - 显示登录窗口
+2025-09-18 14:30:35,983 - __main__ - INFO - 进入应用程序主循环
+2025-09-18 14:30:41,822 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-18 14:30:49,778 - gui.main_window - INFO - 主窗口关闭
+2025-09-18 14:31:06,662 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 14:31:06,663 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 14:31:06,812 - __main__ - INFO - 样式表加载成功
+2025-09-18 14:31:06,812 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 14:31:06,812 - __main__ - INFO - 初始化数据库表
+2025-09-18 14:31:06,817 - __main__ - INFO - 显示登录窗口
+2025-09-18 14:31:07,238 - __main__ - INFO - 进入应用程序主循环
+2025-09-18 14:31:12,701 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-18 14:31:24,263 - gui.main_window - INFO - 主窗口关闭
+2025-09-18 14:40:52,916 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 14:40:52,916 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 14:40:53,069 - __main__ - INFO - 样式表加载成功
+2025-09-18 14:40:53,069 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 14:40:53,069 - __main__ - INFO - 初始化数据库表
+2025-09-18 14:40:53,074 - __main__ - INFO - 显示登录窗口
+2025-09-18 14:40:53,076 - __main__ - ERROR - 无法启动登录窗口
+Traceback (most recent call last):
+  File "E:\Python\Python\App\槐序\main.py", line 114, in main
+    login_window = LoginWindow(db_conn)
+  File "E:\Python\Python\App\槐序\gui\login_window.py", line 25, in __init__
+    self.init_ui()
+  File "E:\Python\Python\App\槐序\gui\login_window.py", line 91, in init_ui
+    input_layout = QVBoxLayout(input_layout)
+UnboundLocalError: local variable 'input_layout' referenced before assignment
+2025-09-18 14:43:01,668 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 14:43:01,669 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 14:43:01,815 - __main__ - INFO - 样式表加载成功
+2025-09-18 14:43:01,815 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 14:43:01,815 - __main__ - INFO - 初始化数据库表
+2025-09-18 14:43:01,820 - __main__ - INFO - 显示登录窗口
+2025-09-18 14:43:01,834 - __main__ - ERROR - 无法启动登录窗口
+Traceback (most recent call last):
+  File "E:\Python\Python\App\槐序\main.py", line 114, in main
+    login_window = LoginWindow(db_conn)
+  File "E:\Python\Python\App\槐序\gui\login_window.py", line 25, in __init__
+    self.init_ui()
+  File "E:\Python\Python\App\槐序\gui\login_window.py", line 150, in init_ui
+    input_layout.addWidget(password_frame)
+NameError: name 'input_layout' is not defined
+2025-09-18 14:43:13,766 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 14:43:13,767 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 14:43:13,909 - __main__ - INFO - 样式表加载成功
+2025-09-18 14:43:13,909 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 14:43:13,910 - __main__ - INFO - 初始化数据库表
+2025-09-18 14:43:13,915 - __main__ - INFO - 显示登录窗口
+2025-09-18 14:43:13,916 - __main__ - ERROR - 无法启动登录窗口
+Traceback (most recent call last):
+  File "E:\Python\Python\App\槐序\main.py", line 114, in main
+    login_window = LoginWindow(db_conn)
+  File "E:\Python\Python\App\槐序\gui\login_window.py", line 25, in __init__
+    self.init_ui()
+  File "E:\Python\Python\App\槐序\gui\login_window.py", line 91, in init_ui
+    input_layout = QVBoxLayout(input_layout)
+UnboundLocalError: local variable 'input_layout' referenced before assignment
+2025-09-18 14:45:54,425 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 14:45:54,426 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 14:45:54,572 - __main__ - INFO - 样式表加载成功
+2025-09-18 14:45:54,572 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 14:45:54,572 - __main__ - INFO - 初始化数据库表
+2025-09-18 14:45:54,578 - __main__ - INFO - 显示登录窗口
+2025-09-18 14:45:55,047 - __main__ - INFO - 进入应用程序主循环
+2025-09-18 14:48:13,853 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 14:48:13,854 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 14:48:13,999 - __main__ - INFO - 样式表加载成功
+2025-09-18 14:48:14,000 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 14:48:14,000 - __main__ - INFO - 初始化数据库表
+2025-09-18 14:48:14,005 - __main__ - INFO - 显示登录窗口
+2025-09-18 14:48:14,460 - __main__ - INFO - 进入应用程序主循环
+2025-09-18 14:48:32,345 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-18 14:48:34,878 - gui.login_window - ERROR - 登录错误: 'MainWindow' object has no attribute 'setup_for_role'
+2025-09-18 14:48:42,669 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-18 14:48:44,525 - gui.login_window - ERROR - 登录错误: 'MainWindow' object has no attribute 'setup_for_role'
+2025-09-18 14:55:40,331 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 14:55:40,332 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 14:55:40,491 - __main__ - INFO - 样式表加载成功
+2025-09-18 14:55:40,491 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 14:55:40,492 - __main__ - INFO - 初始化数据库表
+2025-09-18 14:55:40,497 - __main__ - INFO - 显示登录窗口
+2025-09-18 14:55:40,969 - __main__ - INFO - 进入应用程序主循环
+2025-09-18 14:55:46,226 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-18 14:56:26,811 - gui.main_window - INFO - 主窗口关闭
+2025-09-18 14:59:59,099 - __main__ - INFO - 启动4+X成绩管理系统
+2025-09-18 14:59:59,100 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-09-18 14:59:59,246 - __main__ - INFO - 样式表加载成功
+2025-09-18 14:59:59,246 - __main__ - INFO - 连接数据库: grade_management.db
+2025-09-18 14:59:59,246 - __main__ - INFO - 初始化数据库表
+2025-09-18 14:59:59,252 - __main__ - INFO - 显示登录窗口
+2025-09-18 14:59:59,742 - __main__ - INFO - 进入应用程序主循环
+2025-09-18 15:00:05,170 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-09-18 15:00:08,378 - gui.main_window - INFO - 主窗口关闭

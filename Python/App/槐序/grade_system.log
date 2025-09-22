@@ -726,3 +726,4 @@ UnboundLocalError: local variable 'input_layout' referenced before assignment
 2025-09-19 09:23:20,175 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
 2025-09-19 09:26:09,066 - gui.student_mgmt - INFO - 添加班级: Test2
 2025-09-19 09:26:49,104 - gui.student_mgmt - INFO - 添加学生: 10001
+2025-09-19 09:39:12,073 - gui.main_window - INFO - 主窗口关闭

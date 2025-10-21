@@ -1,3 +1,4 @@
+# gui/classroom_mgmt.py
 from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QTableWidget,
     QTableWidgetItem, QPushButton, QComboBox, QLabel,
@@ -37,12 +38,16 @@ class ClassroomManagementWindow(QWidget):
         add_activity_btn = QPushButton("新建课堂活动")
         add_activity_btn.clicked.connect(self.add_classroom_activity)
 
+        delete_activity_btn = QPushButton("删除课堂活动")  # 新增删除按钮
+        delete_activity_btn.clicked.connect(self.delete_classroom_activity)  # 连接删除功能
+
         refresh_btn = QPushButton("刷新")
         refresh_btn.clicked.connect(self.load_activities)
 
         toolbar.addWidget(QLabel("课程:"))
         toolbar.addWidget(self.course_combo)
         toolbar.addWidget(add_activity_btn)
+        toolbar.addWidget(delete_activity_btn)  # 添加删除按钮到工具栏
         toolbar.addWidget(refresh_btn)
         layout.addLayout(toolbar)
 
@@ -52,7 +57,7 @@ class ClassroomManagementWindow(QWidget):
         self.activity_table.setHorizontalHeaderLabels(["ID", "课程", "日期", "活动类型", "操作"])
         self.activity_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.activity_table.setSelectionBehavior(QTableWidget.SelectRows)
-        self.activity_table.cellClicked.connect(self.show_activity_details)
+        self.activity_table.cellClicked.connect(self.on_activity_cell_clicked)
         layout.addWidget(self.activity_table)
 
         # 学生评分区域
@@ -84,27 +89,28 @@ class ClassroomManagementWindow(QWidget):
             QMessageBox.critical(self, "错误", f"加载课程列表失败: {str(e)}")
 
     def load_activities(self):
-        """加载课堂活动列表"""
         course_id = self.course_combo.currentData()
 
         try:
             cursor = self.db_conn.cursor()
 
+            # 基础查询：关联课堂活动和课程表
             query = """
-                    SELECT a.activity_id, \
-                           c.course_name, \
+                    SELECT a.activity_id,
+                           c.course_name,
                            a.activity_date,
                            a.activity_type
                     FROM classroom_activities a
-                             JOIN courses c ON a.course_id = c.course_id
-                    WHERE 1 = 1
+                             JOIN courses c ON a.course_id = c.course_id \
                     """
             params = []
 
+            # 添加课程筛选条件（如果选择了特定课程）
             if course_id:
-                query += " AND a.course_id = ?"
+                query += " WHERE a.course_id = ?"
                 params.append(course_id)
 
+            # 按活动日期降序排列
             query += " ORDER BY a.activity_date DESC"
 
             cursor.execute(query, params)
@@ -129,9 +135,80 @@ class ClassroomManagementWindow(QWidget):
         if dialog.exec_() == QDialog.Accepted:  # 只有点击 OK 才会执行到这里
             self.load_activities()
 
+    def delete_classroom_activity(self):
+        """删除选中的课堂活动"""
+        current_row = self.activity_table.currentRow()
+        if current_row < 0:
+            QMessageBox.warning(self, "警告", "请先选择一个课堂活动进行删除！")
+            return
+
+        # 获取选中的活动ID
+        activity_id_item = self.activity_table.item(current_row, 0)
+        if not activity_id_item:
+            QMessageBox.warning(self, "警告", "无法获取选中的课堂活动ID！")
+            return
+
+        try:
+            activity_id = int(activity_id_item.text())
+        except ValueError:
+            QMessageBox.warning(self, "警告", "无效的课堂活动ID！")
+            return
+
+        # 确认删除
+        reply = QMessageBox.question(self, "确认删除",
+                                     f"确定要删除ID为 {activity_id} 的课堂活动吗？此操作不可恢复！",
+                                     QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+
+        if reply == QMessageBox.Yes:
+            try:
+                cursor = self.db_conn.cursor()
+
+                # 先删除相关的评分记录
+                cursor.execute("DELETE FROM classroom_scores WHERE activity_id = ?", (activity_id,))
+
+                # 再删除课堂活动
+                cursor.execute("DELETE FROM classroom_activities WHERE activity_id = ?", (activity_id,))
+
+                self.db_conn.commit()
+                QMessageBox.information(self, "成功", "课堂活动已成功删除！")
+                self.load_activities()  # 刷新活动列表
+
+            except Exception as e:
+                self.db_conn.rollback()  # 发生错误时回滚
+                self.logger.error(f"删除课堂活动错误: {str(e)}")
+                QMessageBox.critical(self, "错误", f"删除课堂活动失败: {str(e)}")
     def show_activity_details(self, activity):
         """显示课堂活动的学生评分"""
-        activity_id, course_name, activity_date, activity_type = activity
+        # 处理不同类型的activity参数
+        if isinstance(activity, tuple):
+            # 从表格点击传来的完整数据：(activity_id, course_name, activity_date, activity_type)
+            activity_id, course_name, activity_date, activity_type = activity
+        else:
+            # 从按钮点击传来的只有activity_id（整数）
+            try:
+                activity_id = activity
+
+                # 需要根据activity_id查询活动的详细信息
+                cursor = self.db_conn.cursor()
+                cursor.execute("""
+                               SELECT a.activity_id, c.course_name, a.activity_date, a.activity_type
+                               FROM classroom_activities a
+                                        JOIN courses c ON a.course_id = c.course_id
+                               WHERE a.activity_id = ?
+                               """, (activity_id,))
+                result = cursor.fetchone()
+
+                if not result:
+                    QMessageBox.critical(self, "错误", f"找不到ID为 {activity_id} 的课堂活动")
+                    return
+
+                activity_id, course_name, activity_date, activity_type = result
+
+            except Exception as e:
+                self.logger.error(f"获取活动详情错误: {str(e)}")
+                QMessageBox.critical(self, "错误", f"获取活动详情失败: {str(e)}")
+                return
+
         self.detail_label.setText(f"课堂活动: {course_name} - {activity_type} ({activity_date})")
 
         try:
@@ -142,9 +219,7 @@ class ClassroomManagementWindow(QWidget):
                            FROM students s
                                     JOIN classes c ON s.class_id = c.class_id
                                     JOIN course_class cc ON c.class_id = cc.class_id
-                           WHERE cc.course_id = (SELECT course_id
-                                                 FROM classroom_activities
-                                                 WHERE activity_id = ?)
+                           WHERE cc.course_id = (SELECT course_id FROM classroom_activities WHERE activity_id = ?)
                            ORDER BY s.student_id
                            """, (activity_id,))
             students = cursor.fetchall()
@@ -185,6 +260,19 @@ class ClassroomManagementWindow(QWidget):
         dialog = StudentGradeDialog(self.db_conn, student_id, activity_id)
         if dialog.exec_() == QDialog.Accepted:
             self.show_activity_details([activity_id, "", "", ""])  # 刷新显示
+
+    def on_activity_cell_clicked(self, row, column):
+        """处理活动表格单元格点击事件"""
+        # 获取该行的活动ID（第一列）
+        activity_id_item = self.activity_table.item(row, 0)
+        if activity_id_item:
+            try:
+                activity_id = int(activity_id_item.text())
+                # 直接调用 show_activity_details 方法，传入活动ID
+                # 我们需要构造一个包含活动ID的列表，以匹配现有的方法逻辑
+                self.show_activity_details(activity_id)  # ✅ 直接传递活动ID
+            except ValueError:
+                self.logger.error(f"无效的活动ID: {activity_id_item.text()}")
 
 
 class ClassroomActivityDialog(QDialog):
@@ -313,7 +401,7 @@ class StudentGradeDialog(QDialog):
 
         # 分数输入
         self.score_spin = QDoubleSpinBox()
-        self.score_spin.setRange(-100, 100)  # 允许输入负数
+        self.score_spin.setRange(0, 100)  # 限制在0-100分之间
         self.score_spin.setDecimals(1)
         self.score_spin.setSuffix("分")
         layout.addRow("分数:", self.score_spin)
@@ -404,8 +492,11 @@ class StudentGradeDialog(QDialog):
                                """, (self.activity_id, self.student_id, score, comment))
 
             self.db_conn.commit()
+            QMessageBox.information(self, "成功", "评分已保存！")
             self.accept()
 
         except Exception as e:
             QMessageBox.critical(self, "错误", f"保存评分失败: {str(e)}")
             self.reject()
+
+"""班级没有关联课程"""

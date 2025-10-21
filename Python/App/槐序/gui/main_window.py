@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtCore import Qt, pyqtSignal
 import logging
 from PyQt5.QtGui import QFont, QIcon, QPalette, QColor
+from gui.course_class_mgmt import CourseClassManagementDialog
 
 
 class MainWindow(QMainWindow):
@@ -108,6 +109,15 @@ class MainWindow(QMainWindow):
         self.create_central_tabs()
         self.create_statusbar()
 
+    def show_course_class_management(self):
+        """显示课程与班级关联管理对话框"""
+        try:
+            self.course_class_dialog = CourseClassManagementDialog(self.db_conn)
+            self.course_class_dialog.exec_()
+        except Exception as e:
+            self.logger.error(f"打开课程与班级关联管理窗口错误: {str(e)}")
+            QMessageBox.critical(self, "错误", f"无法打开课程与班级关联管理: {str(e)}")
+
     def create_menubar(self):
         """创建菜单栏 - 美化版"""
         menubar = self.menuBar()
@@ -146,6 +156,11 @@ class MainWindow(QMainWindow):
             classroom_action = QAction("🏫 课堂管理", self)
             classroom_action.triggered.connect(self.show_classroom_management)
             manage_menu.addAction(classroom_action)
+
+            # 添加班级关联课程管理功能
+            course_class_action = QAction("📚 班级关联课程", self)
+            course_class_action.triggered.connect(self.show_course_class_management)
+            manage_menu.addAction(course_class_action)
 
         # 报表菜单
         report_menu = menubar.addMenu("📈 报表")
@@ -268,26 +283,6 @@ class MainWindow(QMainWindow):
         welcome_layout.addStretch()
 
         self.tab_widget.addTab(welcome_widget, "首页")
-
-    def create_statusbar(self):
-        """创建状态栏 - 美化版"""
-        self.status_bar = QStatusBar()
-        self.setStatusBar(self.status_bar)
-        self.status_bar.showMessage(
-            f"✅ 欢迎使用4+X成绩管理系统 | 当前用户: {self.get_role_display(self.user_role)} | 角色: {self.user_role}",
-            5000)
-
-        # 设置状态栏样式
-        self.status_bar.setStyleSheet("""
-            QStatusBar {
-                background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                    stop:0 #ffffff, stop:1 #f8f9fa);
-                border: 1px solid #e0e0e0;
-                border-top: none;
-                color: #333;
-                font-weight: 500;
-            }
-        """)
 
     def create_statusbar(self):
         """创建状态栏"""

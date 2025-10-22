@@ -1,260 +1,206 @@
+import logging
 from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QLabel,
-    QLineEdit, QPushButton, QMessageBox, QFrame
+    QLineEdit, QPushButton, QMessageBox, QFrame, QApplication
 )
 from PyQt5.QtCore import Qt, pyqtSignal
-import logging
-from PyQt5.QtGui import QFont, QPalette, QColor
 
 
 class LoginWindow(QWidget):
-    """登录窗口 - 美化版"""
-    login_success = pyqtSignal(int, str)  # 用户ID和角色
+    login_success = pyqtSignal(int, str)
 
     def __init__(self, db_conn):
         super().__init__()
         self.db_conn = db_conn
-        self.setWindowTitle("4+X成绩管理系统 - 登录")
-        self.setFixedSize(650, 750)
-        self.setWindowFlags(Qt.WindowCloseButtonHint | Qt.WindowMinimizeButtonHint)
-
-        # 设置窗口居中
+        self.setWindowTitle("4+X 成绩管理系统 - 登录")
+        self.setFixedSize(1200, 900)  # 4:3 比例，可调整
         self.center_window()
-
         self.init_ui()
         self.logger = logging.getLogger(__name__)
 
     def center_window(self):
-        """窗口居中显示"""
-        screen = self.screen().availableGeometry()
-        size = self.geometry()
-        self.move(
-            (screen.width() - size.width()) // 2,
-            (screen.height() - size.height()) // 2
-        )
+        screen = QApplication.primaryScreen().availableGeometry()
+        geo = self.frameGeometry()
+        geo.moveCenter(screen.center())
+        self.move(geo.topLeft())
 
     def init_ui(self):
-        # 主布局
-        main_layout = QVBoxLayout()
-        main_layout.setContentsMargins(40, 40, 40, 40)
-        main_layout.setSpacing(20)
-        main_layout.setAlignment(Qt.AlignCenter)
+        # ======================
+        # 最底层布局：整个窗口背景为深蓝色
+        # ======================
+        self.setStyleSheet("""
+            QWidget {
+                background: #001f3f;  /* 深蓝色背景（最底层） */
+            }
+        """)
 
-        # 设置背景渐变色
-        self.setAutoFillBackground(True)
-        palette = self.palette()
-        palette.setColor(QPalette.Window, QColor(240, 248, 255))  # 浅蓝色背景
-        self.setPalette(palette)
+        # 主布局：左右分栏（水平布局 QHBoxLayout）
+        main_layout = QHBoxLayout()
+        main_layout.setSpacing(40)  # 左右两个区域之间的间隙
+        main_layout.setContentsMargins(40, 40, 40, 40)  # 窗口四周边距
 
-        # 标题区域
-        title_frame = QFrame()
-        title_frame.setObjectName("titleFrame")
-        title_layout = QVBoxLayout(title_frame)
-        title_layout.setAlignment(Qt.AlignCenter)
+        # ======================
+        # 左侧 Layout：浅白色 80% 透明度 + 纯白描边
+        # ======================
+        left_frame = QFrame()
+        left_layout = QVBoxLayout(left_frame)
+        left_layout.setContentsMargins(40, 40, 40, 40)
+        left_layout.setSpacing(20)
 
-        # 主标题
-        title = QLabel("4+X 成绩管理系统")
-        title.setAlignment(Qt.AlignCenter)
-        title.setObjectName("mainTitle")
+        # 样式：浅白色 80% 透明度 + 纯白边框
+        left_frame.setStyleSheet("""
+            QFrame {
+                background: rgba(255, 255, 255, 0.8);  /* 浅白色，80% 透明 */
+                border: 2px solid white;               /* 纯白描边 */
+                border-radius: 15px;
+                /* 可设置最小宽度，比如 400px，让左右平衡 */
+                min-width: 400px;
+            }
+        """)
 
-        # 副标题
-        subtitle = QLabel("Login System")
-        subtitle.setAlignment(Qt.AlignCenter)
-        subtitle.setObjectName("subTitle")
-        subtitle.setStyleSheet("color: #666666; font-size: 14px; margin-top: 5px;")
+        # ======================
+        # 右侧 Layout：浅白色 80% 透明度 + 纯白描边 → 登录表单区域
+        # ======================
+        right_frame = QFrame()
+        right_layout = QVBoxLayout(right_frame)
+        right_layout.setSpacing(15)
+        right_layout.setAlignment(Qt.AlignTop)
+        right_layout.setContentsMargins(10, 10, 10, 10)
 
-        title_layout.addWidget(title)
-        title_layout.addWidget(subtitle)
-        main_layout.addWidget(title_frame)
-
-        # 装饰线
-        line = QFrame()
-        line.setFrameShape(QFrame.HLine)
-        line.setFrameShadow(QFrame.Sunken)
-        line.setStyleSheet("color: #e0e0e0; margin: 20px 0;")
-        main_layout.addWidget(line)
-
-        # 登录表单区域
-        form_frame = QFrame()
-        form_frame.setObjectName("formFrame")
-        form_layout = QVBoxLayout(form_frame)
-        form_layout.setSpacing(20)
-        form_layout.setAlignment(Qt.AlignCenter)
+        # 样式同左侧：浅白色 80% + 纯白描边
+        right_frame.setStyleSheet("""
+            QFrame {
+                background: rgba(255, 255, 255, 0.8);  /* 浅白色，80% 透明 */
+                border: 2px solid white;               /* 纯白描边 */
+                border-radius: 15px;
+                padding: 15px;
+            }
+        """)
 
         # 表单标题
         form_title = QLabel("用户登录")
-        form_title.setObjectName("formTitle")
-        form_layout.addWidget(form_title)
+        form_title.setAlignment(Qt.AlignCenter)  # 添加这一行
+        form_title.setStyleSheet("""
+            font-size: 32px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 15px;
+        """)
 
-        # ✅ 修复：使用正确的变量名 input_container_layout，避免与 input_layout 冲突
-        input_container_layout = QVBoxLayout()  # 输入区域的主容器
-        input_container_layout.setSpacing(15)
+        # 表单内容
+        form_layout = QVBoxLayout()
+        form_layout.setSpacing(15)
 
-        # 用户名输入
+        # --- 用户名输入 ---
         username_frame = QFrame()
-        username_frame.setObjectName("inputFrame")
         username_layout = QHBoxLayout(username_frame)
-        username_layout.setContentsMargins(15, 10, 15, 10)
-        username_layout.setSpacing(10)
+        username_layout.setContentsMargins(20, 15, 20, 15)
+        username_layout.setSpacing(15)
 
         username_label = QLabel("👤 用户名:")
-        username_label.setObjectName("inputLabel")
+        username_label.setStyleSheet("font-size: 22px; color: #000; min-width: 80px;")
+
         self.username_input = QLineEdit()
         self.username_input.setPlaceholderText("请输入用户名")
-        self.username_input.setObjectName("inputField")
-        self.username_input.setMinimumHeight(40)
+        self.username_input.setMinimumHeight(45)
+        self.username_input.setStyleSheet("""
+            QLineEdit {
+                background: white;  /* 白色不透明 */
+                border: 2px solid #ccc;
+                border-radius: 8px;
+                padding: 12px 16px;
+                font-size: 22px;
+                color: #000;
+            }
+            QLineEdit:focus {
+                border-color: #000;
+                outline: none;
+            }
+        """)
 
         username_layout.addWidget(username_label)
         username_layout.addWidget(self.username_input)
-        input_container_layout.addWidget(username_frame)
 
-        # 密码输入
+        # --- 密码输入 ---
         password_frame = QFrame()
-        password_frame.setObjectName("inputFrame")
         password_layout = QHBoxLayout(password_frame)
-        password_layout.setContentsMargins(15, 10, 15, 10)
-        password_layout.setSpacing(10)
+        password_layout.setContentsMargins(20, 15, 20, 15)
+        password_layout.setSpacing(15)
 
         password_label = QLabel("🔒 密码:")
-        password_label.setObjectName("inputLabel")
         self.password_input = QLineEdit()
         self.password_input.setPlaceholderText("请输入密码")
         self.password_input.setEchoMode(QLineEdit.Password)
-        self.password_input.setObjectName("inputField")
-        self.password_input.setMinimumHeight(40)
+        self.password_input.setMinimumHeight(45)
+
+        password_label.setStyleSheet("font-size: 22px; color: #000; min-width: 80px;")
+
+        self.password_input.setStyleSheet("""
+            QLineEdit {
+                background: white;  /* 白色不透明 */
+                border: 2px solid #ccc;
+                border-radius: 8px;
+                padding: 12px 16px;
+                font-size: 22px;
+                color: #000;
+            }
+            QLineEdit:focus {
+                border-color: #000;
+                outline: none;
+            }
+        """)
 
         password_layout.addWidget(password_label)
         password_layout.addWidget(self.password_input)
-        input_container_layout.addWidget(password_frame)
 
-        # 将整个输入容器布局添加到表单布局中
-        form_layout.addLayout(input_container_layout)
-
-        # 记住密码和忘记密码（可选，目前注释）
-        # remember_layout = QHBoxLayout()
-        # remember_cb = QCheckBox("记住密码")
-        # remember_cb.setStyleSheet("color: #666; font-size: 12px;")
-        # remember_layout.addWidget(remember_cb)
-        # remember_layout.addStretch()
-        # forgot_label = QLabel("<a href='#' style='color: #007bff; text-decoration: none;'>忘记密码?</a>")
-        # forgot_label.setAlignment(Qt.AlignRight)
-        # remember_layout.addWidget(forgot_label)
-        # form_layout.addLayout(remember_layout)
-
-        # 登录按钮
+        # --- 登录按钮 ---
         button_frame = QFrame()
         button_layout = QVBoxLayout(button_frame)
-        button_layout.setContentsMargins(15, 20, 15, 15)
+        button_layout.setContentsMargins(20, 25, 20, 25)
 
         login_btn = QPushButton("登 录")
-        login_btn.setObjectName("loginButton")
         login_btn.setMinimumHeight(45)
         login_btn.setCursor(Qt.PointingHandCursor)
         login_btn.clicked.connect(self.handle_login)
 
-        # 登录按钮样式
         login_btn.setStyleSheet("""
-            QPushButton#loginButton {
-                background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                    stop:0 #4CAF50, stop:1 #45a049);
-                color: white;
+            QPushButton {
+                background: white;  /* 纯白不透明 */
+                color: #000;
                 border: none;
                 border-radius: 8px;
                 font-size: 16px;
                 font-weight: bold;
-                padding: 10px;
+                padding: 10px 20px;
             }
-            QPushButton#loginButton:hover {
-                background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                    stop:0 #45a049, stop:1 #3d8b40);
+            QPushButton:hover {
+                background: #f0f0f0;
             }
-            QPushButton#loginButton:pressed {
-                background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                    stop:0 #3d8b40, stop:1 #2e7d32);
+            QPushButton:pressed {
+                background: #e0e0e0;
             }
         """)
 
         button_layout.addWidget(login_btn)
+
+        # 组装表单
+        form_layout.addWidget(form_title)
+        form_layout.addWidget(username_frame)
+        form_layout.addWidget(password_frame)
         form_layout.addWidget(button_frame)
+        form_layout.addStretch()
 
-        main_layout.addWidget(form_frame)
+        right_layout.addLayout(form_layout)
 
-        # 底部信息
-        bottom_frame = QFrame()
-        bottom_layout = QVBoxLayout(bottom_frame)
-        bottom_layout.setAlignment(Qt.AlignCenter)
-
-        version_label = QLabel("© 2025 4+X 成绩管理系统 v1.0")
-        version_label.setObjectName("versionLabel")
-        version_label.setStyleSheet("color: #999999; font-size: 10px; margin-top: 10px;")
-
-        bottom_layout.addWidget(version_label)
-        main_layout.addWidget(bottom_frame)
+        # ======================
+        # 将左右区域加入主布局
+        # ======================
+        main_layout.addWidget(left_frame, 1)   # 左侧占1份
+        main_layout.addWidget(right_frame, 1)  # 右侧占1份
 
         self.setLayout(main_layout)
 
-        # 设置整体样式
-        self.setStyleSheet("""
-            #titleFrame {
-                background: transparent;
-                margin-bottom: 10px;
-            }
-            #mainTitle {
-                font-size: 28px;
-                font-weight: bold;
-                color: #2c3e50;
-                margin-bottom: 5px;
-            }
-            #subTitle {
-                font-size: 14px;
-                color: #7f8c8d;
-                font-weight: normal;
-            }
-            #formFrame {
-                background: white;
-                border-radius: 15px;
-                padding: 30px;
-                box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-                border: 1px solid #e8e8e8;
-            }
-            #formTitle {
-                font-size: 20px;
-                font-weight: bold;
-                color: #2c3e50;
-                margin-bottom: 25px;
-                text-align: center;
-            }
-            #inputFrame {
-                background: #fafafa;
-                border-radius: 10px;
-                border: 1px solid #e0e0e0;
-            }
-            #inputLabel {
-                font-size: 14px;
-                font-weight: 500;
-                color: #34495e;
-                min-width: 80px;
-            }
-            #inputField {
-                border: 2px solid #e0e0e0;
-                border-radius: 8px;
-                padding: 10px 15px;
-                font-size: 14px;
-                background: white;
-                selection-background-color: #3498db;
-            }
-            #inputField:focus {
-                border-color: #3498db;
-                outline: none;
-            }
-            #versionLabel {
-                font-size: 10px;
-                color: #bdc3c7;
-            }
-        """)
-
     def handle_login(self):
-        """处理登录逻辑"""
         username = self.username_input.text().strip()
         password = self.password_input.text().strip()
 
@@ -275,18 +221,13 @@ class LoginWindow(QWidget):
                 user_id, role = user
                 self.logger.info(f"用户 {username} 登录成功, 角色: {role}")
 
-                # 显示主窗口
                 from gui.main_window import MainWindow
                 self.main_window = MainWindow(self.db_conn, user_id, role)
                 self.main_window.show()
-
-                # 关闭登录窗口
                 self.close()
             else:
                 QMessageBox.warning(self, "登录失败", "用户名或密码错误",
                                     QMessageBox.Ok, QMessageBox.Ok)
-                self.logger.warning(f"登录失败: 用户名 {username} 或密码错误")
-                # 清空密码框
                 self.password_input.clear()
         except Exception as e:
             QMessageBox.critical(self, "错误", f"登录时发生错误: {str(e)}",
@@ -294,5 +235,4 @@ class LoginWindow(QWidget):
             self.logger.error(f"登录错误: {str(e)}")
 
     def closeEvent(self, event):
-        """窗口关闭事件"""
         event.accept()

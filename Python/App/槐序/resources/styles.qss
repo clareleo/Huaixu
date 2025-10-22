@@ -69,24 +69,28 @@ QHeaderView::section {
 
 /* 菜单栏样式 */
 QMenuBar {
-    background-color: #333;
-    color: white;
+    background-color: #333;  /* 菜单栏背景色：深灰/黑 */
 }
 
+/* 菜单栏中的每个主菜单项，比如“文件”、“管理”、“报表” */
 QMenuBar::item {
     background-color: transparent;
+    color: black;            /* ✅ 菜单文字设置为黑色 */
     padding: 5px 10px;
 }
 
+/* 当某个主菜单被选中（比如鼠标悬停或点击展开前） */
 QMenuBar::item:selected {
-    background-color: #555;
+    background-color: #555;  /* 选中背景色，可自定 */
 }
 
+/* 弹出的菜单（比如点击“文件”后出现的下拉菜单） */
 QMenu {
     background-color: white;
     border: 1px solid #ddd;
 }
 
+/* 菜单中的选项被选中时 */
 QMenu::item:selected {
     background-color: #4CAF50;
     color: white;

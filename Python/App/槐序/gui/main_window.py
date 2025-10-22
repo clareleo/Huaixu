@@ -104,10 +104,11 @@ class MainWindow(QMainWindow):
         self.create_statusbar()
 
     def setup_for_role(self):
-        self.create_menubar()
+        """self.create_menubar()
         self.create_toolbar()
         self.create_central_tabs()
-        self.create_statusbar()
+        self.create_statusbar()"""
+        pass
 
     def show_course_class_management(self):
         """显示课程与班级关联管理对话框"""

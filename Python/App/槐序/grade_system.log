@@ -1110,3 +1110,456 @@ AttributeError: 'ClassroomManagementWindow' object has no attribute 'get_activit
 2025-10-21 17:01:59,982 - gui.login_window - WARNING - 登录失败: 用户名 admin 或密码错误
 2025-10-21 17:02:04,352 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
 2025-10-21 17:02:07,508 - gui.main_window - INFO - 主窗口关闭
+2025-10-22 07:40:41,921 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 07:40:41,921 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 07:40:42,385 - __main__ - INFO - 样式表加载成功
+2025-10-22 07:40:42,385 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 07:40:42,388 - __main__ - INFO - 初始化数据库表
+2025-10-22 07:40:42,393 - __main__ - INFO - 显示登录窗口
+2025-10-22 07:40:43,004 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 07:40:48,128 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-10-22 07:41:07,168 - gui.main_window - INFO - 主窗口关闭
+2025-10-22 07:43:25,952 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 07:43:25,952 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 07:43:26,198 - __main__ - INFO - 样式表加载成功
+2025-10-22 07:43:26,198 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 07:43:26,199 - __main__ - INFO - 初始化数据库表
+2025-10-22 07:43:26,204 - __main__ - INFO - 显示登录窗口
+2025-10-22 07:43:26,809 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 07:43:32,442 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-10-22 07:46:57,393 - gui.main_window - INFO - 主窗口关闭
+2025-10-22 07:52:19,183 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 07:52:19,183 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 07:52:19,436 - __main__ - INFO - 样式表加载成功
+2025-10-22 07:52:19,436 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 07:52:19,437 - __main__ - INFO - 初始化数据库表
+2025-10-22 07:52:19,442 - __main__ - INFO - 显示登录窗口
+2025-10-22 07:52:20,063 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 07:52:49,562 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 07:52:49,563 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 07:52:49,812 - __main__ - INFO - 样式表加载成功
+2025-10-22 07:52:49,813 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 07:52:49,813 - __main__ - INFO - 初始化数据库表
+2025-10-22 07:52:49,819 - __main__ - INFO - 显示登录窗口
+2025-10-22 07:52:50,407 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 07:55:07,984 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 07:55:07,984 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 07:55:08,227 - __main__ - INFO - 样式表加载成功
+2025-10-22 07:55:08,227 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 07:55:08,228 - __main__ - INFO - 初始化数据库表
+2025-10-22 07:55:08,233 - __main__ - INFO - 显示登录窗口
+2025-10-22 07:55:08,812 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 07:58:48,198 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 07:58:48,198 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 07:58:48,458 - __main__ - INFO - 样式表加载成功
+2025-10-22 07:58:48,459 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 07:58:48,459 - __main__ - INFO - 初始化数据库表
+2025-10-22 07:58:48,464 - __main__ - INFO - 显示登录窗口
+2025-10-22 07:58:49,060 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 08:00:36,231 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 08:00:36,232 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 08:00:36,475 - __main__ - INFO - 样式表加载成功
+2025-10-22 08:00:36,476 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 08:00:36,476 - __main__ - INFO - 初始化数据库表
+2025-10-22 08:00:36,481 - __main__ - INFO - 显示登录窗口
+2025-10-22 08:00:37,059 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 08:04:57,707 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 08:04:57,708 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 08:04:57,970 - __main__ - INFO - 样式表加载成功
+2025-10-22 08:04:57,971 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 08:04:57,971 - __main__ - INFO - 初始化数据库表
+2025-10-22 08:04:57,976 - __main__ - INFO - 显示登录窗口
+2025-10-22 08:04:58,549 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 08:07:59,351 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 08:07:59,352 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 08:07:59,597 - __main__ - INFO - 样式表加载成功
+2025-10-22 08:07:59,598 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 08:07:59,598 - __main__ - INFO - 初始化数据库表
+2025-10-22 08:07:59,603 - __main__ - INFO - 显示登录窗口
+2025-10-22 08:08:00,218 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 08:10:44,092 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 08:10:44,094 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 08:10:44,345 - __main__ - INFO - 样式表加载成功
+2025-10-22 08:10:44,345 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 08:10:44,346 - __main__ - INFO - 初始化数据库表
+2025-10-22 08:10:44,352 - __main__ - INFO - 显示登录窗口
+2025-10-22 08:10:44,947 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 08:16:24,199 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 08:16:24,200 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 08:16:24,475 - __main__ - INFO - 样式表加载成功
+2025-10-22 08:16:24,475 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 08:16:24,476 - __main__ - INFO - 初始化数据库表
+2025-10-22 08:16:24,482 - __main__ - INFO - 显示登录窗口
+2025-10-22 08:16:25,036 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 08:16:30,208 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 08:16:30,208 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 08:16:30,455 - __main__ - INFO - 样式表加载成功
+2025-10-22 08:16:30,455 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 08:16:30,456 - __main__ - INFO - 初始化数据库表
+2025-10-22 08:16:30,462 - __main__ - INFO - 显示登录窗口
+2025-10-22 08:16:31,050 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 08:21:22,312 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 08:21:22,313 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 08:21:22,557 - __main__ - INFO - 样式表加载成功
+2025-10-22 08:21:22,557 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 08:21:22,558 - __main__ - INFO - 初始化数据库表
+2025-10-22 08:21:22,564 - __main__ - INFO - 显示登录窗口
+2025-10-22 08:21:23,150 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 08:22:09,007 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 08:22:09,008 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 08:22:09,270 - __main__ - INFO - 样式表加载成功
+2025-10-22 08:22:09,270 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 08:22:09,271 - __main__ - INFO - 初始化数据库表
+2025-10-22 08:22:09,276 - __main__ - INFO - 显示登录窗口
+2025-10-22 08:22:09,849 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 08:44:43,320 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 08:44:43,320 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 08:44:43,577 - __main__ - INFO - 样式表加载成功
+2025-10-22 08:44:43,577 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 08:44:43,578 - __main__ - INFO - 初始化数据库表
+2025-10-22 08:44:43,582 - __main__ - INFO - 显示登录窗口
+2025-10-22 08:44:44,188 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 08:50:09,168 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 08:50:09,169 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 08:50:09,415 - __main__ - INFO - 样式表加载成功
+2025-10-22 08:50:09,415 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 08:50:09,416 - __main__ - INFO - 初始化数据库表
+2025-10-22 08:50:09,422 - __main__ - INFO - 显示登录窗口
+2025-10-22 08:50:10,019 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 08:58:10,549 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 08:58:10,550 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 08:58:10,807 - __main__ - INFO - 样式表加载成功
+2025-10-22 08:58:10,807 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 08:58:10,808 - __main__ - INFO - 初始化数据库表
+2025-10-22 08:58:10,814 - __main__ - INFO - 显示登录窗口
+2025-10-22 08:58:10,838 - __main__ - ERROR - 无法启动登录窗口
+Traceback (most recent call last):
+  File "E:\Python\Python\App\槐序\main.py", line 114, in main
+    login_window = LoginWindow(db_conn)
+  File "E:\Python\Python\App\槐序\gui\login_window.py", line 24, in __init__
+    self.init_ui()
+  File "E:\Python\Python\App\槐序\gui\login_window.py", line 229, in init_ui
+    login_btn.click极地.connect(self.handle_login)
+AttributeError: 'QPushButton' object has no attribute 'click极地'
+2025-10-22 09:01:46,337 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 09:01:46,338 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 09:01:46,586 - __main__ - INFO - 样式表加载成功
+2025-10-22 09:01:46,586 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 09:01:46,587 - __main__ - INFO - 初始化数据库表
+2025-10-22 09:01:46,592 - __main__ - INFO - 显示登录窗口
+2025-10-22 09:01:46,593 - __main__ - ERROR - 无法启动登录窗口
+Traceback (most recent call last):
+  File "E:\Python\Python\App\槐序\main.py", line 114, in main
+    login_window = LoginWindow(db_conn)
+  File "E:\Python\Python\App\槐序\gui\login_window.py", line 24, in __init__
+    self.init_ui()
+  File "E:\Python\Python\App\槐序\gui\login_window.py", line 45, in init_ui
+    left_frame.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+NameError: name 'QSizePolicy' is not defined
+2025-10-22 09:03:44,628 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 09:03:44,628 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 09:03:44,891 - __main__ - INFO - 样式表加载成功
+2025-10-22 09:03:44,891 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 09:03:44,892 - __main__ - INFO - 初始化数据库表
+2025-10-22 09:03:44,897 - __main__ - INFO - 显示登录窗口
+2025-10-22 09:03:45,505 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 09:15:14,469 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 09:15:14,469 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 09:15:14,720 - __main__ - INFO - 样式表加载成功
+2025-10-22 09:15:14,720 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 09:15:14,721 - __main__ - INFO - 初始化数据库表
+2025-10-22 09:15:14,726 - __main__ - INFO - 显示登录窗口
+2025-10-22 09:15:15,325 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 09:15:21,911 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 09:15:21,912 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 09:15:22,165 - __main__ - INFO - 样式表加载成功
+2025-10-22 09:15:22,165 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 09:15:22,167 - __main__ - INFO - 初始化数据库表
+2025-10-22 09:15:22,171 - __main__ - INFO - 显示登录窗口
+2025-10-22 09:15:22,767 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 09:15:42,625 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 09:15:42,626 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 09:15:42,875 - __main__ - INFO - 样式表加载成功
+2025-10-22 09:15:42,875 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 09:15:42,876 - __main__ - INFO - 初始化数据库表
+2025-10-22 09:15:42,881 - __main__ - INFO - 显示登录窗口
+2025-10-22 09:15:43,485 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 09:16:06,365 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 09:16:06,366 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 09:16:06,610 - __main__ - INFO - 样式表加载成功
+2025-10-22 09:16:06,610 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 09:16:06,611 - __main__ - INFO - 初始化数据库表
+2025-10-22 09:16:06,616 - __main__ - INFO - 显示登录窗口
+2025-10-22 09:16:07,191 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 09:16:13,287 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 09:16:13,289 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 09:16:13,534 - __main__ - INFO - 样式表加载成功
+2025-10-22 09:16:13,534 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 09:16:13,535 - __main__ - INFO - 初始化数据库表
+2025-10-22 09:16:13,540 - __main__ - INFO - 显示登录窗口
+2025-10-22 09:37:39,740 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 09:37:39,740 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 09:37:39,995 - __main__ - INFO - 样式表加载成功
+2025-10-22 09:37:39,995 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 09:37:39,996 - __main__ - INFO - 初始化数据库表
+2025-10-22 09:37:40,002 - __main__ - INFO - 显示登录窗口
+2025-10-22 09:37:40,591 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 09:40:35,389 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 09:40:35,390 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 09:40:35,650 - __main__ - INFO - 样式表加载成功
+2025-10-22 09:40:35,650 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 09:40:35,651 - __main__ - INFO - 初始化数据库表
+2025-10-22 09:40:35,657 - __main__ - INFO - 显示登录窗口
+2025-10-22 09:40:36,275 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 10:05:36,921 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 10:05:36,921 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 10:05:37,185 - __main__ - INFO - 样式表加载成功
+2025-10-22 10:05:37,185 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 10:05:37,186 - __main__ - INFO - 初始化数据库表
+2025-10-22 10:05:37,191 - __main__ - INFO - 显示登录窗口
+2025-10-22 10:05:37,192 - __main__ - ERROR - 无法启动登录窗口
+Traceback (most recent call last):
+  File "E:\Python\Python\App\槐序\main.py", line 114, in main
+    login_window = LoginWindow(db_conn)
+  File "E:\Python\Python\App\槐序\gui\login_window.py", line 24, in __init__
+    self.init_ui()
+  File "E:\Python\Python\App\槐序\gui\login_window.py", line 45, in init_ui
+    left_frame.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+NameError: name 'QSizePolicy' is not defined
+2025-10-22 10:05:52,813 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 10:05:52,813 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 10:05:53,074 - __main__ - INFO - 样式表加载成功
+2025-10-22 10:05:53,075 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 10:05:53,075 - __main__ - INFO - 初始化数据库表
+2025-10-22 10:05:53,079 - __main__ - INFO - 显示登录窗口
+2025-10-22 10:05:53,689 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 10:46:02,690 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 10:46:02,690 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 10:46:02,949 - __main__ - INFO - 样式表加载成功
+2025-10-22 10:46:02,950 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 10:46:02,950 - __main__ - INFO - 初始化数据库表
+2025-10-22 10:46:02,955 - __main__ - INFO - 显示登录窗口
+2025-10-22 10:46:03,589 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 10:48:19,963 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 10:48:19,963 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 10:48:20,210 - __main__ - INFO - 样式表加载成功
+2025-10-22 10:48:20,210 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 10:48:20,211 - __main__ - INFO - 初始化数据库表
+2025-10-22 10:48:20,214 - __main__ - INFO - 显示登录窗口
+2025-10-22 10:48:20,810 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 10:49:37,615 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 10:49:37,615 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 10:49:37,871 - __main__ - INFO - 样式表加载成功
+2025-10-22 10:49:37,871 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 10:49:37,872 - __main__ - INFO - 初始化数据库表
+2025-10-22 10:49:37,876 - __main__ - INFO - 显示登录窗口
+2025-10-22 10:49:38,485 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 10:53:09,852 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 10:53:09,852 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 10:53:10,105 - __main__ - INFO - 样式表加载成功
+2025-10-22 10:53:10,105 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 10:53:10,106 - __main__ - INFO - 初始化数据库表
+2025-10-22 10:53:10,111 - __main__ - INFO - 显示登录窗口
+2025-10-22 10:53:10,704 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 10:54:35,536 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 10:54:35,537 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 10:54:35,788 - __main__ - INFO - 样式表加载成功
+2025-10-22 10:54:35,790 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 10:54:35,790 - __main__ - INFO - 初始化数据库表
+2025-10-22 10:54:35,795 - __main__ - INFO - 显示登录窗口
+2025-10-22 10:54:36,410 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 10:56:20,454 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 10:56:20,456 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 10:56:20,717 - __main__ - INFO - 样式表加载成功
+2025-10-22 10:56:20,717 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 10:56:20,717 - __main__ - INFO - 初始化数据库表
+2025-10-22 10:56:20,721 - __main__ - INFO - 显示登录窗口
+2025-10-22 10:56:21,363 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 10:57:01,873 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 10:57:01,873 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 10:57:02,127 - __main__ - INFO - 样式表加载成功
+2025-10-22 10:57:02,127 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 10:57:02,127 - __main__ - INFO - 初始化数据库表
+2025-10-22 10:57:02,132 - __main__ - INFO - 显示登录窗口
+2025-10-22 10:57:02,713 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 11:00:39,074 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 11:00:39,075 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 11:00:39,418 - __main__ - INFO - 样式表加载成功
+2025-10-22 11:00:39,418 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 11:00:39,420 - __main__ - INFO - 初始化数据库表
+2025-10-22 11:00:39,425 - __main__ - INFO - 显示登录窗口
+2025-10-22 11:00:40,047 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 11:01:01,554 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 11:01:01,555 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 11:01:01,807 - __main__ - INFO - 样式表加载成功
+2025-10-22 11:01:01,807 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 11:01:01,807 - __main__ - INFO - 初始化数据库表
+2025-10-22 11:01:01,812 - __main__ - INFO - 显示登录窗口
+2025-10-22 11:01:02,403 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 11:04:57,672 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 11:04:57,673 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 11:04:57,928 - __main__ - INFO - 样式表加载成功
+2025-10-22 11:04:57,928 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 11:04:57,929 - __main__ - INFO - 初始化数据库表
+2025-10-22 11:04:57,932 - __main__ - INFO - 显示登录窗口
+2025-10-22 11:04:57,948 - __main__ - ERROR - 无法启动登录窗口
+Traceback (most recent call last):
+  File "E:\Python\Python\App\槐序\main.py", line 114, in main
+    login_window = LoginWindow(db_conn)
+  File "E:\Python\Python\App\槐序\gui\login_window.py", line 18, in __init__
+    self.init_ui()
+  File "E:\Python\Python\App\槐序\gui\login_window.py", line 185, in init_ui
+    form_layout.addLayout(username_frame)
+TypeError: addLayout(self, QLayout, stretch: int = 0): argument 1 has unexpected type 'QFrame'
+2025-10-22 11:05:15,993 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 11:05:15,993 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 11:05:16,246 - __main__ - INFO - 样式表加载成功
+2025-10-22 11:05:16,246 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 11:05:16,247 - __main__ - INFO - 初始化数据库表
+2025-10-22 11:05:16,252 - __main__ - INFO - 显示登录窗口
+2025-10-22 11:05:16,268 - __main__ - ERROR - 无法启动登录窗口
+Traceback (most recent call last):
+  File "E:\Python\Python\App\槐序\main.py", line 114, in main
+    login_window = LoginWindow(db_conn)
+  File "E:\Python\Python\App\槐序\gui\login_window.py", line 18, in __init__
+    self.init_ui()
+  File "E:\Python\Python\App\槐序\gui\login_window.py", line 185, in init_ui
+    form_layout.addLayout(username_frame)
+TypeError: addLayout(self, QLayout, stretch: int = 0): argument 1 has unexpected type 'QFrame'
+2025-10-22 11:06:59,378 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 11:06:59,379 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 11:06:59,632 - __main__ - INFO - 样式表加载成功
+2025-10-22 11:06:59,632 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 11:06:59,634 - __main__ - INFO - 初始化数据库表
+2025-10-22 11:06:59,639 - __main__ - INFO - 显示登录窗口
+2025-10-22 11:06:59,656 - __main__ - ERROR - 无法启动登录窗口
+Traceback (most recent call last):
+  File "E:\Python\Python\App\槐序\main.py", line 114, in main
+    login_window = LoginWindow(db_conn)
+  File "E:\Python\Python\App\槐序\gui\login_window.py", line 18, in __init__
+    self.init_ui()
+  File "E:\Python\Python\App\槐序\gui\login_window.py", line 186, in init_ui
+    form_layout.addLayout(password_frame)
+TypeError: addLayout(self, QLayout, stretch: int = 0): argument 1 has unexpected type 'QFrame'
+2025-10-22 11:07:07,148 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 11:07:07,148 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 11:07:07,399 - __main__ - INFO - 样式表加载成功
+2025-10-22 11:07:07,399 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 11:07:07,400 - __main__ - INFO - 初始化数据库表
+2025-10-22 11:07:07,404 - __main__ - INFO - 显示登录窗口
+2025-10-22 11:07:07,423 - __main__ - ERROR - 无法启动登录窗口
+Traceback (most recent call last):
+  File "E:\Python\Python\App\槐序\main.py", line 114, in main
+    login_window = LoginWindow(db_conn)
+  File "E:\Python\Python\App\槐序\gui\login_window.py", line 18, in __init__
+    self.init_ui()
+  File "E:\Python\Python\App\槐序\gui\login_window.py", line 185, in init_ui
+    form_layout.addLayout(username_frame)
+TypeError: addLayout(self, QLayout, stretch: int = 0): argument 1 has unexpected type 'QFrame'
+2025-10-22 11:07:12,333 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 11:07:12,334 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 11:07:12,587 - __main__ - INFO - 样式表加载成功
+2025-10-22 11:07:12,587 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 11:07:12,588 - __main__ - INFO - 初始化数据库表
+2025-10-22 11:07:12,593 - __main__ - INFO - 显示登录窗口
+2025-10-22 11:07:13,184 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 11:12:17,795 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 11:12:17,796 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 11:12:18,044 - __main__ - INFO - 样式表加载成功
+2025-10-22 11:12:18,045 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 11:12:18,045 - __main__ - INFO - 初始化数据库表
+2025-10-22 11:12:18,049 - __main__ - INFO - 显示登录窗口
+2025-10-22 11:12:18,632 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 11:15:50,313 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 11:15:50,314 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 11:15:50,565 - __main__ - INFO - 样式表加载成功
+2025-10-22 11:15:50,565 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 11:15:50,566 - __main__ - INFO - 初始化数据库表
+2025-10-22 11:15:50,570 - __main__ - INFO - 显示登录窗口
+2025-10-22 11:15:51,177 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 11:15:59,017 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-10-22 11:16:10,076 - gui.main_window - INFO - 主窗口关闭
+2025-10-22 13:37:47,814 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 13:37:47,814 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 13:37:48,063 - __main__ - INFO - 样式表加载成功
+2025-10-22 13:37:48,063 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 13:37:48,063 - __main__ - INFO - 初始化数据库表
+2025-10-22 13:37:48,068 - __main__ - INFO - 显示登录窗口
+2025-10-22 13:37:48,660 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 13:38:41,991 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 13:38:41,991 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 13:38:42,246 - __main__ - INFO - 样式表加载成功
+2025-10-22 13:38:42,246 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 13:38:42,247 - __main__ - INFO - 初始化数据库表
+2025-10-22 13:38:42,253 - __main__ - INFO - 显示登录窗口
+2025-10-22 13:38:42,862 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 13:49:13,525 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 13:49:13,525 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 13:49:13,772 - __main__ - INFO - 样式表加载成功
+2025-10-22 13:49:13,772 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 13:49:13,773 - __main__ - INFO - 初始化数据库表
+2025-10-22 13:49:13,778 - __main__ - INFO - 显示登录窗口
+2025-10-22 13:49:14,372 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 13:49:56,423 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 13:49:56,425 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 13:49:56,677 - __main__ - INFO - 样式表加载成功
+2025-10-22 13:49:56,677 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 13:49:56,677 - __main__ - INFO - 初始化数据库表
+2025-10-22 13:49:56,682 - __main__ - INFO - 显示登录窗口
+2025-10-22 13:49:57,269 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 13:54:49,020 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 13:54:49,021 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 13:54:49,275 - __main__ - INFO - 样式表加载成功
+2025-10-22 13:54:49,275 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 13:54:49,276 - __main__ - INFO - 初始化数据库表
+2025-10-22 13:54:49,281 - __main__ - INFO - 显示登录窗口
+2025-10-22 13:54:49,899 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 13:55:32,121 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 13:55:32,121 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 13:55:32,378 - __main__ - INFO - 样式表加载成功
+2025-10-22 13:55:32,378 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 13:55:32,379 - __main__ - INFO - 初始化数据库表
+2025-10-22 13:55:32,385 - __main__ - INFO - 显示登录窗口
+2025-10-22 13:55:32,940 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 13:56:00,517 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 13:56:00,517 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 13:56:00,780 - __main__ - INFO - 样式表加载成功
+2025-10-22 13:56:00,780 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 13:56:00,780 - __main__ - INFO - 初始化数据库表
+2025-10-22 13:56:00,785 - __main__ - INFO - 显示登录窗口
+2025-10-22 13:56:01,338 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 13:56:40,879 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 13:56:40,879 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 13:56:41,130 - __main__ - INFO - 样式表加载成功
+2025-10-22 13:56:41,130 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 13:56:41,130 - __main__ - INFO - 初始化数据库表
+2025-10-22 13:56:41,137 - __main__ - INFO - 显示登录窗口
+2025-10-22 13:56:41,684 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 13:57:11,402 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 13:57:11,403 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 13:57:11,654 - __main__ - INFO - 样式表加载成功
+2025-10-22 13:57:11,654 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 13:57:11,655 - __main__ - INFO - 初始化数据库表
+2025-10-22 13:57:11,659 - __main__ - INFO - 显示登录窗口
+2025-10-22 13:57:12,214 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 13:58:39,868 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 13:58:39,869 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 13:58:40,124 - __main__ - INFO - 样式表加载成功
+2025-10-22 13:58:40,124 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 13:58:40,125 - __main__ - INFO - 初始化数据库表
+2025-10-22 13:58:40,130 - __main__ - INFO - 显示登录窗口
+2025-10-22 13:58:40,685 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 13:59:06,214 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 13:59:06,215 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 13:59:06,467 - __main__ - INFO - 样式表加载成功
+2025-10-22 13:59:06,468 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 13:59:06,468 - __main__ - INFO - 初始化数据库表
+2025-10-22 13:59:06,474 - __main__ - INFO - 显示登录窗口
+2025-10-22 13:59:07,041 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 14:02:35,557 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 14:02:35,558 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 14:02:35,810 - __main__ - INFO - 样式表加载成功
+2025-10-22 14:02:35,810 - __main__ - INFO - 连接数据库: grade_management.db
+2025-10-22 14:02:35,811 - __main__ - INFO - 初始化数据库表
+2025-10-22 14:02:35,816 - __main__ - INFO - 显示登录窗口
+2025-10-22 14:02:36,420 - __main__ - INFO - 进入应用程序主循环

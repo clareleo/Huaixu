@@ -11,6 +11,8 @@ from PyQt5.QtGui import QFont, QIcon
 from database.db_conn import create_connection
 from database.db_init import initialize_database
 from gui.login_window import LoginWindow
+# 导入启动窗口
+from gui.startup_window import StartupWindow
 
 
 def setup_logging():
@@ -88,39 +90,26 @@ def main():
         logger.info("测试模式成功启动，退出")
         return 0
 
-    # 创建数据库连接
     try:
-        logger.info(f"连接数据库: {args.db}")
+        # 先创建数据库连接（用于启动窗口和后续登录）
         db_conn = create_connection(args.db)
         if db_conn is None:
             logger.error("无法连接数据库")
             QMessageBox.critical(None, "错误", "无法连接数据库，程序将退出")
             return 1
 
-        # 检查并初始化数据库表
-        logger.info("初始化数据库表")
-        if not initialize_database(db_conn):
-            logger.error("数据库初始化失败")
-            QMessageBox.critical(None, "错误", "数据库初始化失败，程序将退出")
-            return 1
-    except Exception as e:
-        logger.exception("数据库初始化异常")
-        QMessageBox.critical(None, "错误", f"数据库初始化异常: {str(e)}")
-        return 1
+        # 创建并显示启动窗口，传入数据库文件路径
+        startup_window = StartupWindow(args.db)
+        startup_window.show()
 
-    # 显示登录窗口
-    try:
-        logger.info("显示登录窗口")
-        login_window = LoginWindow(db_conn)
-        login_window.show()
-    except Exception as e:
-        logger.exception("无法启动登录窗口")
-        QMessageBox.critical(None, "错误", f"无法启动登录窗口: {str(e)}")
-        return 1
+        # 注意：启动窗口会处理加载完成后跳转到登录窗口的逻辑
+        # 应用程序主循环会继续运行，直到所有窗口关闭
+        sys.exit(app.exec_())
 
-    # 执行应用程序
-    logger.info("进入应用程序主循环")
-    sys.exit(app.exec_())
+    except Exception as e:
+        logger.exception("程序启动异常")
+        QMessageBox.critical(None, "错误", f"程序启动时发生异常: {str(e)}")
+        return 1
 
 
 if __name__ == "__main__":

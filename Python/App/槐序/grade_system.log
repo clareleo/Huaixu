@@ -1563,3 +1563,26 @@ TypeError: addLayout(self, QLayout, stretch: int = 0): argument 1 has unexpected
 2025-10-22 14:02:35,811 - __main__ - INFO - 初始化数据库表
 2025-10-22 14:02:35,816 - __main__ - INFO - 显示登录窗口
 2025-10-22 14:02:36,420 - __main__ - INFO - 进入应用程序主循环
+2025-10-22 14:43:19,671 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 14:43:19,672 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 14:43:19,924 - __main__ - INFO - 样式表加载成功
+2025-10-22 14:43:27,743 - root - CRITICAL - 未捕获的异常: Traceback (most recent call last):
+  File "E:\Python\Python\App\槐序\gui\startup_window.py", line 229, in jump_to_login
+    from login_window import LoginWindow  # 延迟导入避免循环依赖
+ModuleNotFoundError: No module named 'login_window'
+
+2025-10-22 14:46:57,645 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 14:46:57,646 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 14:46:57,898 - __main__ - INFO - 样式表加载成功
+2025-10-22 14:47:17,472 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 14:47:17,472 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 14:47:17,725 - __main__ - INFO - 样式表加载成功
+2025-10-22 14:48:49,392 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 14:48:49,393 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 14:48:49,654 - __main__ - INFO - 样式表加载成功
+2025-10-22 14:55:00,777 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 14:55:00,778 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 14:55:01,031 - __main__ - INFO - 样式表加载成功
+2025-10-22 14:57:05,854 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 14:57:05,854 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 14:57:06,108 - __main__ - INFO - 样式表加载成功

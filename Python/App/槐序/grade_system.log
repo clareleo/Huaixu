@@ -1649,3 +1649,75 @@ ModuleNotFoundError: No module named 'login_window'
 2025-10-23 11:38:22,021 - __main__ - INFO - 数据库初始化完成
 2025-10-23 11:38:32,337 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
 2025-10-23 11:39:16,076 - gui.main_window - INFO - 主窗口关闭
+2025-10-23 11:48:13,604 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-23 11:48:13,605 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-23 11:48:13,826 - __main__ - INFO - 样式表加载成功
+2025-10-23 11:48:13,831 - __main__ - INFO - 数据库初始化完成
+2025-10-23 11:48:26,006 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-10-23 11:53:55,166 - gui.main_window - INFO - 主窗口关闭
+2025-10-23 11:57:34,394 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-23 11:57:34,394 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-23 11:57:34,622 - __main__ - INFO - 样式表加载成功
+2025-10-23 11:57:34,627 - __main__ - INFO - 数据库初始化完成
+2025-10-23 11:57:44,570 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-10-23 11:57:56,231 - gui.main_window - INFO - 主窗口关闭
+2025-10-23 11:58:26,021 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-23 11:58:26,022 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-23 11:58:26,247 - __main__ - INFO - 样式表加载成功
+2025-10-23 11:58:26,252 - __main__ - INFO - 数据库初始化完成
+2025-10-23 11:58:36,295 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-10-23 11:58:47,498 - gui.main_window - INFO - 主窗口关闭
+2025-10-23 11:58:50,350 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-23 11:58:50,350 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-23 11:58:50,570 - __main__ - INFO - 样式表加载成功
+2025-10-23 11:58:50,575 - __main__ - INFO - 数据库初始化完成
+2025-10-23 11:59:34,872 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-23 11:59:34,873 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-23 11:59:35,096 - __main__ - INFO - 样式表加载成功
+2025-10-23 11:59:35,101 - __main__ - INFO - 数据库初始化完成
+2025-10-23 12:07:41,913 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-23 12:07:41,913 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-23 12:07:42,141 - __main__ - INFO - 样式表加载成功
+2025-10-23 12:07:42,147 - __main__ - INFO - 数据库初始化完成
+2025-10-23 12:09:26,949 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-23 12:09:26,951 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-23 12:09:27,192 - __main__ - INFO - 样式表加载成功
+2025-10-23 12:09:27,197 - __main__ - INFO - 数据库初始化完成
+2025-10-23 12:10:43,997 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-23 12:10:43,997 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-23 12:10:44,226 - __main__ - INFO - 样式表加载成功
+2025-10-23 12:10:44,232 - __main__ - INFO - 数据库初始化完成
+2025-10-23 12:11:47,267 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-23 12:11:47,268 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-23 12:11:47,496 - __main__ - INFO - 样式表加载成功
+2025-10-23 12:11:47,502 - __main__ - INFO - 数据库初始化完成
+2025-10-23 12:11:59,392 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-23 12:11:59,393 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-23 12:11:59,615 - __main__ - INFO - 样式表加载成功
+2025-10-23 12:11:59,620 - __main__ - INFO - 数据库初始化完成
+2025-10-23 12:12:19,511 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-23 12:12:19,512 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-23 12:12:19,740 - __main__ - INFO - 样式表加载成功
+2025-10-23 12:12:19,745 - __main__ - INFO - 数据库初始化完成
+2025-10-23 12:14:31,316 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-23 12:14:31,316 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-23 12:14:31,542 - __main__ - INFO - 样式表加载成功
+2025-10-23 12:14:31,547 - __main__ - INFO - 数据库初始化完成
+2025-10-23 12:16:12,626 - __main__ - INFO - 启动 - HuaiXu
+2025-10-23 12:16:12,627 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-23 12:16:12,844 - __main__ - INFO - 样式表加载成功
+2025-10-23 12:16:12,850 - __main__ - INFO - 数据库初始化完成
+2025-10-23 12:17:00,652 - __main__ - INFO - 启动 - HuaiXu槐序
+2025-10-23 12:17:00,652 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-23 12:17:00,883 - __main__ - INFO - 样式表加载成功
+2025-10-23 12:17:00,888 - __main__ - INFO - 数据库初始化完成
+2025-10-23 12:19:45,585 - __main__ - INFO - 启动 - HuaiXu槐序
+2025-10-23 12:19:45,586 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-23 12:19:45,806 - __main__ - INFO - 样式表加载成功
+2025-10-23 12:19:45,811 - __main__ - INFO - 数据库初始化完成
+2025-10-23 12:19:56,207 - __main__ - INFO - 启动 - HuaiXu槐序
+2025-10-23 12:19:56,207 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-23 12:19:56,427 - __main__ - INFO - 样式表加载成功
+2025-10-23 12:19:56,432 - __main__ - INFO - 数据库初始化完成
+2025-10-23 12:20:11,295 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-10-23 12:20:33,961 - gui.main_window - INFO - 主窗口关闭

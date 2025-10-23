@@ -94,18 +94,21 @@ class StartupWindow(QWidget):
         main_layout.setContentsMargins(20, 20, 20, 20)
         main_layout.setSpacing(20)
 
-        # 设置样式
+        # 设置样式 - 深蓝容器，半透明白色内部布局
         self.setStyleSheet("""
             QWidget {
-                background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-                    stop:0 #667eea, stop:1 #764ba2);
+                background: #001f3f;  /* 深蓝色背景 */
+                border: 2px solid white;  /* 白色描边 */
             }
             #mainFrame {
-                background: #dcdcdc;
-                border-radius: 20px;
+                background: #001f3f;  /* 深蓝色背景 */
+                border-radius: 20px;  /* 圆角 */
                 padding: 0px;
             }
             QLabel {
+                background: rgba(255, 255, 255, 0.8);  /* 80%不透明度白色 */
+                border: 2px solid white;  /* 白色描边 */
+                border-radius: 20px;  /* 圆角 */
                 color: #333;
                 font-weight: bold;
             }
@@ -135,7 +138,7 @@ class StartupWindow(QWidget):
         """)
 
         # 标题
-        title_label = QLabel("4+X 成绩管理系统")
+        title_label = QLabel("HuaiXu - 槐序")
         title_label.setObjectName("titleLabel")
         title_label.setAlignment(Qt.AlignCenter)
 

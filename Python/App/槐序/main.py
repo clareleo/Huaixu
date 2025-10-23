@@ -49,7 +49,7 @@ def excepthook(exctype, value, tb):
 
 def parse_arguments():
     """解析命令行参数"""
-    parser = argparse.ArgumentParser(description='4+X成绩管理系统')
+    parser = argparse.ArgumentParser(description='HuaiXu')
     parser.add_argument('--db', default='grade_management.db',
                         help='指定数据库文件路径')
     parser.add_argument('--style', default='resources/styles.qss',
@@ -62,7 +62,7 @@ def parse_arguments():
 def main():
     # 设置日志
     logger = setup_logging()
-    logger.info("启动4+X成绩管理系统")
+    logger.info("启动 - HuaiXu槐序")
 
     # 设置全局异常处理
     sys.excepthook = excepthook

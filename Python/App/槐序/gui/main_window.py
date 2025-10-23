@@ -20,14 +20,13 @@ class MainWindow(QMainWindow):
         self.user_role = user_role
         self.logger = logging.getLogger(__name__)
 
-        self.setWindowTitle(f"4+X成绩管理系统 - {self.get_role_display(user_role)}")
+        self.setWindowTitle(f"槐序 - HuaiXu - {self.get_role_display(user_role)}")
         self.resize(1440, 900)
 
         # 设置窗口图标（如果有图标文件的话）
         # self.setWindowIcon(QIcon('icons/app_icon.png'))
 
         self.init_ui()
-        self.setup_for_role()
 
     def get_role_display(self, role):
         """获取角色显示名称"""
@@ -74,8 +73,8 @@ class MainWindow(QMainWindow):
                 padding: 8px 16px;
                 border-radius: 5px;
             }
-            QMenu::item:selected {
-                background: #e3f2fd;
+            QMenu::item:selected { 
+                background: #f0f0f0; color: black; 
             }
             QMenu::item:disabled {
                 color: #999;
@@ -102,13 +101,6 @@ class MainWindow(QMainWindow):
 
         # 创建状态栏
         self.create_statusbar()
-
-    def setup_for_role(self):
-        """self.create_menubar()
-        self.create_toolbar()
-        self.create_central_tabs()
-        self.create_statusbar()"""
-        pass
 
     def show_course_class_management(self):
         """显示课程与班级关联管理对话框"""
@@ -250,7 +242,7 @@ class MainWindow(QMainWindow):
         welcome_widget = QWidget()
         welcome_layout = QVBoxLayout(welcome_widget)
 
-        welcome_label = QLabel("🏠 欢迎使用4+X成绩管理系统")
+        welcome_label = QLabel("🏠 欢迎使用槐序 - HuaiXu")
         welcome_label.setObjectName("welcomeLabel")
         welcome_label.setAlignment(Qt.AlignCenter)
         welcome_label.setStyleSheet("""
@@ -290,7 +282,7 @@ class MainWindow(QMainWindow):
         self.status_bar = QStatusBar()
         self.setStatusBar(self.status_bar)
         self.status_bar.showMessage(
-            f"✅ 欢迎使用4+X成绩管理系统 | 当前用户: {self.get_role_display(self.user_role)} | 角色: {self.user_role}")
+            f"✅ 欢迎使用槐序 - HuaiXu | 当前用户: {self.get_role_display(self.user_role)} | 角色: {self.user_role}")
 
         # 美化状态栏
         self.status_bar.setStyleSheet("""

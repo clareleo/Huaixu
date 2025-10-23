@@ -337,10 +337,11 @@ class MainWindow(QMainWindow):
                                 QMessageBox.Ok, QMessageBox.Ok)
 
     def logout(self):
-        """退出登录"""
-        self.logger.info(f"用户 {self.user_id} 退出登录")
-        self.logout_requested.emit()
-        self.close()
+        print("[LOG] 用户点击退出登录，关闭主窗口，重新显示登录窗口")
+        self.close()  # 关闭主窗口
+        from gui.login_window import LoginWindow
+        login_window = LoginWindow(self.db_conn)  # 直接创建并显示登录窗口
+        login_window.show()  # 显示登录窗口
 
     def closeEvent(self, event):
         """窗口关闭事件"""

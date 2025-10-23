@@ -221,6 +221,7 @@ class StartupWindow(QWidget):
     def loading_completed(self):
         """加载完成"""
         # 延迟400后跳转到登录窗口
+        print("[DEBUG] 收到加载完成信号，准备跳转登录窗口")
         QTimer.singleShot(400, self.jump_to_login)
 
     def loading_error(self, error_message):
@@ -232,6 +233,7 @@ class StartupWindow(QWidget):
         """跳转到登录窗口"""
         try:
             conn = create_connection(self.db_file)
+            print("[DEBUG] 数据库连接对象:", conn)
             if conn:
                 print("[DEBUG] 数据库连接成功，准备跳转到登录窗口")
                 self.close()  # 关闭启动窗口

@@ -74,6 +74,7 @@ def main():
     # 初始化应用程序
     app = QApplication(sys.argv)
     app.setWindowIcon(QIcon('img/icon.png'))
+    app.setQuitOnLastWindowClosed(False)  # 重要：禁止最后一个窗口关闭时自动退出程序
 
     # 设置默认字体
     font = QFont("Microsoft YaHei", 15)

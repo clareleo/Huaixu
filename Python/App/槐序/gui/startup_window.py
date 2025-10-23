@@ -101,7 +101,7 @@ class StartupWindow(QWidget):
                     stop:0 #667eea, stop:1 #764ba2);
             }
             #mainFrame {
-                background: white;
+                background: #dcdcdc;
                 border-radius: 20px;
                 padding: 0px;
             }

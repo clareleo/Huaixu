@@ -1586,3 +1586,34 @@ ModuleNotFoundError: No module named 'login_window'
 2025-10-22 14:57:05,854 - __main__ - INFO - 启动4+X成绩管理系统
 2025-10-22 14:57:05,854 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
 2025-10-22 14:57:06,108 - __main__ - INFO - 样式表加载成功
+2025-10-22 15:24:20,525 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 15:24:20,526 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 15:24:20,780 - __main__ - INFO - 样式表加载成功
+2025-10-22 15:24:40,547 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-10-22 15:24:44,064 - gui.main_window - INFO - 主窗口关闭
+2025-10-22 15:46:22,055 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 15:46:22,056 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 15:46:22,328 - __main__ - INFO - 样式表加载成功
+2025-10-22 15:46:22,333 - __main__ - INFO - 数据库初始化完成
+2025-10-22 15:46:35,378 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-10-22 15:46:38,449 - gui.main_window - INFO - 主窗口关闭
+2025-10-22 15:59:01,079 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 15:59:01,080 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 15:59:01,345 - __main__ - INFO - 样式表加载成功
+2025-10-22 15:59:01,350 - __main__ - INFO - 数据库初始化完成
+2025-10-22 15:59:26,083 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 15:59:26,083 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 15:59:26,339 - __main__ - INFO - 样式表加载成功
+2025-10-22 15:59:26,344 - __main__ - INFO - 数据库初始化完成
+2025-10-22 15:59:41,827 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 15:59:41,828 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 15:59:42,088 - __main__ - INFO - 样式表加载成功
+2025-10-22 15:59:42,094 - __main__ - INFO - 数据库初始化完成
+2025-10-22 16:00:16,184 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-22 16:00:16,184 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-22 16:00:16,439 - __main__ - INFO - 样式表加载成功
+2025-10-22 16:00:16,445 - __main__ - INFO - 数据库初始化完成
+2025-10-23 07:22:29,727 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-23 07:22:29,727 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-23 07:22:30,192 - __main__ - INFO - 样式表加载成功
+2025-10-23 07:22:30,200 - __main__ - INFO - 数据库初始化完成

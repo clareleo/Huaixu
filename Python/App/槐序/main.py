@@ -98,6 +98,10 @@ def main():
             QMessageBox.critical(None, "错误", "无法连接数据库，程序将退出")
             return 1
 
+        # 添加这行来初始化数据库表结构
+        initialize_database(db_conn)
+        logger.info("数据库初始化完成")
+
         # 创建并显示启动窗口，传入数据库文件路径
         startup_window = StartupWindow(args.db)
         startup_window.show()

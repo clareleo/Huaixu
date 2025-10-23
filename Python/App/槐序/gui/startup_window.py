@@ -26,30 +26,30 @@ class LoadingThread(QThread):
 
             # 步骤1: 模拟初始化 (20%)
             for i in range(20):
-                time.sleep(0.05)  # 模拟耗时操作
+                time.sleep(0.01)  # 模拟耗时操作
                 progress = int((i + 1) / 20 * 20)
                 self.progress_updated.emit(progress)
 
             # 步骤2: 模拟数据库连接准备 (30%)
             for i in range(30):
-                time.sleep(0.05)
+                time.sleep(0.02)
                 progress = 20 + int((i + 1) / 30 * 30)
                 self.progress_updated.emit(progress)
 
             # 步骤3: 模拟资源加载 (30%)
             for i in range(30):
-                time.sleep(0.05)
+                time.sleep(0.03)
                 progress = 50 + int((i + 1) / 30 * 30)
                 self.progress_updated.emit(progress)
 
             # 步骤4: 模拟最终准备 (20%)
             for i in range(20):
-                time.sleep(0.05)
+                time.sleep(0.04)
                 progress = 80 + int((i + 1) / 20 * 20)
                 self.progress_updated.emit(progress)
 
             # 加载完成
-            time.sleep(0.5)  # 最后停顿一下
+            time.sleep(0.4)  # 最后停顿一下
             self.loading_completed.emit()
 
         except Exception as e:
@@ -217,8 +217,8 @@ class StartupWindow(QWidget):
 
     def loading_completed(self):
         """加载完成"""
-        # 延迟一秒后跳转到登录窗口
-        QTimer.singleShot(500, self.jump_to_login)
+        # 延迟400后跳转到登录窗口
+        QTimer.singleShot(400, self.jump_to_login)
 
     def loading_error(self, error_message):
         """加载出错"""

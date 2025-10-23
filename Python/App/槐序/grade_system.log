@@ -1617,3 +1617,35 @@ ModuleNotFoundError: No module named 'login_window'
 2025-10-23 07:22:29,727 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
 2025-10-23 07:22:30,192 - __main__ - INFO - 样式表加载成功
 2025-10-23 07:22:30,200 - __main__ - INFO - 数据库初始化完成
+2025-10-23 11:11:06,990 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-23 11:11:06,990 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-23 11:11:07,397 - __main__ - INFO - 样式表加载成功
+2025-10-23 11:11:07,405 - __main__ - INFO - 数据库初始化完成
+2025-10-23 11:13:23,263 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-23 11:13:23,263 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-23 11:13:23,485 - __main__ - INFO - 样式表加载成功
+2025-10-23 11:13:23,490 - __main__ - INFO - 数据库初始化完成
+2025-10-23 11:13:38,404 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-23 11:13:38,404 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-23 11:13:38,622 - __main__ - INFO - 样式表加载成功
+2025-10-23 11:13:38,627 - __main__ - INFO - 数据库初始化完成
+2025-10-23 11:14:31,786 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-23 11:14:31,786 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-23 11:14:32,018 - __main__ - INFO - 样式表加载成功
+2025-10-23 11:14:32,023 - __main__ - INFO - 数据库初始化完成
+2025-10-23 11:14:43,770 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-10-23 11:14:59,280 - gui.classroom_mgmt - ERROR - 获取活动详情错误: Error binding parameter 0 - probably unsupported type.
+2025-10-23 11:16:19,169 - gui.main_window - INFO - 主窗口关闭
+2025-10-23 11:16:21,280 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-23 11:16:21,281 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-23 11:16:21,517 - __main__ - INFO - 样式表加载成功
+2025-10-23 11:16:21,523 - __main__ - INFO - 数据库初始化完成
+2025-10-23 11:16:31,489 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-10-23 11:16:41,853 - gui.classroom_mgmt - ERROR - 获取活动详情错误: int() argument must be a string, a bytes-like object or a number, not 'list'
+2025-10-23 11:16:46,425 - gui.main_window - INFO - 主窗口关闭
+2025-10-23 11:38:21,788 - __main__ - INFO - 启动4+X成绩管理系统
+2025-10-23 11:38:21,788 - __main__ - INFO - 命令行参数: Namespace(db='grade_management.db', style='resources/styles.qss', test=False)
+2025-10-23 11:38:22,016 - __main__ - INFO - 样式表加载成功
+2025-10-23 11:38:22,021 - __main__ - INFO - 数据库初始化完成
+2025-10-23 11:38:32,337 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2025-10-23 11:39:16,076 - gui.main_window - INFO - 主窗口关闭

@@ -177,16 +177,45 @@ class ClassroomManagementWindow(QWidget):
                 self.db_conn.rollback()  # 发生错误时回滚
                 self.logger.error(f"删除课堂活动错误: {str(e)}")
                 QMessageBox.critical(self, "错误", f"删除课堂活动失败: {str(e)}")
+
     def show_activity_details(self, activity):
         """显示课堂活动的学生评分"""
         # 处理不同类型的activity参数
         if isinstance(activity, tuple):
             # 从表格点击传来的完整数据：(activity_id, course_name, activity_date, activity_type)
             activity_id, course_name, activity_date, activity_type = activity
-        else:
-            # 从按钮点击传来的只有activity_id（整数）
+        elif isinstance(activity, list):
+            # 从grade_student方法传来的是列表形式：[activity_id, "", "", ""]
             try:
-                activity_id = activity
+                activity_id = int(activity[0])
+                # 需要根据activity_id查询活动的详细信息
+                cursor = self.db_conn.cursor()
+                cursor.execute("""
+                               SELECT a.activity_id, c.course_name, a.activity_date, a.activity_type
+                               FROM classroom_activities a
+                                        JOIN courses c ON a.course_id = c.course_id
+                               WHERE a.activity_id = ?
+                               """, (activity_id,))
+                result = cursor.fetchone()
+
+                if not result:
+                    QMessageBox.critical(self, "错误", f"找不到ID为 {activity_id} 的课堂活动")
+                    return
+
+                activity_id, course_name, activity_date, activity_type = result
+            except (ValueError, IndexError) as e:
+                self.logger.error(f"无效的活动ID类型: {activity}, 错误: {str(e)}")
+                QMessageBox.critical(self, "错误", f"活动ID格式无效: {activity}")
+                return
+            except Exception as e:
+                self.logger.error(f"获取活动详情错误: {str(e)}")
+                QMessageBox.critical(self, "错误", f"获取活动详情失败: {str(e)}")
+                return
+        else:
+            # 从按钮点击传来的只有activity_id（整数或可转换为整数的字符串）
+            try:
+                # 确保 activity_id 是整数类型
+                activity_id = int(activity)
 
                 # 需要根据activity_id查询活动的详细信息
                 cursor = self.db_conn.cursor()
@@ -204,6 +233,10 @@ class ClassroomManagementWindow(QWidget):
 
                 activity_id, course_name, activity_date, activity_type = result
 
+            except ValueError:
+                self.logger.error(f"无效的活动ID类型: {activity}")
+                QMessageBox.critical(self, "错误", f"活动ID格式无效: {activity}")
+                return
             except Exception as e:
                 self.logger.error(f"获取活动详情错误: {str(e)}")
                 QMessageBox.critical(self, "错误", f"获取活动详情失败: {str(e)}")

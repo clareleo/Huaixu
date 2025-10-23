@@ -1,7 +1,9 @@
 import logging
+
+from PyQt5.QtGui import QColor
 from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QLabel,
-    QLineEdit, QPushButton, QMessageBox, QFrame, QApplication
+    QLineEdit, QPushButton, QMessageBox, QFrame, QApplication, QGraphicsDropShadowEffect
 )
 from PyQt5.QtCore import Qt, pyqtSignal
 
@@ -159,6 +161,12 @@ class LoginWindow(QWidget):
         button_layout.setContentsMargins(20, 25, 20, 25)
 
         login_btn = QPushButton("登 录")
+        shadow = QGraphicsDropShadowEffect()
+        shadow.setBlurRadius(10)
+        shadow.setXOffset(3)
+        shadow.setYOffset(3)
+        shadow.setColor(QColor(0, 0, 0, 80))  # 半透明黑色
+        login_btn.setGraphicsEffect(shadow)
         login_btn.setMinimumHeight(45)
         login_btn.setCursor(Qt.PointingHandCursor)
         login_btn.clicked.connect(self.handle_login)

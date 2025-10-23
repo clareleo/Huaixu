@@ -315,7 +315,7 @@ class ClassroomActivityDialog(QDialog):
         super().__init__()
         self.db_conn = db_conn
         self.setWindowTitle("新建课堂活动")
-        self.resize(400, 300)
+        self.resize(800, 600)
         self.init_ui()
 
     def init_ui(self):

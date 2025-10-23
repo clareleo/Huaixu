@@ -10,7 +10,6 @@ from PyQt5.QtWidgets import QFileDialog
 from PyQt5.QtGui import QIcon
 import logging
 
-
 class ClassManagementDialog(QDialog):
     """班级管理对话框"""
 
@@ -20,7 +19,7 @@ class ClassManagementDialog(QDialog):
         self.logger = logging.getLogger(__name__)
         self.setWindowTitle("班级管理")
         self.setWindowIcon(QIcon('img/icon.png'))
-        self.resize(500, 400)
+        self.resize(800, 600)
         self.init_ui()
         self.load_classes()
 
@@ -225,7 +224,13 @@ class StudentManagementWindow(QWidget):
 
         self.setWindowTitle("学生管理")
         self.setWindowIcon(QIcon('img/icon.png'))
-        self.resize(800, 600)
+        self.resize(1000, 800)
+
+        # 排序状态：{列索引: 排序顺序}
+        self.current_sort_column = None
+        self.current_sort_order = None
+        self.sort_order = {0: None, 1: None, 2: None}  # 对应 学号, 姓名, 班级
+
         self.init_ui()
         self.load_students()
 
@@ -273,12 +278,23 @@ class StudentManagementWindow(QWidget):
         export_btn = QPushButton("导出学生")
         export_btn.clicked.connect(self.export_students)
 
+        # 新增按钮：多选删除学生
+        multi_delete_btn = QPushButton("多选删除学生")
+        multi_delete_btn.clicked.connect(self.multi_delete_students)
+
+        # 新增按钮：删除班级所有学生
+        delete_class_students_btn = QPushButton("删除班级所有学生")
+        delete_class_students_btn.clicked.connect(self.delete_all_students_in_class)
+
+        # 布局按钮，根据需要调整位置
         btn_layout.addWidget(add_btn, 0, 0)
         btn_layout.addWidget(edit_btn, 0, 1)
         btn_layout.addWidget(delete_btn, 0, 2)
+        btn_layout.addWidget(multi_delete_btn, 0, 3)  # 多选删除学生按钮
         btn_layout.addWidget(class_btn, 1, 0)
         btn_layout.addWidget(import_btn, 1, 1)
         btn_layout.addWidget(export_btn, 1, 2)
+        btn_layout.addWidget(delete_class_students_btn, 1, 3)  # 删除班级所有学生按钮
 
         layout.addLayout(btn_layout)
 
@@ -288,6 +304,11 @@ class StudentManagementWindow(QWidget):
         self.student_table.setHorizontalHeaderLabels(["学号", "姓名", "班级"])
         self.student_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.student_table.setSelectionBehavior(QTableWidget.SelectRows)
+        self.student_table.setSelectionMode(QTableWidget.ExtendedSelection)  # 允许多选
+
+        # 连接表头点击事件
+        self.student_table.horizontalHeader().sectionClicked.connect(self.on_header_clicked)
+
         layout.addWidget(self.student_table)
 
         self.setLayout(layout)
@@ -351,7 +372,7 @@ class StudentManagementWindow(QWidget):
                     SELECT s.student_id, s.name, c.class_name
                     FROM students s
                              LEFT JOIN classes c ON s.class_id = c.class_id
-                    WHERE 1 = 1 \
+                    WHERE 1 = 1
                     """
             params = []
 
@@ -363,7 +384,7 @@ class StudentManagementWindow(QWidget):
                 query += " AND s.class_id = ?"
                 params.append(class_id)
 
-            query += " ORDER BY s.student_id"
+            query += " ORDER BY s.student_id"  # 默认排序，可以被排序功能覆盖
 
             cursor.execute(query, params)
             students = cursor.fetchall()
@@ -610,3 +631,211 @@ class StudentManagementWindow(QWidget):
     def export_students(self):
         """导出学生数据"""
         QMessageBox.information(self, "提示", "导出学生功能开发中")
+
+    def on_header_clicked(self, logical_index):
+        """处理表头点击事件，进行排序，并更新表头排序符号"""
+        if self.current_sort_column == logical_index:
+            if self.current_sort_order == Qt.AscendingOrder:
+                new_order = Qt.DescendingOrder
+            else:
+                new_order = Qt.AscendingOrder
+        else:
+            new_order = Qt.AscendingOrder
+
+        self.current_sort_column = logical_index
+        self.current_sort_order = new_order
+        self.sort_and_refresh_students(logical_index, new_order)
+
+    def sort_and_refresh_students(self, sort_column, sort_order):
+        """根据指定列和排序顺序对学生数据进行排序并刷新表格，并更新表头排序符号"""
+        if not self._check_db_connection():
+            return
+
+        search_text = self.search_input.text().strip()
+        class_id = self.class_filter.currentData()
+
+        try:
+            cursor = self.db_conn.cursor()
+
+            query = """
+                    SELECT s.student_id, s.name, c.class_name
+                    FROM students s
+                             LEFT JOIN classes c ON s.class_id = c.class_id
+                    WHERE 1 = 1
+                    """
+            params = []
+
+            if search_text:
+                query += " AND (s.name LIKE ? OR s.student_id LIKE ?)"
+                params.extend([f"%{search_text}%", f"%{search_text}%"])
+
+            if class_id:
+                query += " AND s.class_id = ?"
+                params.append(class_id)
+
+            query += " ORDER BY "
+
+            # 根据排序列构建 ORDER BY 子句
+            if sort_column == 0:  # 学号
+                order_by = "s.student_id"
+            elif sort_column == 1:  # 姓名
+                order_by = "s.name"
+            elif sort_column == 2:  # 班级
+                order_by = "c.class_name"
+            else:
+                order_by = "s.student_id"  # 默认按学号排序
+
+            order_by += " COLLATE NOCASE"  # 不区分大小写排序，可根据需要调整
+            if sort_order == Qt.AscendingOrder:
+                order_by += " ASC"
+            else:
+                order_by += " DESC"
+
+            query += order_by
+
+            cursor.execute(query, params)
+            students = cursor.fetchall()
+
+            self.student_table.setRowCount(len(students))
+            for row, student in enumerate(students):
+                for col in range(3):
+                    value = str(student[col]) if student[col] is not None else ""
+                    self.student_table.setItem(row, col, QTableWidgetItem(value))
+
+            # 更新表头显示排序符号
+            header_labels = ["学号", "姓名", "班级"]
+            for col in range(3):
+                header_item = self.student_table.horizontalHeaderItem(col)
+                if header_item is None:
+                    header_item = QTableWidgetItem(header_labels[col])
+                    self.student_table.setHorizontalHeaderItem(col, header_item)
+
+                if col == sort_column:
+                    symbol = " ↑" if sort_order == Qt.AscendingOrder else " ↓"
+                    header_item.setText(header_labels[col] + symbol)
+                else:
+                    header_item.setText(header_labels[col])
+
+        except Exception as e:
+            self.logger.error("排序和加载学生列表错误: %s", str(e))
+            QMessageBox.critical(self, "错误", f"排序和加载学生列表失败: {str(e)}")
+
+    def multi_delete_students(self):
+        """多选删除学生"""
+        selected_items = self.student_table.selectedItems()
+        if not selected_items:
+            QMessageBox.warning(self, "提示", "请先选择要删除的学生")
+            return
+
+        # 获取所有选中的行，避免重复
+        selected_rows = set()
+        for item in selected_items:
+            selected_rows.add(item.row())
+
+        selected_rows = sorted(selected_rows, reverse=True)  # 从后往前删除，避免索引问题
+
+        if not selected_rows:
+            QMessageBox.warning(self, "提示", "请先选择要删除的学生")
+            return
+
+        # 收集选中的学生信息
+        students_to_delete = []
+        for row in selected_rows:
+            student_id_item = self.student_table.item(row, 0)
+            name_item = self.student_table.item(row, 1)
+            if student_id_item and name_item:
+                student_id = student_id_item.text()
+                name = name_item.text()
+                students_to_delete.append((student_id, name))
+
+        if not students_to_delete:
+            QMessageBox.warning(self, "提示", "未找到有效的学生信息")
+            return
+
+        # 构建确认信息
+        students_info = "\n".join([f"{name} ({student_id})" for student_id, name in students_to_delete])
+        reply = QMessageBox.question(
+            self, "确认删除",
+            f"确定要删除以下 {len(students_to_delete)} 名学生吗？此操作不可恢复！\n\n{students_info}",
+            QMessageBox.Yes | QMessageBox.No
+        )
+
+        if reply == QMessageBox.Yes:
+            try:
+                cursor = self.db_conn.cursor()
+                deleted_count = 0
+                for student_id, _ in students_to_delete:
+                    cursor.execute("DELETE FROM students WHERE student_id = ?", (student_id,))
+                    deleted_count += 1
+                self.db_conn.commit()
+                self.load_students()
+                self.logger.info("多选删除学生: 删除了 %d 名学生", deleted_count)
+                QMessageBox.information(self, "成功", f"成功删除 {deleted_count} 名学生")
+            except Exception as e:
+                self.db_conn.rollback()
+                self.logger.error("多选删除学生错误: %s", str(e))
+                QMessageBox.critical(self, "错误", f"多选删除学生失败: {str(e)}")
+
+    def delete_all_students_in_class(self):
+        """删除选定班级的所有学生"""
+        if not self._check_db_connection():
+            return
+
+        # 获取当前选中的班级
+        class_id = self.class_filter.currentData()
+        if class_id is None:
+            QMessageBox.warning(self, "提示", "请先选择一个班级")
+            return
+
+        # 获取班级名称
+        class_name = None
+        try:
+            cursor = self.db_conn.cursor()
+            cursor.execute("SELECT class_name FROM classes WHERE class_id = ?", (class_id,))
+            result = cursor.fetchone()
+            if result:
+                class_name = result[0]
+            else:
+                QMessageBox.warning(self, "提示", "选定的班级不存在")
+                return
+        except Exception as e:
+            self.logger.error("获取班级名称错误: %s", str(e))
+            QMessageBox.critical(self, "错误", f"获取班级名称失败: {str(e)}")
+            return
+
+        if not class_name:
+            QMessageBox.warning(self, "提示", "无法获取选定班级的名称")
+            return
+
+        # 获取该班级的学生数量
+        try:
+            cursor.execute("SELECT COUNT(*) FROM students WHERE class_id = ?", (class_id,))
+            student_count = cursor.fetchone()[0]
+        except Exception as e:
+            self.logger.error("获取班级学生数量错误: %s", str(e))
+            QMessageBox.critical(self, "错误", f"获取班级学生数量失败: {str(e)}")
+            return
+
+        if student_count == 0:
+            QMessageBox.information(self, "提示", f"班级 '{class_name}' 中没有学生，无需删除")
+            return
+
+        # 确认删除
+        reply = QMessageBox.question(
+            self, "确认删除",
+            f"确定要删除班级 '{class_name}' 中的所有 {student_count} 名学生吗？此操作不可恢复！",
+            QMessageBox.Yes | QMessageBox.No
+        )
+
+        if reply == QMessageBox.Yes:
+            try:
+                cursor = self.db_conn.cursor()
+                cursor.execute("DELETE FROM students WHERE class_id = ?", (class_id,))
+                self.db_conn.commit()
+                self.load_students()
+                self.logger.info("删除班级所有学生: 班级ID %s (%s), 删除了 %d 名学生", class_id, class_name, student_count)
+                QMessageBox.information(self, "成功", f"成功删除班级 '{class_name}' 中的所有 {student_count} 名学生")
+            except Exception as e:
+                self.db_conn.rollback()
+                self.logger.error("删除班级所有学生错误: %s", str(e))
+                QMessageBox.critical(self, "错误", f"删除班级所有学生失败: {str(e)}")

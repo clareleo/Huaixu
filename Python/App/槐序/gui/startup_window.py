@@ -32,19 +32,19 @@ class LoadingThread(QThread):
 
             # 步骤2: 模拟数据库连接准备 (30%)
             for i in range(30):
-                time.sleep(0.02)
+                time.sleep(0.01)
                 progress = 20 + int((i + 1) / 30 * 30)
                 self.progress_updated.emit(progress)
 
             # 步骤3: 模拟资源加载 (30%)
             for i in range(30):
-                time.sleep(0.03)
+                time.sleep(0.04)
                 progress = 50 + int((i + 1) / 30 * 30)
                 self.progress_updated.emit(progress)
 
             # 步骤4: 模拟最终准备 (20%)
             for i in range(20):
-                time.sleep(0.04)
+                time.sleep(0.02)
                 progress = 80 + int((i + 1) / 20 * 20)
                 self.progress_updated.emit(progress)
 

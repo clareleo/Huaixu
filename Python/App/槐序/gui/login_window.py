@@ -1,4 +1,6 @@
 import logging
+import sqlite3
+
 from PyQt5.QtGui import QColor
 from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QLabel,
@@ -12,11 +14,14 @@ class LoginWindow(QWidget):
 
     def __init__(self, db_conn):
         super().__init__()
-        self.db_conn = db_conn
-        self.setWindowTitle("4+X 成绩管理系统 - 登录")
-        self.setFixedSize(1200, 900)  # 4:3 比例，可调整
+        self.setWindowTitle("槐序 - HuaiXu - 登录")
+        self.setFixedSize(1200, 900)  # 4:3 比例
         self.center_window()
+        self.main_window = None
         self.logger = logging.getLogger(__name__)
+        # self._switch_to_window(LoginWindow(self.db_conn))  # ✅ 传入数据库连接对象
+        self.db_conn = db_conn  # ✅ 保存传入的数据库连接
+        logging.info(f"[LoginWindow] 初始化时 db_conn 类型: {type(self.db_conn)}")  # 调试信息
         self.init_ui()
         QTimer.singleShot(300, self.load_saved_login_info)
 
@@ -237,44 +242,6 @@ class LoginWindow(QWidget):
 
         self.setLayout(main_layout)
 
-
-    def attempt_login(self, username, password):
-        """
-        独立的登录验证逻辑，供手动和自动登录调用
-        """
-        if not username or not password:
-            QMessageBox.warning(self, "输入错误", "用户名和密码不能为空",
-                                QMessageBox.Ok, QMessageBox.Ok)
-            return False
-
-        try:
-            cursor = self.db_conn.cursor()
-            cursor.execute(
-                "SELECT user_id, role FROM users WHERE username = ? AND password = ?",
-                (username, password)
-            )
-            user = cursor.fetchone()
-
-            if user:
-                user_id, role = user
-                self.logger.info(f"用户 {username} 登录成功, 角色: {role}")
-
-                from gui.main_window import MainWindow
-                self.main_window = MainWindow(self.db_conn, user_id, role)
-                self.main_window.show()
-                self.close()
-                return True
-            else:
-                QMessageBox.warning(self, "登录失败", "用户名或密码错误",
-                                    QMessageBox.Ok, QMessageBox.Ok)
-                self.password_input.clear()
-                return False
-        except Exception as e:
-            QMessageBox.critical(self, "错误", f"登录时发生错误: {str(e)}",
-                                 QMessageBox.Ok, QMessageBox.Ok)
-            self.logger.error(f"登录错误: {str(e)}")
-            return False
-
     def save_login_info(self, username, password, remember_username, remember_password, auto_login):
         """
         登录成功后，根据用户勾选情况，保存登录信息到 QSettings
@@ -330,9 +297,9 @@ class LoginWindow(QWidget):
 
                 from gui.main_window import MainWindow
                 self.main_window = MainWindow(self.db_conn, user_id, role)
-                self.main_window.logout_requested.connect(self.show_login_again)  # 监听退出登录信号
+                self.main_window.logout_requested.connect(self.show_login_again)
                 self.main_window.show()
-                self.close()
+                self.hide()
             else:
                 QMessageBox.warning(self, "登录失败", "用户名或密码错误",
                                     QMessageBox.Ok, QMessageBox.Ok)
@@ -377,10 +344,34 @@ class LoginWindow(QWidget):
             self.handle_auto_login()
 
     def show_login_again(self):
-        print("[LOG] 收到退出登录信号，重新显示登录窗口")
-        self.main_window.close()  # 关闭主窗口
-        self.login_window = LoginWindow(self.db_conn)
-        self.login_window.show()
+        print("[DEBUG] 收到退出登录信号，重新显示登录窗口")
+
+        # 清除自动登录
+        settings = QSettings("MyCompany", "ScoreManagementSystem")
+        settings.setValue("auto_login", False)
+        settings.sync()
+
+        if self.main_window:
+            self.main_window.close()
+            self.main_window = None
+
+        # 输入框可用
+        self.username_input.setEnabled(True)
+        self.password_input.setEnabled(True)
+        self.username_input.setReadOnly(False)
+        self.password_input.setReadOnly(False)
+
+        # 清空内容
+        self.username_input.clear()
+        self.password_input.clear()
+
+        # 显示并激活窗口
+        self.show()
+        self.raise_()  # 提升到最前
+        self.activateWindow()  # 获取焦点
+
+        # 强制聚焦到用户名输入框
+        self.username_input.setFocus()
 
     def handle_auto_login(self):
         username = self.username_input.text().strip()
@@ -390,6 +381,7 @@ class LoginWindow(QWidget):
             self.password_input.setEnabled(False)
             self.auto_login_cb.setEnabled(False)
             QApplication.processEvents()
+            logging.info(f"[LoginWindow] handle_auto_login 中 db_conn 类型: {type(self.db_conn)}")  # 调试信息
             self.attempt_login(username, password)
 
     def attempt_login(self, username, password):
@@ -405,23 +397,26 @@ class LoginWindow(QWidget):
             if user:
                 user_id, role = user
                 self.logger.info(f"用户 {username} 登录成功, 角色: {role}")
+
                 from gui.main_window import MainWindow
                 self.main_window = MainWindow(self.db_conn, user_id, role)
+
+                # ✅ 关键修复：连接退出登录信号（自动登录路径之前漏了！）
+                self.main_window.logout_requested.connect(self.show_login_again)
+
                 self.main_window.show()
-                self.close()
-                # 保存登录信息
+                self.hide()  # 隐藏登录窗口
+
                 remember_username = self.remember_username_cb.isChecked()
                 remember_password = self.remember_password_cb.isChecked()
                 auto_login = self.auto_login_cb.isChecked()
                 self.save_login_info(username, password, remember_username, remember_password, auto_login)
                 return True
             else:
-                QMessageBox.warning(self, "登录失败", "用户名或密码错误",
-                                    QMessageBox.Ok, QMessageBox.Ok)
+                QMessageBox.warning(self, "登录失败", "用户名或密码错误")
                 self.password_input.clear()
                 return False
         except Exception as e:
-            QMessageBox.critical(self, "错误", f"登录时发生错误: {str(e)}",
-                                 QMessageBox.Ok, QMessageBox.Ok)
+            QMessageBox.critical(self, "错误", f"登录时发生错误: {str(e)}")
             self.logger.error(f"登录错误: {str(e)}")
             return False

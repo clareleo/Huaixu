@@ -1,17 +1,21 @@
+import logging
+import threading
+import time
+
 from PyQt5.QtWidgets import (
     QMainWindow, QTabWidget, QWidget, QVBoxLayout,
     QLabel, QStatusBar, QMenuBar, QMenu, QAction,
-    QMessageBox, QFrame, QHBoxLayout, QToolButton
+    QMessageBox, QFrame, QHBoxLayout, QToolButton, QGridLayout
 )
 from PyQt5.QtCore import Qt, pyqtSignal
-import logging
 from PyQt5.QtGui import QFont, QIcon, QPalette, QColor
 from gui.course_class_mgmt import CourseClassManagementDialog
+from numpy.ma.bench import timer
 
 
 class MainWindow(QMainWindow):
     """主窗口"""
-    logout_requested = pyqtSignal()
+    logout_requested = pyqtSignal()  # 退出登录信号
 
     def __init__(self, db_conn, user_id, user_role):
         super().__init__()
@@ -23,8 +27,7 @@ class MainWindow(QMainWindow):
         self.setWindowTitle(f"槐序 - HuaiXu - {self.get_role_display(user_role)}")
         self.resize(1440, 900)
 
-        # 设置窗口图标（如果有图标文件的话）
-        # self.setWindowIcon(QIcon('icons/app_icon.png'))
+        self.select_user()
 
         self.init_ui()
 
@@ -39,7 +42,6 @@ class MainWindow(QMainWindow):
 
     def init_ui(self):
         """初始化界面 - 美化版"""
-        # 设置主窗口样式
         self.setStyleSheet("""
             QMainWindow {
                 background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
@@ -90,20 +92,12 @@ class MainWindow(QMainWindow):
             }
         """)
 
-        # 创建菜单栏
         self.create_menubar()
-
-        # 创建工具栏
         self.create_toolbar()
-
-        # 创建主选项卡
         self.create_central_tabs()
-
-        # 创建状态栏
         self.create_statusbar()
 
     def show_course_class_management(self):
-        """显示课程与班级关联管理对话框"""
         try:
             self.course_class_dialog = CourseClassManagementDialog(self.db_conn)
             self.course_class_dialog.exec_()
@@ -112,14 +106,12 @@ class MainWindow(QMainWindow):
             QMessageBox.critical(self, "错误", f"无法打开课程与班级关联管理: {str(e)}")
 
     def create_menubar(self):
-        """创建菜单栏 - 美化版"""
         menubar = self.menuBar()
 
-        # 文件菜单
         file_menu = menubar.addMenu("📁 文件")
 
         logout_action = QAction("🚪 退出登录", self)
-        logout_action.triggered.connect(self.logout)
+        logout_action.triggered.connect(self.logout)  # 绑定退出登录
         logout_action.setIcon(self.style().standardIcon(getattr(self.style(), 'SP_DialogCloseButton')))
         file_menu.addAction(logout_action)
 
@@ -130,7 +122,6 @@ class MainWindow(QMainWindow):
         exit_action.setIcon(self.style().standardIcon(getattr(self.style(), 'SP_DialogCancelButton')))
         file_menu.addAction(exit_action)
 
-        # 管理菜单 (管理员和教师可见)
         if self.user_role in ['admin', 'teacher']:
             manage_menu = menubar.addMenu("⚙️ 管理")
 
@@ -150,12 +141,10 @@ class MainWindow(QMainWindow):
             classroom_action.triggered.connect(self.show_classroom_management)
             manage_menu.addAction(classroom_action)
 
-            # 添加班级关联课程管理功能
             course_class_action = QAction("📚 班级关联课程", self)
             course_class_action.triggered.connect(self.show_course_class_management)
             manage_menu.addAction(course_class_action)
 
-        # 报表菜单
         report_menu = menubar.addMenu("📈 报表")
 
         stats_action = QAction("📋 成绩统计", self)
@@ -167,7 +156,6 @@ class MainWindow(QMainWindow):
         report_menu.addAction(export_action)
 
     def create_toolbar(self):
-        """创建工具栏 - 美化版"""
         toolbar = self.addToolBar("主工具栏")
         toolbar.setMovable(False)
         toolbar.setStyleSheet("""
@@ -192,12 +180,9 @@ class MainWindow(QMainWindow):
         """)
 
     def create_central_tabs(self):
-        """创建中心选项卡 - 美化版"""
-        # 创建主选项卡
         self.tab_widget = QTabWidget()
         self.tab_widget.setObjectName("mainTabWidget")
 
-        # 设置选项卡样式
         self.tab_widget.setStyleSheet("""
             #mainTabWidget {
                 background: white;
@@ -235,10 +220,8 @@ class MainWindow(QMainWindow):
             }
         """)
 
-        # 设置中心部件
         self.setCentralWidget(self.tab_widget)
 
-        # 添加欢迎标签页（临时）
         welcome_widget = QWidget()
         welcome_layout = QVBoxLayout(welcome_widget)
 
@@ -270,21 +253,80 @@ class MainWindow(QMainWindow):
             }
         """)
 
+        # 添加按钮框
+        button_frame = QFrame()
+        button_frame.setFrameShape(QFrame.StyledPanel)
+        button_frame.setStyleSheet("""
+            QFrame {
+                background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                    stop:0 #f0f8ff, stop:1 #e6f3ff);
+                border: 2px solid #b0d4f1;
+                border-radius: 10px;
+                padding: 10px;
+            }
+        """)
+
+        button_layout = QGridLayout(button_frame)
+        button_layout.setSpacing(15)
+        button_layout.setContentsMargins(20, 20, 20, 20)
+
+        # 创建按钮
+        buttons = [
+            ("📅 日程安排", self.show_calendar),
+            ("📝 点我", self.show_notes),
+            ("📊 数据分析", self.show_data_analysis),
+            ("⚙️ 系统设置", self.show_settings),
+            ("📞 联系我们", self.show_contact),
+            ("🌐 网站链接", self.show_links),
+            ("🔍 搜索功能", self.show_search),
+        ]
+
+        # 布局按钮 (4列2行)
+        for i, (text, func) in enumerate(buttons):
+            row = i // 4
+            col = i % 4
+            btn = QToolButton()
+            btn.setText(text)
+            btn.setToolButtonStyle(Qt.ToolButtonTextUnderIcon)
+            btn.setMinimumSize(120, 80)
+            btn.setMaximumSize(150, 100)
+            btn.setStyleSheet("""
+                QToolButton {
+                    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                        stop:0 #ffffff, stop:1 #f0f0f0);
+                    border: 1px solid #b0d4f1;
+                    border-radius: 8px;
+                    padding: 10px;
+                    font-size: 12px;
+                    color: #333;
+                }
+                QToolButton:hover {
+                    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                        stop:0 #e3f2fd, stop:1 #bbdefb);
+                    border: 1px solid #90caf9;
+                }
+                QToolButton:pressed {
+                    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                        stop:0 #bbdefb, stop:1 #90caf9);
+                }
+            """)
+            btn.clicked.connect(func)
+            button_layout.addWidget(btn, row, col)
+
         welcome_layout.addStretch()
         welcome_layout.addWidget(welcome_label)
         welcome_layout.addWidget(subtitle_label)
+        welcome_layout.addWidget(button_frame)  # 添加按钮框
         welcome_layout.addStretch()
 
         self.tab_widget.addTab(welcome_widget, "首页")
 
     def create_statusbar(self):
-        """创建状态栏"""
         self.status_bar = QStatusBar()
         self.setStatusBar(self.status_bar)
         self.status_bar.showMessage(
             f"✅ 欢迎使用槐序 - HuaiXu | 当前用户: {self.get_role_display(self.user_role)} | 角色: {self.user_role}")
 
-        # 美化状态栏
         self.status_bar.setStyleSheet("""
             QStatusBar {
                 background: white;
@@ -297,7 +339,6 @@ class MainWindow(QMainWindow):
         """)
 
     def show_student_management(self):
-        """显示学生管理界面"""
         from gui.student_mgmt import StudentManagementWindow
         try:
             self.student_window = StudentManagementWindow(self.db_conn)
@@ -307,7 +348,6 @@ class MainWindow(QMainWindow):
             QMessageBox.critical(self, "错误", f"无法打开学生管理: {str(e)}")
 
     def show_grade_management(self):
-        """显示成绩管理界面"""
         from gui.grade_mgmt import GradeManagementWindow
         try:
             self.grade_window = GradeManagementWindow(self.db_conn)
@@ -317,7 +357,6 @@ class MainWindow(QMainWindow):
             QMessageBox.critical(self, "错误", f"无法打开成绩管理: {str(e)}")
 
     def show_assignment_management(self):
-        """显示作业管理界面"""
         from gui.assignment_mgmt import AssignmentManagementWindow
         try:
             self.assignment_window = AssignmentManagementWindow(self.db_conn)
@@ -327,29 +366,24 @@ class MainWindow(QMainWindow):
             QMessageBox.critical(self, "错误", f"无法打开作业管理: {str(e)}")
 
     def show_statistics(self):
-        """显示统计报表"""
         QMessageBox.information(self, "提示", "📊 统计报表功能开发中...",
                                 QMessageBox.Ok, QMessageBox.Ok)
 
     def export_data(self):
-        """导出数据"""
         QMessageBox.information(self, "提示", "💾 数据导出功能开发中...",
                                 QMessageBox.Ok, QMessageBox.Ok)
 
     def logout(self):
-        print("[LOG] 用户点击退出登录，关闭主窗口，重新显示登录窗口")
-        self.close()  # 关闭主窗口
-        from gui.login_window import LoginWindow
-        login_window = LoginWindow(self.db_conn)  # 直接创建并显示登录窗口
-        login_window.show()  # 显示登录窗口
+        logging.info("用户点击退出登录，发送退出信号")
+        self.logout_requested.emit()  # 发送退出登录信号
 
     def closeEvent(self, event):
-        """窗口关闭事件"""
         self.logger.info("主窗口关闭")
-        event.accept()
+        # self.logout_requested.disconnect()  # 断开信号避免野指针
+        # ？不是为什么我断开个信号会导致堆栈溢出
+        super().closeEvent(event)
 
     def show_settings(self):
-        """显示系统设置"""
         from gui.settings_window import SettingsWindow
         try:
             self.settings_window = SettingsWindow(self.db_conn)
@@ -359,7 +393,6 @@ class MainWindow(QMainWindow):
             QMessageBox.critical(self, "错误", f"无法打开系统设置: {str(e)}")
 
     def show_reports(self):
-        """显示报表生成"""
         from gui.report_gen import ReportGenerationWindow
         try:
             self.report_window = ReportGenerationWindow(self.db_conn)
@@ -369,7 +402,6 @@ class MainWindow(QMainWindow):
             QMessageBox.critical(self, "错误", f"无法打开报表生成: {str(e)}")
 
     def show_classroom_management(self):
-        """显示课堂管理界面"""
         from gui.classroom_mgmt import ClassroomManagementWindow
         try:
             self.classroom_window = ClassroomManagementWindow(self.db_conn)
@@ -377,3 +409,124 @@ class MainWindow(QMainWindow):
         except Exception as e:
             self.logger.error(f"打开课堂管理窗口错误: {str(e)}")
             QMessageBox.critical(self, "错误", f"无法打开课堂管理: {str(e)}")
+
+    def select_user(self):
+        """每15秒检查用户状态的线程函数"""
+
+        def user_check_loop():
+            while getattr(self, '_running', True):  # 使用标志控制循环
+                logging.info("当前用户为：%s", self.get_role_display(self.user_role))
+                logging.info("当前用户ID为：%s", self.user_id)
+                logging.info("运行正常，显示为主窗口")
+                time.sleep(15)  # 每15秒检查一次
+
+        # 创建并启动线程
+        self.user_check_thread = threading.Thread(target=user_check_loop, daemon=True)
+        self._running = True  # 设置运行标志
+        self.user_check_thread.start()
+
+    def show_calendar(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("日程安排")
+        msg.setText("📅 日程安排功能开发中...")
+        msg.setFont(QFont("Microsoft YaHei", 14))
+        msg.setStyleSheet("""
+            QMessageBox {
+                font-family: 'Microsoft YaHei';
+                font-size: 14px;
+            }
+            QLabel {
+                font-family: 'Microsoft YaHei';
+                font-size: 14px;
+            }
+        """)
+        msg.exec_()
+
+    def show_notes(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("点我")
+        msg.setText("📝 这我不知道写什么..........")
+        msg.setFont(QFont("Microsoft YaHei", 14))
+        msg.setStyleSheet("""
+            QMessageBox {
+                font-family: 'Microsoft YaHei';
+                font-size: 14px;
+            }
+            QLabel {
+                font-family: 'Microsoft YaHei';
+                font-size: 14px;
+            }
+        """)
+        msg.exec_()
+
+    def show_data_analysis(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("数据分析")
+        msg.setText("📊 数据分析功能开发中...")
+        msg.setFont(QFont("Microsoft YaHei", 14))
+        msg.setStyleSheet("""
+            QMessageBox {
+                font-family: 'Microsoft YaHei';
+                font-size: 14px;
+            }
+            QLabel {
+                font-family: 'Microsoft YaHei';
+                font-size: 14px;
+            }
+        """)
+        msg.exec_()
+
+    def show_contact(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("联系我们")
+        msg.setText("📞 联系我们功能开发中...")
+        msg.setFont(QFont("Microsoft YaHei", 14))
+        msg.setStyleSheet("""
+            QMessageBox {
+                font-family: 'Microsoft YaHei';
+                font-size: 14px;
+            }
+            QLabel {
+                font-family: 'Microsoft YaHei';
+                font-size: 14px;
+            }
+        """)
+        msg.exec_()
+
+    def show_links(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("网站链接")
+        msg.setText("🌐 网站链接功能开发中...")
+        msg.setFont(QFont("Microsoft YaHei", 14))
+        msg.setStyleSheet("""
+            QMessageBox {
+                font-family: 'Microsoft YaHei';
+                font-size: 14px;
+            }
+            QLabel {
+                font-family: 'Microsoft YaHei';
+                font-size: 14px;
+            }
+        """)
+        msg.exec_()
+
+    def show_search(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("搜索功能")
+        msg.setText("🔍 搜索功能开发中...")
+        msg.setFont(QFont("Microsoft YaHei", 14))
+        msg.setStyleSheet("""
+            QMessageBox {
+                font-family: 'Microsoft YaHei';
+                font-size: 14px;
+            }
+            QLabel {
+                font-family: 'Microsoft YaHei';
+                font-size: 14px;
+            }
+        """)
+        msg.exec_()
+
+
+
+

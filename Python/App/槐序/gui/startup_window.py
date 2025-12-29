@@ -1,116 +1,121 @@
+import logging
 import sys
 import os
 import time
 from PyQt5.QtWidgets import (QApplication, QWidget, QVBoxLayout, QLabel,
-                             QProgressBar, QGraphicsView, QGraphicsScene,
-                             QGraphicsPixmapItem, QMessageBox)
-from PyQt5.QtCore import Qt, QTimer, QThread, pyqtSignal
-from PyQt5.QtGui import QPixmap, QImage
+                             QProgressBar, QFrame, QMessageBox)
+from PyQt5.QtCore import Qt, QThread, pyqtSignal, QTimer
+from PyQt5.QtGui import QPixmap
 from database.db_conn import create_connection
 
+from Python.App.槐序.gui.login_window import LoginWindow
 
+
+# =========================
+# 后台加载线程（仅更新进度，不操作UI）
+# =========================
 class LoadingThread(QThread):
-    """加载线程，模拟文件加载过程"""
-    progress_updated = pyqtSignal(int)
-    loading_completed = pyqtSignal()
-    error_occurred = pyqtSignal(str)
+    progress_updated = pyqtSignal(int)       # 进度更新信号 [0 ~ 100]
+    loading_completed = pyqtSignal()         # 加载完成信号
 
-    def __init__(self, db_file):
+    def __init__(self):
         super().__init__()
-        self.db_file = db_file
 
     def run(self):
         try:
-            # 模拟加载过程 - 这里可以替换为实际的文件加载逻辑
-            total_steps = 100
-
-            # 步骤1: 模拟初始化 (20%)
+            # 真实数据加载之后再说吧，模拟一下就当好看
+            # ===== 模拟分阶段加载过程 =====
+            # 阶段1: 初始化 (0~20%)
             for i in range(20):
-                time.sleep(0.01)  # 模拟耗时操作
-                progress = int((i + 1) / 20 * 20)
-                self.progress_updated.emit(progress)
+                time.sleep(0.01)
+                self.progress_updated.emit(int((i + 1) / 20 * 20))
 
-            # 步骤2: 模拟数据库连接准备 (30%)
+            # 阶段2: 准备数据库连接 (20~50%)
             for i in range(30):
                 time.sleep(0.01)
-                progress = 20 + int((i + 1) / 30 * 30)
-                self.progress_updated.emit(progress)
+                self.progress_updated.emit(20 + int((i + 1) / 30 * 30))
 
-            # 步骤3: 模拟资源加载 (30%)
+            # 阶段3: 加载资源（慢一些，模拟真实加载）(50~80%)
             for i in range(30):
                 time.sleep(0.04)
-                progress = 50 + int((i + 1) / 30 * 30)
-                self.progress_updated.emit(progress)
+                self.progress_updated.emit(50 + int((i + 1) / 30 * 30))
 
-            # 步骤4: 模拟最终准备 (20%)
+            # 阶段4: 最终准备 (80~100%)
             for i in range(20):
-                time.sleep(0.02)
-                progress = 80 + int((i + 1) / 20 * 20)
-                self.progress_updated.emit(progress)
+                time.sleep(0.01)
+                self.progress_updated.emit(80 + int((i + 1) / 20 * 20))
 
-            # 加载完成
-            time.sleep(0.4)  # 最后停顿一下
+            # 最后等待一下，然后发出完成信号
+            time.sleep(0.3)
             self.loading_completed.emit()
 
         except Exception as e:
-            self.error_occurred.emit(f"加载过程中发生错误: {str(e)}")
+            print(f"[LoadingThread Run Error] {e}")
 
 
+# =========================
+# 启动窗口（显示加载动画，然后跳转登录页）
+# =========================
 class StartupWindow(QWidget):
-    def __init__(self, db_file, parent=None):
-        super().__init__(parent)
-        self.db_file = db_file
+    loading_completed = pyqtSignal()  # 定义信号
+    def __init__(self, db_file):
+        super().__init__()
+        logging.info("[StartupWindow] 初始化中...")
+        self.db_file = db_file  # 数据库文件路径，传给登录窗口
         self.loading_thread = None
+        self.login_window = None
         self.init_ui()
         self.setup_window()
 
-    def setup_window(self):
-        """设置窗口属性"""
-        self.setWindowFlags(Qt.FramelessWindowHint)  # 无边框窗口
-        self.setAttribute(Qt.WA_TranslucentBackground)  # 透明背景
-        self.setFixedSize(800, 600)  # 固定大小
+    def open_login(self):
+        self.login_window = LoginWindow(self.db_conn)
+        self.login_window.show()
+        self.hide()
 
-        # 居中显示
-        self.center_window()
+    def setup_window(self):
+        self.setWindowFlags(Qt.FramelessWindowHint)
+        self.setAttribute(Qt.WA_TranslucentBackground)
+        self.setFixedSize(800, 600)
+        self.center_window()  # 居中显示
 
     def center_window(self):
-        """窗口居中"""
+        # 获取屏幕中心点，移动窗口至此
         screen = QApplication.desktop().screenGeometry()
-        window = self.geometry()
-        x = (screen.width() - window.width()) // 2
-        y = (screen.height() - window.height()) // 2
+        win_geo = self.geometry()
+        x = (screen.width() - win_geo.width()) // 2
+        y = (screen.height() - win_geo.height()) // 2
         self.move(x, y)
 
     def init_ui(self):
-        """初始化界面"""
         layout = QVBoxLayout()
         layout.setContentsMargins(40, 40, 40, 40)
         layout.setSpacing(20)
 
-        # 主容器 - 用于圆角效果
+        # 主容器
         main_frame = QWidget()
-        main_frame.setObjectName("mainFrame")
         main_layout = QVBoxLayout(main_frame)
         main_layout.setContentsMargins(20, 20, 20, 20)
         main_layout.setSpacing(20)
 
-        # 设置样式 - 深蓝容器，半透明白色内部布局
+        # 整体样式
         self.setStyleSheet("""
             QWidget {
-                background: #001f3f;  /* 深蓝色背景 */
-                border: 2px solid white;  /* 白色描边 */
+                background: #001f3f;
+                border: 2px solid white;
+                border-radius: 20px;
             }
             #mainFrame {
-                background: #001f3f;  /* 深蓝色背景 */
-                border-radius: 20px;  /* 圆角 */
+                background: #001f3f;
+                border-radius: 20px;
                 padding: 0px;
             }
             QLabel {
-                background: rgba(255, 255, 255, 0.8);  /* 80%不透明度白色 */
-                border: 2px solid white;  /* 白色描边 */
-                border-radius: 20px;  /* 圆角 */
+                background: rgba(255, 255, 255, 0.85);
+                border: 2px solid white;
+                border-radius: 20px;
                 color: #333;
                 font-weight: bold;
+                padding: 10px;
             }
             QLabel#titleLabel {
                 font-size: 24px;
@@ -147,11 +152,10 @@ class StartupWindow(QWidget):
         subtitle_label.setObjectName("subtitleLabel")
         subtitle_label.setAlignment(Qt.AlignCenter)
 
-        # 图片显示区域（如果图片存在）
-        image_label = QLabel()
+        # 图标/图片区域（可放logo，这里用文字代替）
+        image_label = QLabel("🚀 槐序启动中...")
         image_label.setAlignment(Qt.AlignCenter)
         image_label.setMinimumHeight(120)
-        image_label.setText("🚀 正在加载系统资源...")
         image_label.setStyleSheet("""
             QLabel {
                 color: #7f8c8d;
@@ -160,27 +164,12 @@ class StartupWindow(QWidget):
             }
         """)
 
-        # 尝试加载图片
-        image_path = "../img/icon.png"
-        if os.path.exists(image_path):
-            try:
-                pixmap = QPixmap(image_path)
-                if not pixmap.isNull():
-                    # 缩放图片以适应区域
-                    scaled_pixmap = pixmap.scaled(100, 100, Qt.KeepAspectRatio, Qt.SmoothTransformation)
-                    image_label.setPixmap(scaled_pixmap)
-                    image_label.setAlignment(Qt.AlignCenter)
-                    image_label.setText("")  # 清除文字
-            except Exception:
-                pass  # 如果图片加载失败，保持默认显示
-
         # 进度条
         self.progress_bar = QProgressBar()
         self.progress_bar.setRange(0, 100)
         self.progress_bar.setValue(0)
-        self.progress_bar.setAlignment(Qt.AlignCenter)
 
-        # 进度文本
+        # 进度文字
         self.progress_text = QLabel("0%")
         self.progress_text.setAlignment(Qt.AlignCenter)
         self.progress_text.setStyleSheet("""
@@ -191,7 +180,7 @@ class StartupWindow(QWidget):
             }
         """)
 
-        # 添加到布局
+        # 组装界面
         main_layout.addWidget(title_label)
         main_layout.addWidget(subtitle_label)
         main_layout.addWidget(image_label)
@@ -206,56 +195,28 @@ class StartupWindow(QWidget):
         self.start_loading()
 
     def start_loading(self):
-        """启动加载过程"""
-        self.loading_thread = LoadingThread(self.db_file)
+        self.loading_thread = LoadingThread()
         self.loading_thread.progress_updated.connect(self.update_progress)
-        self.loading_thread.loading_completed.connect(self.loading_completed)
-        self.loading_thread.error_occurred.connect(self.loading_error)
+        self.loading_thread.loading_completed.connect(self.safe_jump_to_login)
         self.loading_thread.start()
 
     def update_progress(self, value):
-        """更新进度条"""
         self.progress_bar.setValue(value)
         self.progress_text.setText(f"{value}%")
 
-    def loading_completed(self):
-        """加载完成"""
-        # 延迟400后跳转到登录窗口
-        print("[DEBUG] 收到加载完成信号，准备跳转登录窗口")
-        QTimer.singleShot(400, self.jump_to_login)
+    def safe_jump_to_login(self):
+        logging.info("加载完成，即将跳转到登录窗口")
+        # 延时200ms后关闭窗口
+        QTimer.singleShot(200, self.close_and_open_login)
 
-    def loading_error(self, error_message):
-        """加载出错"""
-        QMessageBox.critical(self, "加载错误", error_message)
-        self.close()
-
-    def jump_to_login(self):
-        """跳转到登录窗口"""
-        try:
-            conn = create_connection(self.db_file)
-            print("[DEBUG] 数据库连接对象:", conn)
-            if conn:
-                print("[DEBUG] 数据库连接成功，准备跳转到登录窗口")
-                self.close()  # 关闭启动窗口
-
-                # 正确导入 LoginWindow
-                from gui.login_window import LoginWindow
-
-                # 关键：将登录窗口保存为成员变量，防止被垃圾回收
-                self.login_window = LoginWindow(conn)
-                self.login_window.show()  # 显示登录窗口
-                print("[DEBUG] 登录窗口已显示")
-            else:
-                QMessageBox.critical(self, "错误", "无法连接到数据库")
-                self.close()
-        except Exception as e:
-            print(f"[ERROR] 跳转登录时发生异常: {e}")  # 打印错误到控制台
-            QMessageBox.critical(self, "错误", f"启动失败: {str(e)}")
-            self.close()
+    def close_and_open_login(self):
+        self.loading_completed.emit()
+        self.close()  # 关闭启动窗口
 
     def closeEvent(self, event):
-        """窗口关闭事件"""
-        if self.loading_thread and self.loading_thread.isRunning():
-            self.loading_thread.quit()
-            self.loading_thread.wait()
-        event.accept()
+        # 如果是从 startup 启动的，允许关闭；否则只隐藏
+        if not hasattr(self, '_allow_close'):
+            event.ignore()
+            self.hide()
+        else:
+            event.accept()

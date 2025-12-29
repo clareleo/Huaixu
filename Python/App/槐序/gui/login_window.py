@@ -344,11 +344,11 @@ class LoginWindow(QWidget):
             self.handle_auto_login()
 
     def show_login_again(self):
-        print("[DEBUG] 收到退出登录信号，重新显示登录窗口")
+        self.logger.debug("收到退出登录信号，重新显示登录窗口")
 
         # 清除自动登录
         settings = QSettings("MyCompany", "ScoreManagementSystem")
-        settings.setValue("auto_login", False)
+        settings.setValue("auto_login", True)
         settings.sync()
 
         if self.main_window:

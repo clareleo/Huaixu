@@ -37,7 +37,7 @@ class LoadingThread(QThread):
 
             # 阶段3: 加载资源（慢一些，模拟真实加载）(50~80%)
             for i in range(30):
-                time.sleep(0.04)
+                time.sleep(0.03)
                 self.progress_updated.emit(50 + int((i + 1) / 30 * 30))
 
             # 阶段4: 最终准备 (80~100%)
@@ -153,7 +153,7 @@ class StartupWindow(QWidget):
         subtitle_label.setAlignment(Qt.AlignCenter)
 
         # 图标/图片区域（可放logo，这里用文字代替）
-        image_label = QLabel("🚀 槐序启动中...")
+        image_label = QLabel("槐序启动中...")
         image_label.setAlignment(Qt.AlignCenter)
         image_label.setMinimumHeight(120)
         image_label.setStyleSheet("""
@@ -214,7 +214,6 @@ class StartupWindow(QWidget):
         self.close()  # 关闭启动窗口
 
     def closeEvent(self, event):
-        # 如果是从 startup 启动的，允许关闭；否则只隐藏
         if not hasattr(self, '_allow_close'):
             event.ignore()
             self.hide()

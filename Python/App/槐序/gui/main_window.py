@@ -133,6 +133,10 @@ class MainWindow(QMainWindow):
             grade_action.triggered.connect(self.show_grade_management)
             manage_menu.addAction(grade_action)
 
+            score_4x_action = QAction("📊 4+X成绩管理", self)
+            score_4x_action.triggered.connect(self.show_student_score_management)
+            manage_menu.addAction(score_4x_action)
+
             assignment_action = QAction("📝 作业管理", self)
             assignment_action.triggered.connect(self.show_assignment_management)
             manage_menu.addAction(assignment_action)
@@ -154,6 +158,15 @@ class MainWindow(QMainWindow):
         export_action = QAction("💾 导出数据", self)
         export_action.triggered.connect(self.export_data)
         report_menu.addAction(export_action)
+
+    def show_student_score_management(self):
+        from gui.student_score_mgmt import StudentScoreManagementWindow
+        try:
+            self.score_window = StudentScoreManagementWindow(self.db_conn)
+            self.score_window.show()
+        except Exception as e:
+            self.logger.error(f"打开4+X成绩管理窗口错误: {str(e)}")
+            QMessageBox.critical(self, "错误", f"无法打开4+X成绩管理: {str(e)}")
 
     def create_toolbar(self):
         toolbar = self.addToolBar("主工具栏")

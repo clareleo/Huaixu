@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import (
     QMessageBox, QFrame, QHBoxLayout, QToolButton, QGridLayout
 )
 from PyQt5.QtCore import Qt, pyqtSignal
-from PyQt5.QtGui import QFont, QIcon, QPalette, QColor
+from PyQt5.QtGui import QFont, QIcon
 from gui.course_class_mgmt import CourseClassManagementDialog
 from numpy.ma.bench import timer
 
@@ -41,57 +41,7 @@ class MainWindow(QMainWindow):
         return role_map.get(role, role)
 
     def init_ui(self):
-        """初始化界面 - 美化版"""
-        self.setStyleSheet("""
-            QMainWindow {
-                background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-                    stop:0 #f5f7fa, stop:1 #c3cfe2);
-            }
-            QMenuBar {
-                background: white;
-                border: 1px solid #e0e0e0;
-                border-bottom: none;
-                padding: 5px;
-            }
-            QMenuBar::item {
-                background: transparent;
-                padding: 8px 12px;
-                margin: 2px;
-                border-radius: 5px;
-            }
-            QMenuBar::item:selected {
-                background: #e3f2fd;
-            }
-            QMenuBar::item:pressed {
-                background: #bbdefb;
-            }
-            QMenu {
-                background: white;
-                border: 1px solid #e0e0e0;
-                border-radius: 8px;
-                padding: 5px;
-            }
-            QMenu::item {
-                padding: 8px 16px;
-                border-radius: 5px;
-            }
-            QMenu::item:selected { 
-                background: #f0f0f0; color: black; 
-            }
-            QMenu::item:disabled {
-                color: #999;
-            }
-            QStatusBar {
-                background: white;
-                border: 1px solid #e0e0e0;
-                border-top: none;
-                padding: 5px 10px;
-            }
-            QStatusBar::item {
-                border: none;
-            }
-        """)
-
+        """初始化界面 """
         self.create_menubar()
         self.create_toolbar()
         self.create_central_tabs()
@@ -173,7 +123,7 @@ class MainWindow(QMainWindow):
         toolbar.setMovable(False)
         toolbar.setStyleSheet("""
             QToolBar {
-                background: white;
+                background: rgba(255, 255, 255, 0.85);
                 border: 1px solid #e0e0e0;
                 border-bottom: none;
                 spacing: 5px;
@@ -187,8 +137,8 @@ class MainWindow(QMainWindow):
                 margin: 2px;
             }
             QToolButton:hover {
-                background: #e3f2fd;
-                border: 1px solid #bbdefb;
+                background: rgba(227, 242, 253, 0.8);
+                border: 1px solid rgba(187, 222, 251, 0.8);
             }
         """)
 
@@ -198,7 +148,7 @@ class MainWindow(QMainWindow):
 
         self.tab_widget.setStyleSheet("""
             #mainTabWidget {
-                background: white;
+                background: rgba(255, 255, 255, 0.95);
                 border: 1px solid #e0e0e0;
                 border-radius: 10px;
                 margin: 10px;
@@ -206,13 +156,10 @@ class MainWindow(QMainWindow):
             #mainTabWidget::pane {
                 border: 1px solid #e0e0e0;
                 border-radius: 10px;
-                background: white;
-            }
-            #mainTabWidget::tab-bar {
-                alignment: left;
+                background: rgba(255, 255, 255, 0.95);
             }
             #mainTabWidget QTabBar::tab {
-                background: #f8f9fa;
+                background: rgba(248, 249, 250, 0.9);
                 border: 1px solid #e0e0e0;
                 border-bottom: none;
                 padding: 12px 20px;
@@ -248,8 +195,7 @@ class MainWindow(QMainWindow):
                 color: #2c3e50;
                 margin: 50px;
                 padding: 20px;
-                background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-                    stop:0 #ebf3fd, stop:1 #ddeef7);
+                background: rgba(235, 243, 253, 0.85);
                 border-radius: 15px;
                 border: 2px solid #b8daff;
             }
@@ -271,8 +217,7 @@ class MainWindow(QMainWindow):
         button_frame.setFrameShape(QFrame.StyledPanel)
         button_frame.setStyleSheet("""
             QFrame {
-                background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-                    stop:0 #f0f8ff, stop:1 #e6f3ff);
+                background: rgba(240, 248, 255, 0.85);
                 border: 2px solid #b0d4f1;
                 border-radius: 10px;
                 padding: 10px;
@@ -306,7 +251,7 @@ class MainWindow(QMainWindow):
             btn.setStyleSheet("""
                 QToolButton {
                     background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                        stop:0 #ffffff, stop:1 #f0f0f0);
+                        stop:0 rgba(255, 255, 255, 0.9), stop:1 rgba(240, 240, 240, 0.9));
                     border: 1px solid #b0d4f1;
                     border-radius: 8px;
                     padding: 10px;
@@ -315,12 +260,12 @@ class MainWindow(QMainWindow):
                 }
                 QToolButton:hover {
                     background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                        stop:0 #e3f2fd, stop:1 #bbdefb);
+                        stop:0 rgba(227, 242, 253, 0.9), stop:1 rgba(187, 222, 251, 0.9));
                     border: 1px solid #90caf9;
                 }
                 QToolButton:pressed {
                     background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                        stop:0 #bbdefb, stop:1 #90caf9);
+                        stop:0 rgba(187, 222, 251, 0.9), stop:1 rgba(144, 202, 249, 0.9));
                 }
             """)
             btn.clicked.connect(func)
@@ -342,7 +287,7 @@ class MainWindow(QMainWindow):
 
         self.status_bar.setStyleSheet("""
             QStatusBar {
-                background: white;
+                background: rgba(255, 255, 255, 0.9);
                 border: 1px solid #e0e0e0;
                 border-top: none;
                 color: #333333;

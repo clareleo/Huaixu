@@ -1,7 +1,8 @@
 import logging
 import sqlite3
+import os
 
-from PyQt5.QtGui import QColor
+from PyQt5.QtGui import QColor, QPixmap
 from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QLabel,
     QLineEdit, QPushButton, QMessageBox, QFrame, QApplication, QGraphicsDropShadowEffect, QCheckBox
@@ -25,7 +26,6 @@ class LoginWindow(QWidget):
         self.init_ui()
         QTimer.singleShot(300, self.load_saved_login_info)
 
-
     def center_window(self):
         screen = QApplication.primaryScreen().availableGeometry()
         geo = self.frameGeometry()
@@ -33,14 +33,20 @@ class LoginWindow(QWidget):
         self.move(geo.topLeft())
 
     def init_ui(self):
-        # ======================
-        # 最底层布局：整个窗口背景为深蓝色
-        # ======================
-        self.setStyleSheet("""
-            QWidget {
-                background: #001f3f;  /* 深蓝色背景（最底层） */
-            }
-        """)
+        # 创建背景标签
+        background_label = QLabel(self)
+        img_path = os.path.join('.', 'img', 'school.jpg')
+        pixmap = QPixmap(img_path)
+        if not pixmap.isNull():
+            # 按窗口大小缩放图片，保持比例并居中
+            scaled_pixmap = pixmap.scaled(self.size(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation)
+            background_label.setPixmap(scaled_pixmap)
+            # 设置背景标签居中对齐
+            background_label.setAlignment(Qt.AlignCenter)
+        else:
+            # 如果图片加载失败，使用深蓝色背景
+            background_label.setStyleSheet("background: #001f3f;")
+        background_label.setGeometry(0, 0, self.width(), self.height())
 
         # 主布局：左右分栏（水平布局 QHBoxLayout）
         main_layout = QHBoxLayout()
@@ -228,7 +234,7 @@ class LoginWindow(QWidget):
         form_layout.addWidget(form_title)
         form_layout.addWidget(username_frame)
         form_layout.addWidget(password_frame)
-        form_layout.addWidget(remember_frame)  # 👈 新增：记住我选项
+        form_layout.addWidget(remember_frame)
         form_layout.addWidget(button_frame)
         form_layout.addStretch()
 
@@ -241,6 +247,21 @@ class LoginWindow(QWidget):
         main_layout.addWidget(right_frame, 1)
 
         self.setLayout(main_layout)
+
+    def resizeEvent(self, event):
+        """当窗口大小改变时，重新缩放背景图片"""
+        super().resizeEvent(event)
+
+        # 查找背景标签并重新缩放
+        for child in self.children():
+            if isinstance(child, QLabel) and child.pixmap() is not None:
+                pixmap = child.pixmap()
+                if not pixmap.isNull():
+                    scaled_pixmap = pixmap.scaled(self.size(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation)
+                    child.setPixmap(scaled_pixmap)
+                    child.setAlignment(Qt.AlignCenter)  # 设置居中对齐
+                    child.setGeometry(0, 0, self.width(), self.height())
+                break
 
     def save_login_info(self, username, password, remember_username, remember_password, auto_login):
         """
@@ -379,7 +400,7 @@ class LoginWindow(QWidget):
         if username and password:
             self.username_input.setEnabled(False)
             self.password_input.setEnabled(False)
-            self.auto_login_cb.setEnabled(False)
+            self.auto_login_cb.setEnabled(True)
             QApplication.processEvents()
             logging.info(f"[LoginWindow] handle_auto_login 中 db_conn 类型: {type(self.db_conn)}")  # 调试信息
             self.attempt_login(username, password)
@@ -420,3 +441,6 @@ class LoginWindow(QWidget):
             QMessageBox.critical(self, "错误", f"登录时发生错误: {str(e)}")
             self.logger.error(f"登录错误: {str(e)}")
             return False
+
+
+

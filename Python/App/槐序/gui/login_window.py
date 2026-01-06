@@ -3,11 +3,13 @@ import sqlite3
 import os
 
 from PyQt5.QtGui import QColor, QPixmap
+from utils.resource_path import get_img_path
 from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QLabel,
-    QLineEdit, QPushButton, QMessageBox, QFrame, QApplication, QGraphicsDropShadowEffect, QCheckBox
+    QLineEdit, QPushButton, QMessageBox, QFrame, QApplication, QGraphicsDropShadowEffect, QCheckBox,
+    QToolButton
 )
-from PyQt5.QtCore import Qt, pyqtSignal, QSettings, QTimer
+from PyQt5.QtCore import Qt, pyqtSignal, QSettings, QTimer, QPoint
 
 
 class LoginWindow(QWidget):
@@ -17,12 +19,25 @@ class LoginWindow(QWidget):
         super().__init__()
         self.setWindowTitle("槐序 - HuaiXu - 登录")
         self.setFixedSize(1200, 900)  # 4:3 比例
+        self.setWindowFlags(Qt.FramelessWindowHint)  # 取消系统菜单栏
+        self.setAttribute(Qt.WA_TranslucentBackground, True)  # 纯透明窗口
+        self.setStyleSheet("""
+            background: transparent;
+            border-radius: 20px;
+        """)
         self.center_window()
         self.main_window = None
         self.logger = logging.getLogger(__name__)
         # self._switch_to_window(LoginWindow(self.db_conn))  # ✅ 传入数据库连接对象
         self.db_conn = db_conn  # ✅ 保存传入的数据库连接
         logging.info(f"[LoginWindow] 初始化时 db_conn 类型: {type(self.db_conn)}")  # 调试信息
+
+        # 标题栏拖拽支持
+        self._dragging = False
+        self._drag_pos = QPoint()
+        self._is_maximized = False
+        self._normal_geometry = self.geometry()
+
         self.init_ui()
         QTimer.singleShot(300, self.load_saved_login_info)
 
@@ -33,9 +48,17 @@ class LoginWindow(QWidget):
         self.move(geo.topLeft())
 
     def init_ui(self):
+        # 创建背景容器
+        background_container = QFrame()
+        background_container.setStyleSheet("""
+            background: transparent;
+            border-radius: 20px;
+        """)
+
         # 创建背景标签
-        background_label = QLabel(self)
-        img_path = os.path.join('.', 'img', 'school.jpg')
+        background_label = QLabel(background_container)
+        # 使用绝对路径加载背景图片
+        img_path = get_img_path('school.jpg')
         pixmap = QPixmap(img_path)
         if not pixmap.isNull():
             # 按窗口大小缩放图片，保持比例并居中
@@ -45,13 +68,94 @@ class LoginWindow(QWidget):
             background_label.setAlignment(Qt.AlignCenter)
         else:
             # 如果图片加载失败，使用深蓝色背景
-            background_label.setStyleSheet("background: #001f3f;")
+            background_label.setStyleSheet("""
+                background: #001f3f;
+                border-radius: 20px;
+            """)
         background_label.setGeometry(0, 0, self.width(), self.height())
+
+        # 顶部标题栏（自定义：最小化 / 最大化 / 关闭）
+        title_bar = QFrame()
+        title_bar.setObjectName("titleBar")
+        self.title_bar = title_bar
+        title_layout = QHBoxLayout(title_bar)
+        title_layout.setContentsMargins(12, 8, 12, 8)
+        title_layout.setSpacing(8)
+
+        title_label = QLabel("槐序 - HuaiXu")
+        title_label.setStyleSheet("font-size: 16px; font-weight: bold; color: #0d47a1;")
+
+        title_layout.addWidget(title_label)
+        title_layout.addStretch()
+
+        btn_min = QToolButton()
+        btn_min.setText("—")
+        btn_min.setToolTip("最小化")
+        btn_min.clicked.connect(self.showMinimized)
+
+        btn_max = QToolButton()
+        btn_max.setText("🗖")
+        btn_max.setToolTip("最大化/还原")
+
+        btn_close = QToolButton()
+        btn_close.setText("✕")
+        btn_close.setToolTip("关闭")
+        btn_close.clicked.connect(self.close)
+
+        def toggle_max_restore():
+            if not self._is_maximized:
+                self._normal_geometry = self.geometry()
+                self.showMaximized()
+                self._is_maximized = True
+                btn_max.setText("🗗")
+            else:
+                self.showNormal()
+                if self._normal_geometry:
+                    self.setGeometry(self._normal_geometry)
+                self._is_maximized = False
+                btn_max.setText("🗖")
+
+        btn_max.clicked.connect(toggle_max_restore)
+
+        for btn in (btn_min, btn_max, btn_close):
+            btn.setMinimumSize(32, 24)
+            btn.setStyleSheet("""
+                QToolButton {
+                    background: transparent;
+                    border: 1px solid transparent;
+                    border-radius: 4px;
+                    padding: 4px 8px;
+                    font-size: 12px;
+                    color: #ffffff;
+                    transition: all 0.2s ease;
+                }
+                QToolButton:hover {
+                    background: rgba(255, 255, 255, 80);
+                    border: 1px solid rgba(255, 255, 255, 120);
+                }
+                QToolButton:pressed {
+                    background: rgba(255, 255, 255, 150);
+                    border: 1px solid rgba(255, 255, 255, 180);
+                }
+            """)
+
+        title_layout.addWidget(btn_min)
+        title_layout.addWidget(btn_max)
+        title_layout.addWidget(btn_close)
+
+        title_bar.setStyleSheet("""
+            #titleBar {
+                background: transparent;
+                border: none;
+                border-top-left-radius: 20px;
+                border-top-right-radius: 20px;
+            }
+        """)
 
         # 主布局：左右分栏（水平布局 QHBoxLayout）
         main_layout = QHBoxLayout()
         main_layout.setSpacing(40)  # 左右两个区域之间的间隙
-        main_layout.setContentsMargins(40, 40, 40, 40)  # 窗口四周边距
+        main_layout.setContentsMargins(40, 20, 40, 40)  # 窗口四周边距
 
         # ======================
         # 左侧 Layout：浅白色 80% 透明度 + 纯白描边
@@ -246,15 +350,25 @@ class LoginWindow(QWidget):
         main_layout.addWidget(left_frame, 1)
         main_layout.addWidget(right_frame, 1)
 
-        self.setLayout(main_layout)
+        # 顶层布局，包含标题栏与主体
+        root_layout = QVBoxLayout(background_container)
+        root_layout.setContentsMargins(0, 0, 0, 0)
+        root_layout.setSpacing(0)
+        root_layout.addWidget(title_bar)
+        root_layout.addLayout(main_layout)
+
+        # 主窗口布局
+        main_window_layout = QVBoxLayout(self)
+        main_window_layout.addWidget(background_container)
+        main_window_layout.setContentsMargins(0, 0, 0, 0)
 
     def resizeEvent(self, event):
         """当窗口大小改变时，重新缩放背景图片"""
         super().resizeEvent(event)
 
         # 查找背景标签并重新缩放
-        for child in self.children():
-            if isinstance(child, QLabel) and child.pixmap() is not None:
+        for child in self.findChildren(QLabel):
+            if hasattr(child, 'pixmap') and child.pixmap() is not None:
                 pixmap = child.pixmap()
                 if not pixmap.isNull():
                     scaled_pixmap = pixmap.scaled(self.size(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation)
@@ -262,6 +376,26 @@ class LoginWindow(QWidget):
                     child.setAlignment(Qt.AlignCenter)  # 设置居中对齐
                     child.setGeometry(0, 0, self.width(), self.height())
                 break
+
+    # ============== 无边框窗口拖拽支持 ==============
+    def mousePressEvent(self, event):
+        if event.button() == Qt.LeftButton and hasattr(self, "title_bar"):
+            if event.pos().y() <= self.title_bar.height() + 8:
+                self._dragging = True
+                self._drag_pos = event.globalPos() - self.frameGeometry().topLeft()
+                event.accept()
+        super().mousePressEvent(event)
+
+    def mouseMoveEvent(self, event):
+        if self._dragging and not self._is_maximized:
+            self.move(event.globalPos() - self._drag_pos)
+            event.accept()
+        super().mouseMoveEvent(event)
+
+    def mouseReleaseEvent(self, event):
+        if event.button() == Qt.LeftButton:
+            self._dragging = False
+        super().mouseReleaseEvent(event)
 
     def save_login_info(self, username, password, remember_username, remember_password, auto_login):
         """
@@ -422,7 +556,7 @@ class LoginWindow(QWidget):
                 from gui.main_window import MainWindow
                 self.main_window = MainWindow(self.db_conn, user_id, role)
 
-                # ✅ 关键修复：连接退出登录信号（自动登录路径之前漏了！）
+                #关键修复：连接退出登录信号
                 self.main_window.logout_requested.connect(self.show_login_again)
 
                 self.main_window.show()

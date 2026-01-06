@@ -1,3 +1,12 @@
+import sys
+import os
+
+# 添加项目根目录到 Python 路径，确保所有模块都能正确导入
+# 获取当前脚本所在目录（槐序目录）
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
+
 from app_controller import MainApp
 
 """

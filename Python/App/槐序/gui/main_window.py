@@ -5,17 +5,36 @@ import time
 from PyQt5.QtWidgets import (
     QMainWindow, QTabWidget, QWidget, QVBoxLayout,
     QLabel, QStatusBar, QMenuBar, QMenu, QAction,
-    QMessageBox, QFrame, QHBoxLayout, QToolButton, QGridLayout
+    QMessageBox, QFrame, QHBoxLayout, QToolButton, QGridLayout, QDialog, QDialogButtonBox
 )
-from PyQt5.QtCore import Qt, pyqtSignal
-from PyQt5.QtGui import QFont, QIcon
+from PyQt5.QtCore import Qt, pyqtSignal, QUrl
+from PyQt5.QtGui import QFont, QIcon, QDesktopServices
 from gui.course_class_mgmt import CourseClassManagementDialog
-from numpy.ma.bench import timer
+
+# 尝试导入 QWebEngineView，如果没有安装则使用外部浏览器
+try:
+    from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineProfile, QWebEngineSettings
+    from PyQt5.QtWebEngineCore import QWebEngineHttpRequest
+    WEBENGINE_AVAILABLE = True
+except ImportError:
+    WEBENGINE_AVAILABLE = False
 
 
 class MainWindow(QMainWindow):
     """主窗口"""
     logout_requested = pyqtSignal()  # 退出登录信号
+
+    # 样式常量
+    MESSAGE_BOX_STYLE = """
+        QMessageBox {
+            font-family: 'Microsoft YaHei';
+            font-size: 14px;
+        }
+        QLabel {
+            font-family: 'Microsoft YaHei';
+            font-size: 14px;
+        }
+    """
 
     def __init__(self, db_conn, user_id, user_role):
         super().__init__()
@@ -28,7 +47,6 @@ class MainWindow(QMainWindow):
         self.resize(1440, 900)
 
         self.select_user()
-
         self.init_ui()
 
     def get_role_display(self, role):
@@ -47,13 +65,44 @@ class MainWindow(QMainWindow):
         self.create_central_tabs()
         self.create_statusbar()
 
-    def show_course_class_management(self):
+    def _open_window(self, window_class, window_name, db_conn=None, use_exec=False, **kwargs):
+        """
+        通用窗口打开方法，统一错误处理
+        
+        Args:
+            window_class: 窗口类
+            window_name: 窗口名称（用于错误提示）
+            db_conn: 数据库连接（可选，默认使用 self.db_conn）
+            use_exec: 是否使用 exec_() 而不是 show()（用于对话框）
+            **kwargs: 传递给窗口类的其他参数
+        """
         try:
-            self.course_class_dialog = CourseClassManagementDialog(self.db_conn)
-            self.course_class_dialog.exec_()
+            if db_conn is None:
+                db_conn = self.db_conn
+            # 如果有额外参数，一起传递；否则只传递 db_conn
+            if kwargs:
+                window = window_class(db_conn, **kwargs)
+            else:
+                window = window_class(db_conn)
+            
+            # 根据窗口类型选择显示方式
+            if use_exec or hasattr(window, 'exec_'):
+                window.exec_()
+            else:
+                window.show()
+            return window
         except Exception as e:
-            self.logger.error(f"打开课程与班级关联管理窗口错误: {str(e)}")
-            QMessageBox.critical(self, "错误", f"无法打开课程与班级关联管理: {str(e)}")
+            self.logger.error(f"打开{window_name}窗口错误: {str(e)}", exc_info=True)
+            QMessageBox.critical(self, "错误", f"无法打开{window_name}: {str(e)}")
+            return None
+
+    def show_course_class_management(self):
+        """显示课程与班级关联管理窗口"""
+        self.course_class_dialog = self._open_window(
+            CourseClassManagementDialog, 
+            "课程与班级关联管理",
+            use_exec=True
+        )
 
     def create_menubar(self):
         menubar = self.menuBar()
@@ -61,15 +110,15 @@ class MainWindow(QMainWindow):
         file_menu = menubar.addMenu("📁 文件")
 
         logout_action = QAction("🚪 退出登录", self)
-        logout_action.triggered.connect(self.logout)  # 绑定退出登录
-        logout_action.setIcon(self.style().standardIcon(getattr(self.style(), 'SP_DialogCloseButton')))
+        logout_action.triggered.connect(self.logout)
+        logout_action.setIcon(self.style().standardIcon(self.style().SP_DialogCloseButton))
         file_menu.addAction(logout_action)
 
         file_menu.addSeparator()
 
         exit_action = QAction("❌ 退出系统", self)
         exit_action.triggered.connect(self.close)
-        exit_action.setIcon(self.style().standardIcon(getattr(self.style(), 'SP_DialogCancelButton')))
+        exit_action.setIcon(self.style().standardIcon(self.style().SP_DialogCancelButton))
         file_menu.addAction(exit_action)
 
         if self.user_role in ['admin', 'teacher']:
@@ -86,6 +135,10 @@ class MainWindow(QMainWindow):
             score_4x_action = QAction("📊 4+X成绩管理", self)
             score_4x_action.triggered.connect(self.show_student_score_management)
             manage_menu.addAction(score_4x_action)
+
+            edit_4x_action = QAction("📝 编辑4+X成绩模板", self)
+            edit_4x_action.triggered.connect(self.open_score_editor)
+            manage_menu.addAction(edit_4x_action)
 
             assignment_action = QAction("📝 作业管理", self)
             assignment_action.triggered.connect(self.show_assignment_management)
@@ -110,13 +163,22 @@ class MainWindow(QMainWindow):
         report_menu.addAction(export_action)
 
     def show_student_score_management(self):
+        """显示4+X成绩管理窗口"""
         from gui.student_score_mgmt import StudentScoreManagementWindow
+        self.score_window = self._open_window(
+            StudentScoreManagementWindow,
+            "4+X成绩管理"
+        )
+
+    def open_score_editor(self):
+        """打开4+X成绩编辑器"""
+        from gui.score_editor_window import ScoreEditorWindow
         try:
-            self.score_window = StudentScoreManagementWindow(self.db_conn)
-            self.score_window.show()
+            score_editor = ScoreEditorWindow(self.db_conn, self)
+            score_editor.show()
         except Exception as e:
-            self.logger.error(f"打开4+X成绩管理窗口错误: {str(e)}")
-            QMessageBox.critical(self, "错误", f"无法打开4+X成绩管理: {str(e)}")
+            self.logger.error(f"打开4+X成绩编辑器错误: {str(e)}", exc_info=True)
+            QMessageBox.critical(self, "错误", f"无法打开4+X成绩编辑器: {str(e)}")
 
     def create_toolbar(self):
         toolbar = self.addToolBar("主工具栏")
@@ -297,31 +359,28 @@ class MainWindow(QMainWindow):
         """)
 
     def show_student_management(self):
+        """显示学生管理窗口"""
         from gui.student_mgmt import StudentManagementWindow
-        try:
-            self.student_window = StudentManagementWindow(self.db_conn)
-            self.student_window.show()
-        except Exception as e:
-            self.logger.error(f"打开学生管理窗口错误: {str(e)}")
-            QMessageBox.critical(self, "错误", f"无法打开学生管理: {str(e)}")
+        self.student_window = self._open_window(
+            StudentManagementWindow,
+            "学生管理"
+        )
 
     def show_grade_management(self):
+        """显示成绩管理窗口"""
         from gui.grade_mgmt import GradeManagementWindow
-        try:
-            self.grade_window = GradeManagementWindow(self.db_conn)
-            self.grade_window.show()
-        except Exception as e:
-            self.logger.error(f"打开成绩管理窗口错误: {str(e)}")
-            QMessageBox.critical(self, "错误", f"无法打开成绩管理: {str(e)}")
+        self.grade_window = self._open_window(
+            GradeManagementWindow,
+            "成绩管理"
+        )
 
     def show_assignment_management(self):
+        """显示作业管理窗口"""
         from gui.assignment_mgmt import AssignmentManagementWindow
-        try:
-            self.assignment_window = AssignmentManagementWindow(self.db_conn)
-            self.assignment_window.show()
-        except Exception as e:
-            self.logger.error(f"打开作业管理窗口错误: {str(e)}")
-            QMessageBox.critical(self, "错误", f"无法打开作业管理: {str(e)}")
+        self.assignment_window = self._open_window(
+            AssignmentManagementWindow,
+            "作业管理"
+        )
 
     def show_statistics(self):
         QMessageBox.information(self, "提示", "📊 统计报表功能开发中...",
@@ -336,37 +395,34 @@ class MainWindow(QMainWindow):
         self.logout_requested.emit()  # 发送退出登录信号
 
     def closeEvent(self, event):
+        """窗口关闭事件处理"""
         self.logger.info("主窗口关闭")
-        # self.logout_requested.disconnect()  # 断开信号避免野指针
-        # ？不是为什么我断开个信号会导致堆栈溢出
+        self._running = False  # 停止用户检查线程
         super().closeEvent(event)
 
     def show_settings(self):
+        """显示系统设置窗口"""
         from gui.settings_window import SettingsWindow
-        try:
-            self.settings_window = SettingsWindow(self.db_conn)
-            self.settings_window.show()
-        except Exception as e:
-            self.logger.error(f"打开系统设置错误: {str(e)}")
-            QMessageBox.critical(self, "错误", f"无法打开系统设置: {str(e)}")
+        self.settings_window = self._open_window(
+            SettingsWindow,
+            "系统设置"
+        )
 
     def show_reports(self):
+        """显示报表生成窗口"""
         from gui.report_gen import ReportGenerationWindow
-        try:
-            self.report_window = ReportGenerationWindow(self.db_conn)
-            self.report_window.show()
-        except Exception as e:
-            self.logger.error(f"打开报表生成错误: {str(e)}")
-            QMessageBox.critical(self, "错误", f"无法打开报表生成: {str(e)}")
+        self.report_window = self._open_window(
+            ReportGenerationWindow,
+            "报表生成"
+        )
 
     def show_classroom_management(self):
+        """显示课堂管理窗口"""
         from gui.classroom_mgmt import ClassroomManagementWindow
-        try:
-            self.classroom_window = ClassroomManagementWindow(self.db_conn)
-            self.classroom_window.show()
-        except Exception as e:
-            self.logger.error(f"打开课堂管理窗口错误: {str(e)}")
-            QMessageBox.critical(self, "错误", f"无法打开课堂管理: {str(e)}")
+        self.classroom_window = self._open_window(
+            ClassroomManagementWindow,
+            "课堂管理"
+        )
 
     def select_user(self):
         """每15秒检查用户状态的线程函数"""
@@ -376,115 +432,287 @@ class MainWindow(QMainWindow):
                 logging.info("当前用户为：%s", self.get_role_display(self.user_role))
                 logging.info("当前用户ID为：%s", self.user_id)
                 logging.info("运行正常，显示为主窗口")
-                time.sleep(15)  # 每15秒检查一次
+                time.sleep(60)  # 每60秒检查一次
 
         # 创建并启动线程
         self.user_check_thread = threading.Thread(target=user_check_loop, daemon=True)
         self._running = True  # 设置运行标志
         self.user_check_thread.start()
 
+    def _show_info_message(self, title, text):
+        """
+        显示信息提示框的通用方法
+        
+        Args:
+            title: 窗口标题
+            text: 提示文本
+        """
+        msg = QMessageBox(self)
+        msg.setWindowTitle(title)
+        msg.setText(text)
+        msg.setFont(QFont("Microsoft YaHei", 20))
+        msg.setStyleSheet(self.MESSAGE_BOX_STYLE)
+        msg.exec_()
+
     def show_calendar(self):
-        msg = QMessageBox()
-        msg.setWindowTitle("日程安排")
-        msg.setText("📅 日程安排功能开发中...")
-        msg.setFont(QFont("Microsoft YaHei", 14))
-        msg.setStyleSheet("""
-            QMessageBox {
-                font-family: 'Microsoft YaHei';
-                font-size: 14px;
+        """打开日程安排网站"""
+        # 创建选择对话框
+        dialog = QDialog(self)
+        dialog.setWindowTitle("选择访问方式")
+        dialog.setFixedSize(520, 260)
+        
+        layout = QVBoxLayout(dialog)
+        layout.setContentsMargins(20, 20, 20, 20)
+        layout.setSpacing(22)
+        
+        # 提示标签
+        label = QLabel("请选择要访问的网站：")
+        label.setStyleSheet("font-size: 15px; font-weight: bold; margin-bottom: 14px;")
+        layout.addWidget(label)
+        
+        # 内网按钮
+        intranet_btn = QToolButton()
+        intranet_btn.setText("🌐 校园内网\nhttps://nei.ytyz.org/")
+        intranet_btn.setMinimumHeight(72)
+        intranet_btn.setStyleSheet("""
+            QToolButton {
+                background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                    stop:0 rgba(100, 181, 246, 0.9), stop:1 rgba(66, 165, 245, 0.9));
+                border: 2px solid #42a5f5;
+                border-radius: 8px;
+                padding: 10px;
+                font-size: 13px;
+                color: white;
+                font-weight: bold;
             }
-            QLabel {
-                font-family: 'Microsoft YaHei';
-                font-size: 14px;
+            QToolButton:hover {
+                background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                    stop:0 rgba(66, 165, 245, 0.9), stop:1 rgba(25, 118, 210, 0.9));
+                border: 2px solid #1976d2;
             }
         """)
-        msg.exec_()
+        
+        # 外网按钮
+        internet_btn = QToolButton()
+        internet_btn.setText("🌍 校园外网\nhttps://www.ytyz.org/")
+        internet_btn.setMinimumHeight(72)
+        internet_btn.setStyleSheet("""
+            QToolButton {
+                background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                    stop:0 rgba(129, 199, 132, 0.9), stop:1 rgba(102, 187, 106, 0.9));
+                border: 2px solid #66bb6a;
+                border-radius: 8px;
+                padding: 10px;
+                font-size: 13px;
+                color: white;
+                font-weight: bold;
+            }
+            QToolButton:hover {
+                background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                    stop:0 rgba(102, 187, 106, 0.9), stop:1 rgba(76, 175, 80, 0.9));
+                border: 2px solid #4caf50;
+            }
+        """)
+        
+        # 按钮布局（左右排列）
+        button_layout = QHBoxLayout()
+        button_layout.setContentsMargins(0, 8, 0, 8)
+        button_layout.setSpacing(28)
+        intranet_btn.setMinimumWidth(200)
+        internet_btn.setMinimumWidth(200)
+        button_layout.addStretch()
+        button_layout.addWidget(intranet_btn)
+        button_layout.addWidget(internet_btn)
+        button_layout.addStretch()
+        layout.addLayout(button_layout)
+        layout.addSpacing(10)
+        
+        # 取消按钮
+        button_box = QDialogButtonBox(QDialogButtonBox.Cancel)
+        button_box.rejected.connect(dialog.reject)
+        layout.addWidget(button_box)
+        
+        # 连接按钮信号
+        def open_intranet():
+            dialog.accept()
+            url = QUrl("https://nei.ytyz.org/")
+            QDesktopServices.openUrl(url)
+        
+        def open_internet():
+            dialog.accept()
+            url = QUrl("https://www.ytyz.org/")
+            QDesktopServices.openUrl(url)
+        
+        intranet_btn.clicked.connect(open_intranet)
+        internet_btn.clicked.connect(open_internet)
+        
+        # 显示对话框
+        dialog.exec_()
+    
+    def _open_web_page_internal(self, url):
+        """
+        在软件内部打开网页
+        
+        Args:
+            url: 要打开的网址
+        """
+        # 检查是否已经存在该标签页
+        for i in range(self.tab_widget.count()):
+            widget = self.tab_widget.widget(i)
+            if hasattr(widget, 'web_view') and widget.web_view.url() == url:
+                # 如果已存在，切换到该标签页
+                self.tab_widget.setCurrentIndex(i)
+                return
+        
+        # 创建新的标签页显示网页
+        web_widget = QWidget()
+        web_layout = QVBoxLayout(web_widget)
+        web_layout.setContentsMargins(0, 0, 0, 0)
+        
+        # 创建网页视图
+        web_view = QWebEngineView()
+        
+        # 配置 WebEngine 设置
+        settings = web_view.settings()
+        settings.setAttribute(QWebEngineSettings.JavascriptEnabled, True)
+        settings.setAttribute(QWebEngineSettings.LocalStorageEnabled, True)
+        settings.setAttribute(QWebEngineSettings.PluginsEnabled, True)
+        settings.setAttribute(QWebEngineSettings.AutoLoadImages, True)
+        
+        # 设置用户代理（模拟真实浏览器）
+        profile = QWebEngineProfile.defaultProfile()
+        profile.setHttpUserAgent(
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+            "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        )
+        
+        # 添加加载状态标签
+        status_label = QLabel("正在加载网页...")
+        status_label.setAlignment(Qt.AlignCenter)
+        status_label.setStyleSheet("""
+            QLabel {
+                background: rgba(255, 255, 255, 0.9);
+                padding: 10px;
+                font-size: 14px;
+                color: #333;
+            }
+        """)
+        
+        # 连接信号以显示加载状态
+        def on_load_started():
+            status_label.setText("正在加载网页...")
+            status_label.show()
+        
+        def on_load_finished(success):
+            if success:
+                status_label.hide()
+            else:
+                status_label.setText("网页加载失败，请检查网络连接或点击刷新按钮")
+                status_label.setStyleSheet("""
+                    QLabel {
+                        background: rgba(255, 200, 200, 0.9);
+                        padding: 10px;
+                        font-size: 14px;
+                        color: #d32f2f;
+                    }
+                """)
+                status_label.show()
+        
+        def on_load_progress(progress):
+            if progress < 100:
+                status_label.setText(f"正在加载网页... {progress}%")
+        
+        web_view.loadStarted.connect(on_load_started)
+        web_view.loadFinished.connect(on_load_finished)
+        web_view.loadProgress.connect(on_load_progress)
+        
+        # 加载网页
+        web_view.setUrl(url)
+        web_view.setZoomFactor(1.0)  # 设置缩放比例
+        
+        # 添加工具栏（返回、前进、刷新、地址栏）
+        toolbar = QFrame()
+        toolbar_layout = QHBoxLayout(toolbar)
+        toolbar_layout.setContentsMargins(5, 5, 5, 5)
+        toolbar_layout.setSpacing(5)
+        
+        back_btn = QToolButton()
+        back_btn.setText("◀ 返回")
+        back_btn.clicked.connect(web_view.back)
+        
+        forward_btn = QToolButton()
+        forward_btn.setText("前进 ▶")
+        forward_btn.clicked.connect(web_view.forward)
+        
+        refresh_btn = QToolButton()
+        refresh_btn.setText("🔄 刷新")
+        refresh_btn.clicked.connect(web_view.reload)
+        
+        home_btn = QToolButton()
+        home_btn.setText("🏠 首页")
+        home_btn.clicked.connect(lambda: web_view.setUrl(url))
+        
+        toolbar_layout.addWidget(back_btn)
+        toolbar_layout.addWidget(forward_btn)
+        toolbar_layout.addWidget(refresh_btn)
+        toolbar_layout.addWidget(home_btn)
+        toolbar_layout.addStretch()
+        
+        # 设置工具栏样式
+        toolbar.setStyleSheet("""
+            QFrame {
+                background: rgba(240, 240, 240, 0.9);
+                border-bottom: 1px solid #ccc;
+            }
+            QToolButton {
+                background: white;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                padding: 5px 10px;
+                font-size: 12px;
+            }
+            QToolButton:hover {
+                background: #e0e0e0;
+            }
+        """)
+        
+        web_layout.addWidget(toolbar)
+        web_layout.addWidget(status_label)
+        web_layout.addWidget(web_view)
+        
+        # 保存 web_view 引用以便后续检查
+        web_widget.web_view = web_view
+        
+        # 添加到标签页
+        self.tab_widget.addTab(web_widget, "📅 日程安排")
+        self.tab_widget.setCurrentWidget(web_widget)
+        
+        # 如果加载失败，提供在外部浏览器打开的选项
+        def open_in_browser():
+            QDesktopServices.openUrl(url)
+        
+        # 添加"在浏览器中打开"按钮到工具栏
+        browser_btn = QToolButton()
+        browser_btn.setText("🌐 在浏览器中打开")
+        browser_btn.clicked.connect(open_in_browser)
+        toolbar_layout.insertWidget(4, browser_btn)
 
     def show_notes(self):
-        msg = QMessageBox()
-        msg.setWindowTitle("点我")
-        msg.setText("📝 这我不知道写什么..........")
-        msg.setFont(QFont("Microsoft YaHei", 14))
-        msg.setStyleSheet("""
-            QMessageBox {
-                font-family: 'Microsoft YaHei';
-                font-size: 14px;
-            }
-            QLabel {
-                font-family: 'Microsoft YaHei';
-                font-size: 14px;
-            }
-        """)
-        msg.exec_()
+        """显示点我功能提示"""
+        self._show_info_message("点我", "📝 这我不知道写什么..........")
 
     def show_data_analysis(self):
-        msg = QMessageBox()
-        msg.setWindowTitle("数据分析")
-        msg.setText("📊 数据分析功能开发中...")
-        msg.setFont(QFont("Microsoft YaHei", 14))
-        msg.setStyleSheet("""
-            QMessageBox {
-                font-family: 'Microsoft YaHei';
-                font-size: 14px;
-            }
-            QLabel {
-                font-family: 'Microsoft YaHei';
-                font-size: 14px;
-            }
-        """)
-        msg.exec_()
+        """显示数据分析功能提示"""
+        self._show_info_message("数据分析", "📊 数据分析功能开发中...")
 
     def show_contact(self):
-        msg = QMessageBox()
-        msg.setWindowTitle("联系我们")
-        msg.setText("📞 联系我们功能开发中...")
-        msg.setFont(QFont("Microsoft YaHei", 14))
-        msg.setStyleSheet("""
-            QMessageBox {
-                font-family: 'Microsoft YaHei';
-                font-size: 14px;
-            }
-            QLabel {
-                font-family: 'Microsoft YaHei';
-                font-size: 14px;
-            }
-        """)
-        msg.exec_()
+        """显示联系我们功能提示"""
+        self._show_info_message("联系我们", "📞 联系我们功能开发中...")
 
     def show_links(self):
-        msg = QMessageBox()
-        msg.setWindowTitle("网站链接")
-        msg.setText("🌐 网站链接功能开发中...")
-        msg.setFont(QFont("Microsoft YaHei", 14))
-        msg.setStyleSheet("""
-            QMessageBox {
-                font-family: 'Microsoft YaHei';
-                font-size: 14px;
-            }
-            QLabel {
-                font-family: 'Microsoft YaHei';
-                font-size: 14px;
-            }
-        """)
-        msg.exec_()
+        """显示网站链接功能提示"""
+        self._show_info_message("网站链接", "🌐 网站链接功能开发中...")
 
     def show_search(self):
-        msg = QMessageBox()
-        msg.setWindowTitle("搜索功能")
-        msg.setText("🔍 搜索功能开发中...")
-        msg.setFont(QFont("Microsoft YaHei", 14))
-        msg.setStyleSheet("""
-            QMessageBox {
-                font-family: 'Microsoft YaHei';
-                font-size: 14px;
-            }
-            QLabel {
-                font-family: 'Microsoft YaHei';
-                font-size: 14px;
-            }
-        """)
-        msg.exec_()
-
-
-
-
+        """显示搜索功能提示"""
+        self._show_info_message("搜索功能", "🔍 搜索功能开发中...")

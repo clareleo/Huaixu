@@ -8,7 +8,7 @@ from PyQt5.QtCore import Qt, QThread, pyqtSignal, QTimer
 from PyQt5.QtGui import QPixmap
 from database.db_conn import create_connection
 
-from Python.App.槐序.gui.login_window import LoginWindow
+from gui.login_window import LoginWindow
 
 
 # =========================

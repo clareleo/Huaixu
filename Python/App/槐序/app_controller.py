@@ -1,5 +1,6 @@
 import sys
 import logging
+import os
 from PyQt5.QtWidgets import QApplication, QMessageBox
 from PyQt5.QtGui import QFont, QIcon
 from database.db_conn import create_connection
@@ -7,6 +8,7 @@ from database.db_init import initialize_database
 from gui.startup_window import StartupWindow
 from gui.login_window import LoginWindow
 from gui.main_window import MainWindow
+from utils.resource_path import get_img_path
 
 logger = logging.getLogger(__name__)
 
@@ -21,7 +23,16 @@ class MainApp:
 
     def setup_app(self):
         self.app.setQuitOnLastWindowClosed(True)
-        self.app.setWindowIcon(QIcon('img/icon.png'))
+        # 使用绝对路径加载图标
+        icon_path = get_img_path('icon.png')
+        if os.path.exists(icon_path):
+            self.app.setWindowIcon(QIcon(icon_path))
+        else:
+            logger.warning(f"图标文件不存在: {icon_path}")
+            # 如果PNG不存在，尝试ICO格式
+            icon_path_ico = get_img_path('icon.ico')
+            if os.path.exists(icon_path_ico):
+                self.app.setWindowIcon(QIcon(icon_path_ico))
         font = QFont("Microsoft YaHei", 15)
         self.app.setFont(font)
         logging.basicConfig(

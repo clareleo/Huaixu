@@ -9,6 +9,7 @@ from openpyxl import load_workbook
 from PyQt5.QtWidgets import QFileDialog
 from PyQt5.QtGui import QIcon
 import logging
+from utils.resource_path import get_img_path
 
 class ClassManagementDialog(QDialog):
     """班级管理对话框"""
@@ -18,7 +19,7 @@ class ClassManagementDialog(QDialog):
         self.db_conn = db_conn
         self.logger = logging.getLogger(__name__)
         self.setWindowTitle("班级管理")
-        self.setWindowIcon(QIcon('img/icon.png'))
+        self.setWindowIcon(QIcon(get_img_path('icon.png')))
         self.resize(800, 600)
         self.init_ui()
         self.load_classes()
@@ -142,7 +143,7 @@ class StudentEditDialog(QDialog):
         self.db_conn = db_conn
         self.student_data = student_data
         self.setWindowTitle("编辑学生信息" if student_data else "添加学生")
-        self.setWindowIcon(QIcon('img/icon.png'))
+        self.setWindowIcon(QIcon(get_img_path('icon.png')))
         self.resize(300, 150)
         self.init_ui()
 
@@ -223,7 +224,7 @@ class StudentManagementWindow(QWidget):
         self.logger = logging.getLogger(__name__)
 
         self.setWindowTitle("学生管理")
-        self.setWindowIcon(QIcon('img/icon.png'))
+        self.setWindowIcon(QIcon(get_img_path('icon.png')))
         self.resize(1000, 800)
 
         # 排序状态：{列索引: 排序顺序}

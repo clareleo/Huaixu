@@ -83,7 +83,7 @@ class LoginWindow(QWidget):
         title_layout.setSpacing(8)
 
         title_label = QLabel("槐序 - HuaiXu")
-        title_label.setStyleSheet("font-size: 16px; font-weight: bold; color: #0d47a1;")
+        title_label.setStyleSheet("font-size: 25px; font-weight: bold; color: #0d47a1;")
 
         title_layout.addWidget(title_label)
         title_layout.addStretch()
@@ -408,7 +408,7 @@ class LoginWindow(QWidget):
             settings.remove("saved_username")
 
         if remember_password:
-            settings.setValue("saved_password", password)  # ⚠️ 明文保存，不安全
+            settings.setValue("saved_password", password)  # 不明文保存
         else:
             settings.remove("saved_password")
 
@@ -556,7 +556,7 @@ class LoginWindow(QWidget):
                 from gui.main_window import MainWindow
                 self.main_window = MainWindow(self.db_conn, user_id, role)
 
-                #关键修复：连接退出登录信号
+                #连接退出登录信号
                 self.main_window.logout_requested.connect(self.show_login_again)
 
                 self.main_window.show()

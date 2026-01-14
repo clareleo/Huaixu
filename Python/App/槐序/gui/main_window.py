@@ -9,15 +9,6 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import Qt, pyqtSignal, QUrl
 from PyQt5.QtGui import QFont, QIcon, QDesktopServices
-from gui.course_class_mgmt import CourseClassManagementDialog
-
-# 尝试导入 QWebEngineView，如果没有安装则使用外部浏览器
-try:
-    from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineProfile, QWebEngineSettings
-    from PyQt5.QtWebEngineCore import QWebEngineHttpRequest
-    WEBENGINE_AVAILABLE = True
-except ImportError:
-    WEBENGINE_AVAILABLE = False
 
 
 class MainWindow(QMainWindow):
@@ -68,7 +59,7 @@ class MainWindow(QMainWindow):
     def _open_window(self, window_class, window_name, db_conn=None, use_exec=False, **kwargs):
         """
         通用窗口打开方法，统一错误处理
-        
+
         Args:
             window_class: 窗口类
             window_name: 窗口名称（用于错误提示）
@@ -84,7 +75,7 @@ class MainWindow(QMainWindow):
                 window = window_class(db_conn, **kwargs)
             else:
                 window = window_class(db_conn)
-            
+
             # 根据窗口类型选择显示方式
             if use_exec or hasattr(window, 'exec_'):
                 window.exec_()
@@ -98,8 +89,9 @@ class MainWindow(QMainWindow):
 
     def show_course_class_management(self):
         """显示课程与班级关联管理窗口"""
+        from gui.course_class_mgmt import CourseClassManagementDialog
         self.course_class_dialog = self._open_window(
-            CourseClassManagementDialog, 
+            CourseClassManagementDialog,
             "课程与班级关联管理",
             use_exec=True
         )
@@ -442,7 +434,7 @@ class MainWindow(QMainWindow):
     def _show_info_message(self, title, text):
         """
         显示信息提示框的通用方法
-        
+
         Args:
             title: 窗口标题
             text: 提示文本
@@ -460,16 +452,16 @@ class MainWindow(QMainWindow):
         dialog = QDialog(self)
         dialog.setWindowTitle("选择访问方式")
         dialog.setFixedSize(520, 260)
-        
+
         layout = QVBoxLayout(dialog)
         layout.setContentsMargins(20, 20, 20, 20)
         layout.setSpacing(22)
-        
+
         # 提示标签
         label = QLabel("请选择要访问的网站：")
-        label.setStyleSheet("font-size: 15px; font-weight: bold; margin-bottom: 14px;")
+        label.setStyleSheet("font-size: 25px; font-weight: bold; margin-bottom: 14px;")
         layout.addWidget(label)
-        
+
         # 内网按钮
         intranet_btn = QToolButton()
         intranet_btn.setText("🌐 校园内网\nhttps://nei.ytyz.org/")
@@ -481,7 +473,7 @@ class MainWindow(QMainWindow):
                 border: 2px solid #42a5f5;
                 border-radius: 8px;
                 padding: 10px;
-                font-size: 13px;
+                font-size: 18px;
                 color: white;
                 font-weight: bold;
             }
@@ -491,7 +483,7 @@ class MainWindow(QMainWindow):
                 border: 2px solid #1976d2;
             }
         """)
-        
+
         # 外网按钮
         internet_btn = QToolButton()
         internet_btn.setText("🌍 校园外网\nhttps://www.ytyz.org/")
@@ -503,7 +495,7 @@ class MainWindow(QMainWindow):
                 border: 2px solid #66bb6a;
                 border-radius: 8px;
                 padding: 10px;
-                font-size: 13px;
+                font-size: 18px;
                 color: white;
                 font-weight: bold;
             }
@@ -513,7 +505,7 @@ class MainWindow(QMainWindow):
                 border: 2px solid #4caf50;
             }
         """)
-        
+
         # 按钮布局（左右排列）
         button_layout = QHBoxLayout()
         button_layout.setContentsMargins(0, 8, 0, 8)
@@ -526,176 +518,28 @@ class MainWindow(QMainWindow):
         button_layout.addStretch()
         layout.addLayout(button_layout)
         layout.addSpacing(10)
-        
+
         # 取消按钮
         button_box = QDialogButtonBox(QDialogButtonBox.Cancel)
         button_box.rejected.connect(dialog.reject)
         layout.addWidget(button_box)
-        
+
         # 连接按钮信号
         def open_intranet():
             dialog.accept()
             url = QUrl("https://nei.ytyz.org/")
             QDesktopServices.openUrl(url)
-        
+
         def open_internet():
             dialog.accept()
             url = QUrl("https://www.ytyz.org/")
             QDesktopServices.openUrl(url)
-        
+
         intranet_btn.clicked.connect(open_intranet)
         internet_btn.clicked.connect(open_internet)
-        
+
         # 显示对话框
         dialog.exec_()
-    
-    def _open_web_page_internal(self, url):
-        """
-        在软件内部打开网页
-        
-        Args:
-            url: 要打开的网址
-        """
-        # 检查是否已经存在该标签页
-        for i in range(self.tab_widget.count()):
-            widget = self.tab_widget.widget(i)
-            if hasattr(widget, 'web_view') and widget.web_view.url() == url:
-                # 如果已存在，切换到该标签页
-                self.tab_widget.setCurrentIndex(i)
-                return
-        
-        # 创建新的标签页显示网页
-        web_widget = QWidget()
-        web_layout = QVBoxLayout(web_widget)
-        web_layout.setContentsMargins(0, 0, 0, 0)
-        
-        # 创建网页视图
-        web_view = QWebEngineView()
-        
-        # 配置 WebEngine 设置
-        settings = web_view.settings()
-        settings.setAttribute(QWebEngineSettings.JavascriptEnabled, True)
-        settings.setAttribute(QWebEngineSettings.LocalStorageEnabled, True)
-        settings.setAttribute(QWebEngineSettings.PluginsEnabled, True)
-        settings.setAttribute(QWebEngineSettings.AutoLoadImages, True)
-        
-        # 设置用户代理（模拟真实浏览器）
-        profile = QWebEngineProfile.defaultProfile()
-        profile.setHttpUserAgent(
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-            "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-        )
-        
-        # 添加加载状态标签
-        status_label = QLabel("正在加载网页...")
-        status_label.setAlignment(Qt.AlignCenter)
-        status_label.setStyleSheet("""
-            QLabel {
-                background: rgba(255, 255, 255, 0.9);
-                padding: 10px;
-                font-size: 14px;
-                color: #333;
-            }
-        """)
-        
-        # 连接信号以显示加载状态
-        def on_load_started():
-            status_label.setText("正在加载网页...")
-            status_label.show()
-        
-        def on_load_finished(success):
-            if success:
-                status_label.hide()
-            else:
-                status_label.setText("网页加载失败，请检查网络连接或点击刷新按钮")
-                status_label.setStyleSheet("""
-                    QLabel {
-                        background: rgba(255, 200, 200, 0.9);
-                        padding: 10px;
-                        font-size: 14px;
-                        color: #d32f2f;
-                    }
-                """)
-                status_label.show()
-        
-        def on_load_progress(progress):
-            if progress < 100:
-                status_label.setText(f"正在加载网页... {progress}%")
-        
-        web_view.loadStarted.connect(on_load_started)
-        web_view.loadFinished.connect(on_load_finished)
-        web_view.loadProgress.connect(on_load_progress)
-        
-        # 加载网页
-        web_view.setUrl(url)
-        web_view.setZoomFactor(1.0)  # 设置缩放比例
-        
-        # 添加工具栏（返回、前进、刷新、地址栏）
-        toolbar = QFrame()
-        toolbar_layout = QHBoxLayout(toolbar)
-        toolbar_layout.setContentsMargins(5, 5, 5, 5)
-        toolbar_layout.setSpacing(5)
-        
-        back_btn = QToolButton()
-        back_btn.setText("◀ 返回")
-        back_btn.clicked.connect(web_view.back)
-        
-        forward_btn = QToolButton()
-        forward_btn.setText("前进 ▶")
-        forward_btn.clicked.connect(web_view.forward)
-        
-        refresh_btn = QToolButton()
-        refresh_btn.setText("🔄 刷新")
-        refresh_btn.clicked.connect(web_view.reload)
-        
-        home_btn = QToolButton()
-        home_btn.setText("🏠 首页")
-        home_btn.clicked.connect(lambda: web_view.setUrl(url))
-        
-        toolbar_layout.addWidget(back_btn)
-        toolbar_layout.addWidget(forward_btn)
-        toolbar_layout.addWidget(refresh_btn)
-        toolbar_layout.addWidget(home_btn)
-        toolbar_layout.addStretch()
-        
-        # 设置工具栏样式
-        toolbar.setStyleSheet("""
-            QFrame {
-                background: rgba(240, 240, 240, 0.9);
-                border-bottom: 1px solid #ccc;
-            }
-            QToolButton {
-                background: white;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                padding: 5px 10px;
-                font-size: 12px;
-            }
-            QToolButton:hover {
-                background: #e0e0e0;
-            }
-        """)
-        
-        web_layout.addWidget(toolbar)
-        web_layout.addWidget(status_label)
-        web_layout.addWidget(web_view)
-        
-        # 保存 web_view 引用以便后续检查
-        web_widget.web_view = web_view
-        
-        # 添加到标签页
-        self.tab_widget.addTab(web_widget, "📅 日程安排")
-        self.tab_widget.setCurrentWidget(web_widget)
-        
-        # 如果加载失败，提供在外部浏览器打开的选项
-        def open_in_browser():
-            QDesktopServices.openUrl(url)
-        
-        # 添加"在浏览器中打开"按钮到工具栏
-        browser_btn = QToolButton()
-        browser_btn.setText("🌐 在浏览器中打开")
-        browser_btn.clicked.connect(open_in_browser)
-        toolbar_layout.insertWidget(4, browser_btn)
 
     def show_notes(self):
         """显示点我功能提示"""

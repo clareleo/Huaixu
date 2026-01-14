@@ -11026,3 +11026,680 @@
 2026-01-06 17:49:48,318 - root - INFO - 当前用户ID为：1
 2026-01-06 17:49:48,319 - root - INFO - 运行正常，显示为主窗口
 2026-01-06 17:50:17,552 - gui.main_window - INFO - 主窗口关闭
+2026-01-07 07:49:28,561 - app_controller - INFO - [MainApp] 应用程序初始化完成
+2026-01-07 07:49:28,571 - app_controller - INFO - [MainApp] 数据库连接对象类型: <class 'sqlite3.Connection'>
+2026-01-07 07:49:28,577 - app_controller - INFO - [MainApp] 数据库初始化/连接成功
+2026-01-07 07:49:28,578 - root - INFO - [StartupWindow] 初始化中...
+2026-01-07 07:49:31,490 - root - INFO - 加载完成，即将跳转到登录窗口
+2026-01-07 07:49:31,691 - app_controller - INFO - DEBUG: _on_startup_loaded 被调用
+2026-01-07 07:49:31,693 - root - INFO - [LoginWindow] 初始化时 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 07:49:31,790 - app_controller - INFO - [MainApp] 传递给 LoginWindow 的 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 07:49:31,790 - app_controller - INFO - [MainApp] 已连接登录成功信号
+2026-01-07 07:49:32,029 - root - INFO - [LoginWindow] handle_auto_login 中 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 07:49:32,030 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2026-01-07 07:49:32,030 - root - INFO - 当前用户为：管理员
+2026-01-07 07:49:32,032 - root - INFO - 当前用户ID为：1
+2026-01-07 07:49:32,033 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 07:50:32,034 - root - INFO - 当前用户为：管理员
+2026-01-07 07:50:32,034 - root - INFO - 当前用户ID为：1
+2026-01-07 07:50:32,034 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 07:51:21,409 - gui.main_window - INFO - 主窗口关闭
+2026-01-07 08:58:56,034 - app_controller - INFO - [MainApp] 应用程序初始化完成
+2026-01-07 08:58:56,041 - app_controller - INFO - [MainApp] 数据库连接对象类型: <class 'sqlite3.Connection'>
+2026-01-07 08:58:56,049 - app_controller - INFO - [MainApp] 数据库初始化/连接成功
+2026-01-07 08:58:56,050 - root - INFO - [StartupWindow] 初始化中...
+2026-01-07 08:58:59,087 - root - INFO - 加载完成，即将跳转到登录窗口
+2026-01-07 08:58:59,287 - app_controller - INFO - DEBUG: _on_startup_loaded 被调用
+2026-01-07 08:58:59,287 - root - INFO - [LoginWindow] 初始化时 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 08:58:59,374 - app_controller - INFO - [MainApp] 传递给 LoginWindow 的 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 08:58:59,374 - app_controller - INFO - [MainApp] 已连接登录成功信号
+2026-01-07 08:58:59,613 - root - INFO - [LoginWindow] handle_auto_login 中 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 08:58:59,613 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2026-01-07 08:58:59,614 - root - INFO - 当前用户为：管理员
+2026-01-07 08:58:59,615 - root - INFO - 当前用户ID为：1
+2026-01-07 08:58:59,615 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 08:59:01,699 - gui.main_window - INFO - 主窗口关闭
+2026-01-07 08:59:23,748 - app_controller - INFO - [MainApp] 应用程序初始化完成
+2026-01-07 08:59:23,754 - app_controller - INFO - [MainApp] 数据库连接对象类型: <class 'sqlite3.Connection'>
+2026-01-07 08:59:23,759 - app_controller - INFO - [MainApp] 数据库初始化/连接成功
+2026-01-07 08:59:23,759 - root - INFO - [StartupWindow] 初始化中...
+2026-01-07 08:59:26,680 - root - INFO - 加载完成，即将跳转到登录窗口
+2026-01-07 08:59:26,880 - app_controller - INFO - DEBUG: _on_startup_loaded 被调用
+2026-01-07 08:59:26,880 - root - INFO - [LoginWindow] 初始化时 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 08:59:26,958 - app_controller - INFO - [MainApp] 传递给 LoginWindow 的 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 08:59:26,958 - app_controller - INFO - [MainApp] 已连接登录成功信号
+2026-01-07 08:59:27,200 - root - INFO - [LoginWindow] handle_auto_login 中 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 08:59:27,200 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2026-01-07 08:59:27,201 - root - INFO - 当前用户为：管理员
+2026-01-07 08:59:27,202 - root - INFO - 当前用户ID为：1
+2026-01-07 08:59:27,202 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 08:59:33,785 - gui.main_window - INFO - 主窗口关闭
+2026-01-07 09:00:19,370 - app_controller - INFO - [MainApp] 应用程序初始化完成
+2026-01-07 09:00:19,378 - app_controller - INFO - [MainApp] 数据库连接对象类型: <class 'sqlite3.Connection'>
+2026-01-07 09:00:19,382 - app_controller - INFO - [MainApp] 数据库初始化/连接成功
+2026-01-07 09:00:19,383 - root - INFO - [StartupWindow] 初始化中...
+2026-01-07 09:00:22,246 - root - INFO - 加载完成，即将跳转到登录窗口
+2026-01-07 09:00:22,447 - app_controller - INFO - DEBUG: _on_startup_loaded 被调用
+2026-01-07 09:00:22,447 - root - INFO - [LoginWindow] 初始化时 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:00:22,520 - app_controller - INFO - [MainApp] 传递给 LoginWindow 的 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:00:22,520 - app_controller - INFO - [MainApp] 已连接登录成功信号
+2026-01-07 09:00:22,765 - root - INFO - [LoginWindow] handle_auto_login 中 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:00:22,767 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2026-01-07 09:00:22,768 - root - INFO - 当前用户为：管理员
+2026-01-07 09:00:22,768 - root - INFO - 当前用户ID为：1
+2026-01-07 09:00:22,768 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:00:27,793 - gui.main_window - INFO - 主窗口关闭
+2026-01-07 09:00:51,163 - app_controller - INFO - [MainApp] 应用程序初始化完成
+2026-01-07 09:00:51,169 - app_controller - INFO - [MainApp] 数据库连接对象类型: <class 'sqlite3.Connection'>
+2026-01-07 09:00:51,175 - app_controller - INFO - [MainApp] 数据库初始化/连接成功
+2026-01-07 09:00:51,175 - root - INFO - [StartupWindow] 初始化中...
+2026-01-07 09:00:54,116 - root - INFO - 加载完成，即将跳转到登录窗口
+2026-01-07 09:00:54,317 - app_controller - INFO - DEBUG: _on_startup_loaded 被调用
+2026-01-07 09:00:54,317 - root - INFO - [LoginWindow] 初始化时 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:00:54,393 - app_controller - INFO - [MainApp] 传递给 LoginWindow 的 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:00:54,393 - app_controller - INFO - [MainApp] 已连接登录成功信号
+2026-01-07 09:00:54,638 - root - INFO - [LoginWindow] handle_auto_login 中 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:00:54,638 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2026-01-07 09:00:54,639 - root - INFO - 当前用户为：管理员
+2026-01-07 09:00:54,639 - root - INFO - 当前用户ID为：1
+2026-01-07 09:00:54,639 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:00:58,589 - gui.main_window - INFO - 主窗口关闭
+2026-01-07 09:01:22,063 - app_controller - INFO - [MainApp] 应用程序初始化完成
+2026-01-07 09:01:22,072 - app_controller - INFO - [MainApp] 数据库连接对象类型: <class 'sqlite3.Connection'>
+2026-01-07 09:01:22,076 - app_controller - INFO - [MainApp] 数据库初始化/连接成功
+2026-01-07 09:01:22,076 - root - INFO - [StartupWindow] 初始化中...
+2026-01-07 09:01:24,946 - root - INFO - 加载完成，即将跳转到登录窗口
+2026-01-07 09:01:25,147 - app_controller - INFO - DEBUG: _on_startup_loaded 被调用
+2026-01-07 09:01:25,147 - root - INFO - [LoginWindow] 初始化时 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:01:25,223 - app_controller - INFO - [MainApp] 传递给 LoginWindow 的 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:01:25,223 - app_controller - INFO - [MainApp] 已连接登录成功信号
+2026-01-07 09:01:25,465 - root - INFO - [LoginWindow] handle_auto_login 中 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:01:25,466 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2026-01-07 09:01:25,466 - root - INFO - 当前用户为：管理员
+2026-01-07 09:01:25,468 - root - INFO - 当前用户ID为：1
+2026-01-07 09:01:25,468 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:01:26,960 - gui.main_window - INFO - 主窗口关闭
+2026-01-07 09:08:30,899 - app_controller - INFO - [MainApp] 应用程序初始化完成
+2026-01-07 09:08:30,906 - app_controller - INFO - [MainApp] 数据库连接对象类型: <class 'sqlite3.Connection'>
+2026-01-07 09:08:30,914 - app_controller - INFO - [MainApp] 数据库初始化/连接成功
+2026-01-07 09:08:30,914 - root - INFO - [StartupWindow] 初始化中...
+2026-01-07 09:08:33,878 - root - INFO - 加载完成，即将跳转到登录窗口
+2026-01-07 09:08:34,079 - app_controller - INFO - DEBUG: _on_startup_loaded 被调用
+2026-01-07 09:08:34,079 - root - INFO - [LoginWindow] 初始化时 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:08:34,153 - app_controller - INFO - [MainApp] 传递给 LoginWindow 的 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:08:34,153 - app_controller - INFO - [MainApp] 已连接登录成功信号
+2026-01-07 09:08:34,398 - root - INFO - [LoginWindow] handle_auto_login 中 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:08:34,398 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2026-01-07 09:08:34,399 - root - INFO - 当前用户为：管理员
+2026-01-07 09:08:34,399 - root - INFO - 当前用户ID为：1
+2026-01-07 09:08:34,399 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:08:38,422 - gui.main_window - INFO - 主窗口关闭
+2026-01-07 09:09:13,246 - app_controller - INFO - [MainApp] 应用程序初始化完成
+2026-01-07 09:09:13,251 - app_controller - INFO - [MainApp] 数据库连接对象类型: <class 'sqlite3.Connection'>
+2026-01-07 09:09:13,258 - app_controller - INFO - [MainApp] 数据库初始化/连接成功
+2026-01-07 09:09:13,259 - root - INFO - [StartupWindow] 初始化中...
+2026-01-07 09:09:16,148 - root - INFO - 加载完成，即将跳转到登录窗口
+2026-01-07 09:09:16,349 - app_controller - INFO - DEBUG: _on_startup_loaded 被调用
+2026-01-07 09:09:16,349 - root - INFO - [LoginWindow] 初始化时 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:09:16,429 - app_controller - INFO - [MainApp] 传递给 LoginWindow 的 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:09:16,429 - app_controller - INFO - [MainApp] 已连接登录成功信号
+2026-01-07 09:09:16,670 - root - INFO - [LoginWindow] handle_auto_login 中 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:09:16,670 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2026-01-07 09:09:16,671 - root - INFO - 当前用户为：管理员
+2026-01-07 09:09:16,672 - root - INFO - 当前用户ID为：1
+2026-01-07 09:09:16,673 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:10:16,677 - root - INFO - 当前用户为：管理员
+2026-01-07 09:10:16,677 - root - INFO - 当前用户ID为：1
+2026-01-07 09:10:16,677 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:11:16,691 - root - INFO - 当前用户为：管理员
+2026-01-07 09:11:16,691 - root - INFO - 当前用户ID为：1
+2026-01-07 09:11:16,691 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:12:16,697 - root - INFO - 当前用户为：管理员
+2026-01-07 09:12:16,697 - root - INFO - 当前用户ID为：1
+2026-01-07 09:12:16,697 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:13:16,709 - root - INFO - 当前用户为：管理员
+2026-01-07 09:13:16,709 - root - INFO - 当前用户ID为：1
+2026-01-07 09:13:16,709 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:14:16,714 - root - INFO - 当前用户为：管理员
+2026-01-07 09:14:16,714 - root - INFO - 当前用户ID为：1
+2026-01-07 09:14:16,714 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:14:35,478 - gui.main_window - INFO - 主窗口关闭
+2026-01-07 09:14:56,963 - app_controller - INFO - [MainApp] 应用程序初始化完成
+2026-01-07 09:14:56,972 - app_controller - INFO - [MainApp] 数据库连接对象类型: <class 'sqlite3.Connection'>
+2026-01-07 09:14:56,978 - app_controller - INFO - [MainApp] 数据库初始化/连接成功
+2026-01-07 09:14:56,978 - root - INFO - [StartupWindow] 初始化中...
+2026-01-07 09:14:59,869 - root - INFO - 加载完成，即将跳转到登录窗口
+2026-01-07 09:15:00,069 - app_controller - INFO - DEBUG: _on_startup_loaded 被调用
+2026-01-07 09:15:00,156 - app_controller - INFO - [MainApp] 传递给 LoginWindow 的 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:15:00,156 - app_controller - INFO - [MainApp] 已连接登录成功信号
+2026-01-07 09:18:58,865 - app_controller - INFO - [MainApp] 应用程序初始化完成
+2026-01-07 09:18:58,872 - app_controller - INFO - [MainApp] 数据库连接对象类型: <class 'sqlite3.Connection'>
+2026-01-07 09:18:58,878 - app_controller - INFO - [MainApp] 数据库初始化/连接成功
+2026-01-07 09:18:58,878 - root - INFO - [StartupWindow] 初始化中...
+2026-01-07 09:19:01,748 - root - INFO - 加载完成，即将跳转到登录窗口
+2026-01-07 09:19:01,950 - app_controller - INFO - DEBUG: _on_startup_loaded 被调用
+2026-01-07 09:19:01,950 - root - INFO - [LoginWindow] 初始化时 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:19:02,023 - app_controller - INFO - [MainApp] 传递给 LoginWindow 的 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:19:02,023 - app_controller - INFO - [MainApp] 已连接登录成功信号
+2026-01-07 09:19:27,050 - app_controller - INFO - [MainApp] 应用程序初始化完成
+2026-01-07 09:19:27,054 - app_controller - INFO - [MainApp] 数据库连接对象类型: <class 'sqlite3.Connection'>
+2026-01-07 09:19:27,059 - app_controller - INFO - [MainApp] 数据库初始化/连接成功
+2026-01-07 09:19:27,059 - root - INFO - [StartupWindow] 初始化中...
+2026-01-07 09:19:29,950 - root - INFO - 加载完成，即将跳转到登录窗口
+2026-01-07 09:19:30,150 - app_controller - INFO - DEBUG: _on_startup_loaded 被调用
+2026-01-07 09:19:30,150 - root - INFO - [LoginWindow] 初始化时 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:19:30,231 - app_controller - INFO - [MainApp] 传递给 LoginWindow 的 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:19:30,231 - app_controller - INFO - [MainApp] 已连接登录成功信号
+2026-01-07 09:19:30,471 - root - INFO - [LoginWindow] handle_auto_login 中 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:19:30,472 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2026-01-07 09:19:30,472 - root - INFO - 当前用户为：管理员
+2026-01-07 09:19:30,473 - root - INFO - 当前用户ID为：1
+2026-01-07 09:19:30,474 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:20:30,479 - root - INFO - 当前用户为：管理员
+2026-01-07 09:20:30,479 - root - INFO - 当前用户ID为：1
+2026-01-07 09:20:30,479 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:21:30,490 - root - INFO - 当前用户为：管理员
+2026-01-07 09:21:30,490 - root - INFO - 当前用户ID为：1
+2026-01-07 09:21:30,490 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:22:30,492 - root - INFO - 当前用户为：管理员
+2026-01-07 09:22:30,492 - root - INFO - 当前用户ID为：1
+2026-01-07 09:22:30,492 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:22:40,542 - gui.main_window - INFO - 主窗口关闭
+2026-01-07 09:22:42,640 - app_controller - INFO - [MainApp] 应用程序初始化完成
+2026-01-07 09:22:42,646 - app_controller - INFO - [MainApp] 数据库连接对象类型: <class 'sqlite3.Connection'>
+2026-01-07 09:22:42,652 - app_controller - INFO - [MainApp] 数据库初始化/连接成功
+2026-01-07 09:22:42,652 - root - INFO - [StartupWindow] 初始化中...
+2026-01-07 09:22:45,649 - root - INFO - 加载完成，即将跳转到登录窗口
+2026-01-07 09:22:45,849 - app_controller - INFO - DEBUG: _on_startup_loaded 被调用
+2026-01-07 09:22:45,849 - root - INFO - [LoginWindow] 初始化时 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:22:45,931 - app_controller - INFO - [MainApp] 传递给 LoginWindow 的 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:22:45,932 - app_controller - INFO - [MainApp] 已连接登录成功信号
+2026-01-07 09:22:46,171 - root - INFO - [LoginWindow] handle_auto_login 中 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:22:46,171 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2026-01-07 09:22:46,173 - root - INFO - 当前用户为：管理员
+2026-01-07 09:22:46,174 - root - INFO - 当前用户ID为：1
+2026-01-07 09:22:46,175 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:23:19,193 - gui.main_window - INFO - 主窗口关闭
+2026-01-07 09:23:22,033 - app_controller - INFO - [MainApp] 应用程序初始化完成
+2026-01-07 09:23:22,039 - app_controller - INFO - [MainApp] 数据库连接对象类型: <class 'sqlite3.Connection'>
+2026-01-07 09:23:22,046 - app_controller - INFO - [MainApp] 数据库初始化/连接成功
+2026-01-07 09:23:22,046 - root - INFO - [StartupWindow] 初始化中...
+2026-01-07 09:23:24,998 - root - INFO - 加载完成，即将跳转到登录窗口
+2026-01-07 09:23:25,200 - app_controller - INFO - DEBUG: _on_startup_loaded 被调用
+2026-01-07 09:23:25,200 - root - INFO - [LoginWindow] 初始化时 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:23:25,270 - app_controller - INFO - [MainApp] 传递给 LoginWindow 的 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:23:25,271 - app_controller - INFO - [MainApp] 已连接登录成功信号
+2026-01-07 09:23:25,519 - root - INFO - [LoginWindow] handle_auto_login 中 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:23:25,519 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2026-01-07 09:23:25,521 - root - INFO - 当前用户为：管理员
+2026-01-07 09:23:25,521 - root - INFO - 当前用户ID为：1
+2026-01-07 09:23:25,522 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:23:39,524 - gui.main_window - INFO - 主窗口关闭
+2026-01-07 09:23:41,714 - app_controller - INFO - [MainApp] 应用程序初始化完成
+2026-01-07 09:23:41,722 - app_controller - INFO - [MainApp] 数据库连接对象类型: <class 'sqlite3.Connection'>
+2026-01-07 09:23:41,727 - app_controller - INFO - [MainApp] 数据库初始化/连接成功
+2026-01-07 09:23:41,728 - root - INFO - [StartupWindow] 初始化中...
+2026-01-07 09:23:44,727 - root - INFO - 加载完成，即将跳转到登录窗口
+2026-01-07 09:23:44,927 - app_controller - INFO - DEBUG: _on_startup_loaded 被调用
+2026-01-07 09:23:44,927 - root - INFO - [LoginWindow] 初始化时 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:23:44,998 - app_controller - INFO - [MainApp] 传递给 LoginWindow 的 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:23:44,998 - app_controller - INFO - [MainApp] 已连接登录成功信号
+2026-01-07 09:23:45,248 - root - INFO - [LoginWindow] handle_auto_login 中 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 09:23:45,248 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2026-01-07 09:23:45,250 - root - INFO - 当前用户为：管理员
+2026-01-07 09:23:45,250 - root - INFO - 当前用户ID为：1
+2026-01-07 09:23:45,250 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:24:45,261 - root - INFO - 当前用户为：管理员
+2026-01-07 09:24:45,261 - root - INFO - 当前用户ID为：1
+2026-01-07 09:24:45,261 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:25:45,273 - root - INFO - 当前用户为：管理员
+2026-01-07 09:25:45,273 - root - INFO - 当前用户ID为：1
+2026-01-07 09:25:45,273 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:26:45,287 - root - INFO - 当前用户为：管理员
+2026-01-07 09:26:45,287 - root - INFO - 当前用户ID为：1
+2026-01-07 09:26:45,287 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:27:45,293 - root - INFO - 当前用户为：管理员
+2026-01-07 09:27:45,293 - root - INFO - 当前用户ID为：1
+2026-01-07 09:27:45,293 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:28:45,297 - root - INFO - 当前用户为：管理员
+2026-01-07 09:28:45,297 - root - INFO - 当前用户ID为：1
+2026-01-07 09:28:45,297 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:29:45,302 - root - INFO - 当前用户为：管理员
+2026-01-07 09:29:45,302 - root - INFO - 当前用户ID为：1
+2026-01-07 09:29:45,302 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:30:45,303 - root - INFO - 当前用户为：管理员
+2026-01-07 09:30:45,303 - root - INFO - 当前用户ID为：1
+2026-01-07 09:30:45,303 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 09:31:09,676 - gui.main_window - INFO - 主窗口关闭
+2026-01-07 11:15:06,988 - app_controller - INFO - [MainApp] 应用程序初始化完成
+2026-01-07 11:15:06,999 - app_controller - INFO - [MainApp] 数据库连接对象类型: <class 'sqlite3.Connection'>
+2026-01-07 11:15:07,003 - app_controller - INFO - [MainApp] 数据库初始化/连接成功
+2026-01-07 11:15:07,003 - root - INFO - [StartupWindow] 初始化中...
+2026-01-07 11:15:09,942 - root - INFO - 加载完成，即将跳转到登录窗口
+2026-01-07 11:15:10,143 - app_controller - INFO - DEBUG: _on_startup_loaded 被调用
+2026-01-07 11:15:10,143 - root - INFO - [LoginWindow] 初始化时 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 11:15:10,196 - app_controller - INFO - [MainApp] 传递给 LoginWindow 的 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 11:15:10,196 - app_controller - INFO - [MainApp] 已连接登录成功信号
+2026-01-07 11:15:10,464 - root - INFO - [LoginWindow] handle_auto_login 中 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 11:15:10,464 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2026-01-07 11:15:10,464 - root - INFO - 当前用户为：管理员
+2026-01-07 11:15:10,465 - root - INFO - 当前用户ID为：1
+2026-01-07 11:15:10,465 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 11:16:10,479 - root - INFO - 当前用户为：管理员
+2026-01-07 11:16:10,479 - root - INFO - 当前用户ID为：1
+2026-01-07 11:16:10,479 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 11:17:10,482 - root - INFO - 当前用户为：管理员
+2026-01-07 11:17:10,482 - root - INFO - 当前用户ID为：1
+2026-01-07 11:17:10,482 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 11:18:10,495 - root - INFO - 当前用户为：管理员
+2026-01-07 11:18:10,495 - root - INFO - 当前用户ID为：1
+2026-01-07 11:18:10,495 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 11:19:10,505 - root - INFO - 当前用户为：管理员
+2026-01-07 11:19:10,505 - root - INFO - 当前用户ID为：1
+2026-01-07 11:19:10,505 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 11:20:10,514 - root - INFO - 当前用户为：管理员
+2026-01-07 11:20:10,514 - root - INFO - 当前用户ID为：1
+2026-01-07 11:20:10,514 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 11:21:10,514 - root - INFO - 当前用户为：管理员
+2026-01-07 11:21:10,514 - root - INFO - 当前用户ID为：1
+2026-01-07 11:21:10,514 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 11:22:10,516 - root - INFO - 当前用户为：管理员
+2026-01-07 11:22:10,516 - root - INFO - 当前用户ID为：1
+2026-01-07 11:22:10,516 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 11:23:10,530 - root - INFO - 当前用户为：管理员
+2026-01-07 11:23:10,530 - root - INFO - 当前用户ID为：1
+2026-01-07 11:23:10,530 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 11:24:10,538 - root - INFO - 当前用户为：管理员
+2026-01-07 11:24:10,538 - root - INFO - 当前用户ID为：1
+2026-01-07 11:24:10,538 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 11:25:10,548 - root - INFO - 当前用户为：管理员
+2026-01-07 11:25:10,548 - root - INFO - 当前用户ID为：1
+2026-01-07 11:25:10,548 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 11:26:10,555 - root - INFO - 当前用户为：管理员
+2026-01-07 11:26:10,555 - root - INFO - 当前用户ID为：1
+2026-01-07 11:26:10,555 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 11:27:10,558 - root - INFO - 当前用户为：管理员
+2026-01-07 11:27:10,558 - root - INFO - 当前用户ID为：1
+2026-01-07 11:27:10,558 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 11:28:10,572 - root - INFO - 当前用户为：管理员
+2026-01-07 11:28:10,572 - root - INFO - 当前用户ID为：1
+2026-01-07 11:28:10,572 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 11:29:10,583 - root - INFO - 当前用户为：管理员
+2026-01-07 11:29:10,583 - root - INFO - 当前用户ID为：1
+2026-01-07 11:29:10,583 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 11:30:10,595 - root - INFO - 当前用户为：管理员
+2026-01-07 11:30:10,595 - root - INFO - 当前用户ID为：1
+2026-01-07 11:30:10,595 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 11:31:10,611 - root - INFO - 当前用户为：管理员
+2026-01-07 11:31:10,611 - root - INFO - 当前用户ID为：1
+2026-01-07 11:31:10,611 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 11:32:10,619 - root - INFO - 当前用户为：管理员
+2026-01-07 11:32:10,619 - root - INFO - 当前用户ID为：1
+2026-01-07 11:32:10,619 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 11:33:10,625 - root - INFO - 当前用户为：管理员
+2026-01-07 11:33:10,625 - root - INFO - 当前用户ID为：1
+2026-01-07 11:33:10,625 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 11:34:10,637 - root - INFO - 当前用户为：管理员
+2026-01-07 11:34:10,637 - root - INFO - 当前用户ID为：1
+2026-01-07 11:34:10,637 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 11:34:27,200 - gui.main_window - INFO - 主窗口关闭
+2026-01-07 15:06:08,303 - app_controller - INFO - [MainApp] 应用程序初始化完成
+2026-01-07 15:06:08,313 - app_controller - INFO - [MainApp] 数据库连接对象类型: <class 'sqlite3.Connection'>
+2026-01-07 15:06:08,318 - app_controller - INFO - [MainApp] 数据库初始化/连接成功
+2026-01-07 15:06:08,318 - root - INFO - [StartupWindow] 初始化中...
+2026-01-07 15:06:11,271 - root - INFO - 加载完成，即将跳转到登录窗口
+2026-01-07 15:06:11,472 - app_controller - INFO - DEBUG: _on_startup_loaded 被调用
+2026-01-07 15:06:11,472 - root - INFO - [LoginWindow] 初始化时 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 15:06:11,552 - app_controller - INFO - [MainApp] 传递给 LoginWindow 的 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 15:06:11,552 - app_controller - INFO - [MainApp] 已连接登录成功信号
+2026-01-07 15:06:11,793 - root - INFO - [LoginWindow] handle_auto_login 中 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 15:06:11,793 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2026-01-07 15:06:11,793 - root - INFO - 当前用户为：管理员
+2026-01-07 15:06:11,795 - root - INFO - 当前用户ID为：1
+2026-01-07 15:06:11,796 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 15:06:13,499 - root - INFO - 用户点击退出登录，发送退出信号
+2026-01-07 15:06:13,499 - gui.main_window - INFO - 主窗口关闭
+2026-01-07 15:06:36,717 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2026-01-07 15:06:36,718 - root - INFO - 当前用户为：管理员
+2026-01-07 15:06:36,718 - root - INFO - 当前用户ID为：1
+2026-01-07 15:06:36,719 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 15:07:36,722 - root - INFO - 当前用户为：管理员
+2026-01-07 15:07:36,722 - root - INFO - 当前用户ID为：1
+2026-01-07 15:07:36,722 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 15:08:09,289 - gui.main_window - INFO - 主窗口关闭
+2026-01-07 15:09:20,324 - app_controller - INFO - [MainApp] 应用程序初始化完成
+2026-01-07 15:09:20,333 - app_controller - INFO - [MainApp] 数据库连接对象类型: <class 'sqlite3.Connection'>
+2026-01-07 15:09:20,337 - app_controller - INFO - [MainApp] 数据库初始化/连接成功
+2026-01-07 15:09:20,338 - root - INFO - [StartupWindow] 初始化中...
+2026-01-07 15:09:23,221 - root - INFO - 加载完成，即将跳转到登录窗口
+2026-01-07 15:09:23,422 - app_controller - INFO - DEBUG: _on_startup_loaded 被调用
+2026-01-07 15:09:23,422 - root - INFO - [LoginWindow] 初始化时 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 15:09:23,496 - app_controller - INFO - [MainApp] 传递给 LoginWindow 的 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 15:09:23,497 - app_controller - INFO - [MainApp] 已连接登录成功信号
+2026-01-07 15:09:23,738 - root - INFO - [LoginWindow] handle_auto_login 中 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 15:09:23,738 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2026-01-07 15:09:23,739 - root - INFO - 当前用户为：管理员
+2026-01-07 15:09:23,739 - root - INFO - 当前用户ID为：1
+2026-01-07 15:09:23,740 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 15:09:32,585 - root - INFO - 用户点击退出登录，发送退出信号
+2026-01-07 15:09:32,585 - gui.main_window - INFO - 主窗口关闭
+2026-01-07 15:15:51,194 - app_controller - INFO - [MainApp] 应用程序初始化完成
+2026-01-07 15:15:51,208 - app_controller - INFO - [MainApp] 数据库连接对象类型: <class 'sqlite3.Connection'>
+2026-01-07 15:15:51,213 - app_controller - INFO - [MainApp] 数据库初始化/连接成功
+2026-01-07 15:15:51,214 - root - INFO - [StartupWindow] 初始化中...
+2026-01-07 15:15:54,127 - root - INFO - 加载完成，即将跳转到登录窗口
+2026-01-07 15:15:54,328 - app_controller - INFO - DEBUG: _on_startup_loaded 被调用
+2026-01-07 15:15:54,328 - root - INFO - [LoginWindow] 初始化时 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 15:15:54,402 - app_controller - INFO - [MainApp] 传递给 LoginWindow 的 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 15:15:54,402 - app_controller - INFO - [MainApp] 已连接登录成功信号
+2026-01-07 15:15:54,648 - root - INFO - [LoginWindow] handle_auto_login 中 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-07 15:15:54,649 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2026-01-07 15:15:54,649 - root - INFO - 当前用户为：管理员
+2026-01-07 15:15:54,651 - root - INFO - 当前用户ID为：1
+2026-01-07 15:15:54,651 - root - INFO - 运行正常，显示为主窗口
+2026-01-07 15:15:55,853 - root - INFO - 用户点击退出登录，发送退出信号
+2026-01-07 15:15:55,855 - gui.main_window - INFO - 主窗口关闭
+2026-01-09 08:48:04,887 - app_controller - INFO - [MainApp] 应用程序初始化完成
+2026-01-09 08:48:04,898 - app_controller - INFO - [MainApp] 数据库连接对象类型: <class 'sqlite3.Connection'>
+2026-01-09 08:48:04,903 - app_controller - INFO - [MainApp] 数据库初始化/连接成功
+2026-01-09 08:48:04,904 - root - INFO - [StartupWindow] 初始化中...
+2026-01-09 08:48:07,779 - root - INFO - 加载完成，即将跳转到登录窗口
+2026-01-09 08:48:07,981 - app_controller - INFO - DEBUG: _on_startup_loaded 被调用
+2026-01-09 08:48:07,983 - root - INFO - [LoginWindow] 初始化时 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-09 08:48:08,088 - app_controller - INFO - [MainApp] 传递给 LoginWindow 的 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-09 08:48:08,088 - app_controller - INFO - [MainApp] 已连接登录成功信号
+2026-01-09 08:48:08,312 - root - INFO - [LoginWindow] handle_auto_login 中 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-09 08:48:08,312 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2026-01-09 08:48:08,313 - root - INFO - 当前用户为：管理员
+2026-01-09 08:48:08,315 - root - INFO - 当前用户ID为：1
+2026-01-09 08:48:08,315 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 08:49:08,327 - root - INFO - 当前用户为：管理员
+2026-01-09 08:49:08,327 - root - INFO - 当前用户ID为：1
+2026-01-09 08:49:08,327 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 08:49:52,019 - gui.main_window - INFO - 主窗口关闭
+2026-01-09 08:49:54,473 - app_controller - INFO - [MainApp] 应用程序初始化完成
+2026-01-09 08:49:54,481 - app_controller - INFO - [MainApp] 数据库连接对象类型: <class 'sqlite3.Connection'>
+2026-01-09 08:49:54,486 - app_controller - INFO - [MainApp] 数据库初始化/连接成功
+2026-01-09 08:49:54,486 - root - INFO - [StartupWindow] 初始化中...
+2026-01-09 08:49:57,358 - root - INFO - 加载完成，即将跳转到登录窗口
+2026-01-09 08:49:57,558 - app_controller - INFO - DEBUG: _on_startup_loaded 被调用
+2026-01-09 08:49:57,558 - root - INFO - [LoginWindow] 初始化时 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-09 08:49:57,629 - app_controller - INFO - [MainApp] 传递给 LoginWindow 的 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-09 08:49:57,629 - app_controller - INFO - [MainApp] 已连接登录成功信号
+2026-01-09 08:49:57,876 - root - INFO - [LoginWindow] handle_auto_login 中 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-09 08:49:57,877 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2026-01-09 08:49:57,877 - root - INFO - 当前用户为：管理员
+2026-01-09 08:49:57,878 - root - INFO - 当前用户ID为：1
+2026-01-09 08:49:57,878 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 08:50:57,894 - root - INFO - 当前用户为：管理员
+2026-01-09 08:50:57,894 - root - INFO - 当前用户ID为：1
+2026-01-09 08:50:57,894 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 08:51:44,259 - root - INFO - 用户点击退出登录，发送退出信号
+2026-01-09 08:51:44,259 - gui.main_window - INFO - 主窗口关闭
+2026-01-09 08:52:06,217 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2026-01-09 08:52:06,217 - root - INFO - 当前用户为：管理员
+2026-01-09 08:52:06,218 - root - INFO - 当前用户ID为：1
+2026-01-09 08:52:06,218 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 08:53:06,231 - root - INFO - 当前用户为：管理员
+2026-01-09 08:53:06,231 - root - INFO - 当前用户ID为：1
+2026-01-09 08:53:06,231 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 08:54:06,236 - root - INFO - 当前用户为：管理员
+2026-01-09 08:54:06,236 - root - INFO - 当前用户ID为：1
+2026-01-09 08:54:06,236 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 08:55:06,240 - root - INFO - 当前用户为：管理员
+2026-01-09 08:55:06,240 - root - INFO - 当前用户ID为：1
+2026-01-09 08:55:06,240 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 08:56:06,249 - root - INFO - 当前用户为：管理员
+2026-01-09 08:56:06,249 - root - INFO - 当前用户ID为：1
+2026-01-09 08:56:06,249 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 08:57:06,251 - root - INFO - 当前用户为：管理员
+2026-01-09 08:57:06,251 - root - INFO - 当前用户ID为：1
+2026-01-09 08:57:06,251 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 08:58:06,254 - root - INFO - 当前用户为：管理员
+2026-01-09 08:58:06,254 - root - INFO - 当前用户ID为：1
+2026-01-09 08:58:06,254 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 08:59:06,267 - root - INFO - 当前用户为：管理员
+2026-01-09 08:59:06,267 - root - INFO - 当前用户ID为：1
+2026-01-09 08:59:06,267 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:00:06,279 - root - INFO - 当前用户为：管理员
+2026-01-09 09:00:06,279 - root - INFO - 当前用户ID为：1
+2026-01-09 09:00:06,279 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:01:06,284 - root - INFO - 当前用户为：管理员
+2026-01-09 09:01:06,284 - root - INFO - 当前用户ID为：1
+2026-01-09 09:01:06,284 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:02:06,299 - root - INFO - 当前用户为：管理员
+2026-01-09 09:02:06,299 - root - INFO - 当前用户ID为：1
+2026-01-09 09:02:06,299 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:03:06,310 - root - INFO - 当前用户为：管理员
+2026-01-09 09:03:06,310 - root - INFO - 当前用户ID为：1
+2026-01-09 09:03:06,310 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:04:06,321 - root - INFO - 当前用户为：管理员
+2026-01-09 09:04:06,321 - root - INFO - 当前用户ID为：1
+2026-01-09 09:04:06,321 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:05:06,323 - root - INFO - 当前用户为：管理员
+2026-01-09 09:05:06,323 - root - INFO - 当前用户ID为：1
+2026-01-09 09:05:06,323 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:06:06,336 - root - INFO - 当前用户为：管理员
+2026-01-09 09:06:06,336 - root - INFO - 当前用户ID为：1
+2026-01-09 09:06:06,336 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:07:06,348 - root - INFO - 当前用户为：管理员
+2026-01-09 09:07:06,348 - root - INFO - 当前用户ID为：1
+2026-01-09 09:07:06,348 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:08:06,350 - root - INFO - 当前用户为：管理员
+2026-01-09 09:08:06,350 - root - INFO - 当前用户ID为：1
+2026-01-09 09:08:06,350 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:09:06,366 - root - INFO - 当前用户为：管理员
+2026-01-09 09:09:06,366 - root - INFO - 当前用户ID为：1
+2026-01-09 09:09:06,366 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:10:06,380 - root - INFO - 当前用户为：管理员
+2026-01-09 09:10:06,380 - root - INFO - 当前用户ID为：1
+2026-01-09 09:10:06,380 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:11:06,381 - root - INFO - 当前用户为：管理员
+2026-01-09 09:11:06,381 - root - INFO - 当前用户ID为：1
+2026-01-09 09:11:06,381 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:12:06,395 - root - INFO - 当前用户为：管理员
+2026-01-09 09:12:06,395 - root - INFO - 当前用户ID为：1
+2026-01-09 09:12:06,395 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:13:06,398 - root - INFO - 当前用户为：管理员
+2026-01-09 09:13:06,398 - root - INFO - 当前用户ID为：1
+2026-01-09 09:13:06,398 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:14:06,413 - root - INFO - 当前用户为：管理员
+2026-01-09 09:14:06,413 - root - INFO - 当前用户ID为：1
+2026-01-09 09:14:06,413 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:15:06,418 - root - INFO - 当前用户为：管理员
+2026-01-09 09:15:06,418 - root - INFO - 当前用户ID为：1
+2026-01-09 09:15:06,418 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:16:06,425 - root - INFO - 当前用户为：管理员
+2026-01-09 09:16:06,425 - root - INFO - 当前用户ID为：1
+2026-01-09 09:16:06,425 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:17:06,435 - root - INFO - 当前用户为：管理员
+2026-01-09 09:17:06,435 - root - INFO - 当前用户ID为：1
+2026-01-09 09:17:06,435 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:18:06,451 - root - INFO - 当前用户为：管理员
+2026-01-09 09:18:06,451 - root - INFO - 当前用户ID为：1
+2026-01-09 09:18:06,451 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:19:06,459 - root - INFO - 当前用户为：管理员
+2026-01-09 09:19:06,459 - root - INFO - 当前用户ID为：1
+2026-01-09 09:19:06,459 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:20:06,463 - root - INFO - 当前用户为：管理员
+2026-01-09 09:20:06,463 - root - INFO - 当前用户ID为：1
+2026-01-09 09:20:06,463 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:21:06,479 - root - INFO - 当前用户为：管理员
+2026-01-09 09:21:06,479 - root - INFO - 当前用户ID为：1
+2026-01-09 09:21:06,479 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:22:06,493 - root - INFO - 当前用户为：管理员
+2026-01-09 09:22:06,493 - root - INFO - 当前用户ID为：1
+2026-01-09 09:22:06,493 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:23:06,508 - root - INFO - 当前用户为：管理员
+2026-01-09 09:23:06,508 - root - INFO - 当前用户ID为：1
+2026-01-09 09:23:06,508 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:24:06,521 - root - INFO - 当前用户为：管理员
+2026-01-09 09:24:06,521 - root - INFO - 当前用户ID为：1
+2026-01-09 09:24:06,521 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:25:06,534 - root - INFO - 当前用户为：管理员
+2026-01-09 09:25:06,534 - root - INFO - 当前用户ID为：1
+2026-01-09 09:25:06,534 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:26:06,543 - root - INFO - 当前用户为：管理员
+2026-01-09 09:26:06,543 - root - INFO - 当前用户ID为：1
+2026-01-09 09:26:06,543 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:27:06,552 - root - INFO - 当前用户为：管理员
+2026-01-09 09:27:06,552 - root - INFO - 当前用户ID为：1
+2026-01-09 09:27:06,552 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:28:06,562 - root - INFO - 当前用户为：管理员
+2026-01-09 09:28:06,562 - root - INFO - 当前用户ID为：1
+2026-01-09 09:28:06,562 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:29:06,572 - root - INFO - 当前用户为：管理员
+2026-01-09 09:29:06,572 - root - INFO - 当前用户ID为：1
+2026-01-09 09:29:06,572 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:30:06,583 - root - INFO - 当前用户为：管理员
+2026-01-09 09:30:06,583 - root - INFO - 当前用户ID为：1
+2026-01-09 09:30:06,583 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:31:06,593 - root - INFO - 当前用户为：管理员
+2026-01-09 09:31:06,593 - root - INFO - 当前用户ID为：1
+2026-01-09 09:31:06,593 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:32:06,607 - root - INFO - 当前用户为：管理员
+2026-01-09 09:32:06,607 - root - INFO - 当前用户ID为：1
+2026-01-09 09:32:06,607 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:33:06,622 - root - INFO - 当前用户为：管理员
+2026-01-09 09:33:06,622 - root - INFO - 当前用户ID为：1
+2026-01-09 09:33:06,622 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:34:06,628 - root - INFO - 当前用户为：管理员
+2026-01-09 09:34:06,628 - root - INFO - 当前用户ID为：1
+2026-01-09 09:34:06,628 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:35:06,636 - root - INFO - 当前用户为：管理员
+2026-01-09 09:35:06,636 - root - INFO - 当前用户ID为：1
+2026-01-09 09:35:06,636 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:36:06,645 - root - INFO - 当前用户为：管理员
+2026-01-09 09:36:06,645 - root - INFO - 当前用户ID为：1
+2026-01-09 09:36:06,645 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:37:06,650 - root - INFO - 当前用户为：管理员
+2026-01-09 09:37:06,650 - root - INFO - 当前用户ID为：1
+2026-01-09 09:37:06,650 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 09:38:06,662 - root - INFO - 当前用户为：管理员
+2026-01-09 09:38:06,662 - root - INFO - 当前用户ID为：1
+2026-01-09 09:38:06,662 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 10:29:00,169 - root - INFO - 当前用户为：管理员
+2026-01-09 10:29:00,169 - root - INFO - 当前用户ID为：1
+2026-01-09 10:29:00,169 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 10:30:00,177 - root - INFO - 当前用户为：管理员
+2026-01-09 10:30:00,177 - root - INFO - 当前用户ID为：1
+2026-01-09 10:30:00,177 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 10:31:00,185 - root - INFO - 当前用户为：管理员
+2026-01-09 10:31:00,185 - root - INFO - 当前用户ID为：1
+2026-01-09 10:31:00,185 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 10:32:00,200 - root - INFO - 当前用户为：管理员
+2026-01-09 10:32:00,200 - root - INFO - 当前用户ID为：1
+2026-01-09 10:32:00,200 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 10:33:00,203 - root - INFO - 当前用户为：管理员
+2026-01-09 10:33:00,203 - root - INFO - 当前用户ID为：1
+2026-01-09 10:33:00,203 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 10:34:00,213 - root - INFO - 当前用户为：管理员
+2026-01-09 10:34:00,213 - root - INFO - 当前用户ID为：1
+2026-01-09 10:34:00,213 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 10:35:00,223 - root - INFO - 当前用户为：管理员
+2026-01-09 10:35:00,223 - root - INFO - 当前用户ID为：1
+2026-01-09 10:35:00,223 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 10:36:00,231 - root - INFO - 当前用户为：管理员
+2026-01-09 10:36:00,232 - root - INFO - 当前用户ID为：1
+2026-01-09 10:36:00,232 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 10:36:04,749 - gui.main_window - INFO - 主窗口关闭
+2026-01-09 17:31:48,452 - app_controller - INFO - [MainApp] 应用程序初始化完成
+2026-01-09 17:31:48,462 - app_controller - INFO - [MainApp] 数据库连接对象类型: <class 'sqlite3.Connection'>
+2026-01-09 17:31:48,465 - app_controller - INFO - [MainApp] 数据库初始化/连接成功
+2026-01-09 17:31:48,466 - root - INFO - [StartupWindow] 初始化中...
+2026-01-09 17:31:51,594 - root - INFO - 加载完成，即将跳转到登录窗口
+2026-01-09 17:31:51,794 - app_controller - INFO - DEBUG: _on_startup_loaded 被调用
+2026-01-09 17:31:51,794 - root - INFO - [LoginWindow] 初始化时 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-09 17:31:51,892 - app_controller - INFO - [MainApp] 传递给 LoginWindow 的 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-09 17:31:51,893 - app_controller - INFO - [MainApp] 已连接登录成功信号
+2026-01-09 17:31:52,125 - root - INFO - [LoginWindow] handle_auto_login 中 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-09 17:31:52,125 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2026-01-09 17:31:52,126 - root - INFO - 当前用户为：管理员
+2026-01-09 17:31:52,126 - root - INFO - 当前用户ID为：1
+2026-01-09 17:31:52,127 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 17:32:52,140 - root - INFO - 当前用户为：管理员
+2026-01-09 17:32:52,140 - root - INFO - 当前用户ID为：1
+2026-01-09 17:32:52,140 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 17:33:52,153 - root - INFO - 当前用户为：管理员
+2026-01-09 17:33:52,153 - root - INFO - 当前用户ID为：1
+2026-01-09 17:33:52,153 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 17:34:52,157 - root - INFO - 当前用户为：管理员
+2026-01-09 17:34:52,157 - root - INFO - 当前用户ID为：1
+2026-01-09 17:34:52,157 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 17:35:52,168 - root - INFO - 当前用户为：管理员
+2026-01-09 17:35:52,168 - root - INFO - 当前用户ID为：1
+2026-01-09 17:35:52,168 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 17:36:52,175 - root - INFO - 当前用户为：管理员
+2026-01-09 17:36:52,175 - root - INFO - 当前用户ID为：1
+2026-01-09 17:36:52,175 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 17:37:52,189 - root - INFO - 当前用户为：管理员
+2026-01-09 17:37:52,189 - root - INFO - 当前用户ID为：1
+2026-01-09 17:37:52,189 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 17:38:52,191 - root - INFO - 当前用户为：管理员
+2026-01-09 17:38:52,191 - root - INFO - 当前用户ID为：1
+2026-01-09 17:38:52,191 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 17:39:52,204 - root - INFO - 当前用户为：管理员
+2026-01-09 17:39:52,204 - root - INFO - 当前用户ID为：1
+2026-01-09 17:39:52,204 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 17:40:52,211 - root - INFO - 当前用户为：管理员
+2026-01-09 17:40:52,211 - root - INFO - 当前用户ID为：1
+2026-01-09 17:40:52,211 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 17:41:52,227 - root - INFO - 当前用户为：管理员
+2026-01-09 17:41:52,227 - root - INFO - 当前用户ID为：1
+2026-01-09 17:41:52,227 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 17:42:52,235 - root - INFO - 当前用户为：管理员
+2026-01-09 17:42:52,235 - root - INFO - 当前用户ID为：1
+2026-01-09 17:42:52,235 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 17:43:52,242 - root - INFO - 当前用户为：管理员
+2026-01-09 17:43:52,242 - root - INFO - 当前用户ID为：1
+2026-01-09 17:43:52,242 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 17:44:52,257 - root - INFO - 当前用户为：管理员
+2026-01-09 17:44:52,257 - root - INFO - 当前用户ID为：1
+2026-01-09 17:44:52,257 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 17:45:52,260 - root - INFO - 当前用户为：管理员
+2026-01-09 17:45:52,260 - root - INFO - 当前用户ID为：1
+2026-01-09 17:45:52,260 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 17:46:52,265 - root - INFO - 当前用户为：管理员
+2026-01-09 17:46:52,265 - root - INFO - 当前用户ID为：1
+2026-01-09 17:46:52,265 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 17:47:52,274 - root - INFO - 当前用户为：管理员
+2026-01-09 17:47:52,274 - root - INFO - 当前用户ID为：1
+2026-01-09 17:47:52,274 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 17:48:52,275 - root - INFO - 当前用户为：管理员
+2026-01-09 17:48:52,275 - root - INFO - 当前用户ID为：1
+2026-01-09 17:48:52,275 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 17:49:52,278 - root - INFO - 当前用户为：管理员
+2026-01-09 17:49:52,278 - root - INFO - 当前用户ID为：1
+2026-01-09 17:49:52,278 - root - INFO - 运行正常，显示为主窗口
+2026-01-09 17:50:37,034 - gui.main_window - INFO - 主窗口关闭
+2026-01-12 08:30:02,516 - app_controller - INFO - [MainApp] 应用程序初始化完成
+2026-01-12 08:30:02,522 - app_controller - INFO - [MainApp] 数据库连接对象类型: <class 'sqlite3.Connection'>
+2026-01-12 08:30:02,528 - app_controller - INFO - [MainApp] 数据库初始化/连接成功
+2026-01-12 08:30:02,529 - root - INFO - [StartupWindow] 初始化中...
+2026-01-12 08:30:05,439 - root - INFO - 加载完成，即将跳转到登录窗口
+2026-01-12 08:30:05,639 - app_controller - INFO - DEBUG: _on_startup_loaded 被调用
+2026-01-12 08:30:05,640 - root - INFO - [LoginWindow] 初始化时 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-12 08:30:05,710 - app_controller - INFO - [MainApp] 传递给 LoginWindow 的 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-12 08:30:05,711 - app_controller - INFO - [MainApp] 已连接登录成功信号
+2026-01-12 08:30:05,960 - root - INFO - [LoginWindow] handle_auto_login 中 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-12 08:30:05,960 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2026-01-12 08:30:05,961 - root - INFO - 当前用户为：管理员
+2026-01-12 08:30:05,961 - root - INFO - 当前用户ID为：1
+2026-01-12 08:30:05,961 - root - INFO - 运行正常，显示为主窗口
+2026-01-12 08:30:07,285 - root - INFO - 用户点击退出登录，发送退出信号
+2026-01-12 08:30:07,286 - gui.main_window - INFO - 主窗口关闭
+2026-01-12 08:37:17,338 - app_controller - INFO - [MainApp] 应用程序初始化完成
+2026-01-12 08:37:17,345 - app_controller - INFO - [MainApp] 数据库连接对象类型: <class 'sqlite3.Connection'>
+2026-01-12 08:37:17,350 - app_controller - INFO - [MainApp] 数据库初始化/连接成功
+2026-01-12 08:37:17,350 - root - INFO - [StartupWindow] 初始化中...
+2026-01-12 08:37:20,227 - root - INFO - 加载完成，即将跳转到登录窗口
+2026-01-12 08:37:20,428 - app_controller - INFO - DEBUG: _on_startup_loaded 被调用
+2026-01-12 08:37:20,428 - root - INFO - [LoginWindow] 初始化时 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-12 08:37:20,500 - app_controller - INFO - [MainApp] 传递给 LoginWindow 的 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-12 08:37:20,500 - app_controller - INFO - [MainApp] 已连接登录成功信号
+2026-01-12 08:37:20,747 - root - INFO - [LoginWindow] handle_auto_login 中 db_conn 类型: <class 'sqlite3.Connection'>
+2026-01-12 08:37:20,748 - gui.login_window - INFO - 用户 admin 登录成功, 角色: admin
+2026-01-12 08:37:20,748 - root - INFO - 当前用户为：管理员
+2026-01-12 08:37:20,749 - root - INFO - 当前用户ID为：1
+2026-01-12 08:37:20,749 - root - INFO - 运行正常，显示为主窗口
+2026-01-12 08:37:23,278 - gui.main_window - INFO - 主窗口关闭
